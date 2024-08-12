@@ -37,7 +37,7 @@ public class EmpresaServiceTest {
     private SenhaService senhaService;
 
     @Mock
-    private CepService cepService;
+    private CepUtil cepUtil;
 
     @Mock
     private CnpjService cnpjService;
@@ -79,7 +79,7 @@ public class EmpresaServiceTest {
         requestDto.setComplemento("Sala 1");
         requestDto.setPais("Brasil");
 
-        when(cepService.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
+        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
         doNothing().when(emailService).validarEmail(requestDto.getEmail());
         doNothing().when(senhaService).validarSenha(requestDto.getSenha());
         doNothing().when(cnpjService).validarCnpj(requestDto.getCnpj());

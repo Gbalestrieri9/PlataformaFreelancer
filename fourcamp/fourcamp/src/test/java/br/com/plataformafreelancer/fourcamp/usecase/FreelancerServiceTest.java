@@ -32,7 +32,7 @@ public class FreelancerServiceTest {
     private FreelancerJdbcTemplateDaoImpl freelancerJdbcTemplateDaoImpl;
 
     @Mock
-    private CepService cepService;
+    private CepUtil cepUtil;
 
     @Mock
     private EmailService emailService;
@@ -78,7 +78,7 @@ public class FreelancerServiceTest {
         requestDto.setNome("Freelancer Exemplo");
         requestDto.setDescricao("Desenvolvedor Java");
 
-        when(cepService.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
+        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
         doNothing().when(emailService).validarEmail(requestDto.getEmail());
         doNothing().when(senhaService).validarSenha(requestDto.getSenha());
         doNothing().when(nomeService).validarNome(requestDto.getNome());
@@ -225,7 +225,7 @@ public class FreelancerServiceTest {
         responseEnderecoDto.setCep("01000-000");
         responseEnderecoDto.setUf("SP");
 
-        when(cepService.buscaEnderecoPor(freelancerDto.getCep())).thenReturn(responseEnderecoDto);
+        when(cepUtil.buscaEnderecoPor(freelancerDto.getCep())).thenReturn(responseEnderecoDto);
         doNothing().when(telefoneService).validarNumeroTelefone(freelancerDto.getTelefone());
 
         freelancerService.atualizarDadosFreelancer(freelancerDto);
