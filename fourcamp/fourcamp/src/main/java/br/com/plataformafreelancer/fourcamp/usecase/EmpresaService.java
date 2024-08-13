@@ -34,9 +34,6 @@ public class EmpresaService {
     CepUtil cepUtil;
 
     @Autowired
-    CnpjService cnpjService;
-
-    @Autowired
     TelefoneService telefoneService;
 
     @Autowired
@@ -51,7 +48,7 @@ public class EmpresaService {
         emailService.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
-        cnpjService.validarCnpj(request.getCnpj());
+        ValidadorDeCnpj.validarCnpj(request.getCnpj());
         telefoneService.validarNumeroTelefone(request.getTelefone());
 
         Usuario usuario = Usuario.builder()

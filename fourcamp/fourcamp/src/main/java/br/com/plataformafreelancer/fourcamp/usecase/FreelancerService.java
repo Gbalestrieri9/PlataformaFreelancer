@@ -46,9 +46,6 @@ public class FreelancerService {
     private TelefoneService telefoneService;
 
     @Autowired
-    private CpfService cpfService;
-
-    @Autowired
     private FreelancerJdbcTemplateDaoImpl freelancerJdbcTemplateDaoImpl;
 
     public void salvarDadosCadastrais(RequestFreelancerDto request) {
@@ -57,7 +54,7 @@ public class FreelancerService {
         emailService.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         nomeService.validarNome(request.getNome());
-        cpfService.validarCpf(request.getCpf());
+        ValidadorDeCpf.validarCpf(request.getCpf());
         dataService.validarDataNascimento(request.getDataNascimento());
         telefoneService.validarNumeroTelefone(request.getTelefone());
 
@@ -79,6 +76,7 @@ public class FreelancerService {
                 .estado(responseEnderecoDto.getUf())
                 .pais(request.getPais())
                 .build();
+
 
         Freelancer freelancer = Freelancer.builder()
                 .usuario(usuario)
