@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class CepService {
+public class CepUtil {
     private static final String CEP_API_URL = "https://viacep.com.br/ws/%s/json/";
 
     public ResponseEnderecoDto buscaEnderecoPor(String cep) {

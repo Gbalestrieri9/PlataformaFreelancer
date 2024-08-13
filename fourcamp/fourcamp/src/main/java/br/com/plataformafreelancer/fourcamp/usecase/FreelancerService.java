@@ -28,7 +28,7 @@ public class FreelancerService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerService.class);
 
     @Autowired
-    private CepService cepService;
+    private CepUtil cepUtil;
 
     @Autowired
     private EmailService emailService;
@@ -61,7 +61,7 @@ public class FreelancerService {
         dataService.validarDataNascimento(request.getDataNascimento());
         telefoneService.validarNumeroTelefone(request.getTelefone());
 
-        ResponseEnderecoDto responseEnderecoDto = cepService.buscaEnderecoPor(request.getCep());
+        ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
 
         Usuario usuario = Usuario.builder()
                 .email(request.getEmail())
@@ -166,7 +166,7 @@ public class FreelancerService {
     public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer) {
         telefoneService.validarNumeroTelefone(freelancer.getTelefone());
 
-        ResponseEnderecoDto endereco = cepService.buscaEnderecoPor(freelancer.getCep());
+        ResponseEnderecoDto endereco = cepUtil.buscaEnderecoPor(freelancer.getCep());
 
         freelancer.setBairro(endereco.getBairro());
         freelancer.setCidade(endereco.getLocalidade());
