@@ -3,17 +3,23 @@ package br.com.plataformafreelancer.fourcamp.usecase;
 import br.com.plataformafreelancer.fourcamp.dao.impl.CarteiraJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.DepositarValorRequestDTO;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SacarValorRequestDTO;
+import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.MovimentacaoResponseDBDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseSaldoCarteiraDBDTO;
 import br.com.plataformafreelancer.fourcamp.utils.ValidadorDeEmail;
 import br.com.plataformafreelancer.fourcamp.utils.ValidadorDeValoresNegativos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class CarteiraService {
 
     @Autowired
     CarteiraJdbcTemplateDaoImpl carteiraJdbcTemplateDao;
+
+    LocalDate dataDaTransacao = LocalDate.now();
 
     public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email)  {
         String emailValidado = ValidadorDeEmail.validarEmail(email);
@@ -28,7 +34,7 @@ public class CarteiraService {
                 .validarValorFloat(depositarValorRequestDTO.getValor()
                 );
 
-        return carteiraJdbcTemplateDao.depositarValor(email, valor);
+        return carteiraJdbcTemplateDao.depositarValor(email, valor, dataDaTransacao);
     }
 
     public ResponseSaldoCarteiraDBDTO sacarValor(SacarValorRequestDTO sacarValorRequestDTO) {
@@ -39,6 +45,11 @@ public class CarteiraService {
                 .validarValorFloat(sacarValorRequestDTO.getValor()
                 );
 
-        return carteiraJdbcTemplateDao.sacarValor(email, valor);
+        return carteiraJdbcTemplateDao.sacarValor(email, valor, dataDaTransacao);
+    }
+
+    public List<MovimentacaoResponseDBDto> buscarMovimentacoes(String email) {
+        String emailValidado = ValidadorDeEmail.validarEmail(email);
+        return carteiraJdbcTemplateDao.buscarMovimentacoes(emailValidado);
     }
 }

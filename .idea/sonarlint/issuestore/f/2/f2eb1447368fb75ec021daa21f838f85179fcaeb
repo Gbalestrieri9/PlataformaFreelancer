@@ -1,9 +1,2 @@
 
-”	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©Ò´{J$d5314ce4-65e3-4f21-9b58-59a0ab53d083
-|
-java:S1068	"4Remove this unused "tipoMovimentacao" private field.(óïçüÿÿÿÿ8¶Ü–¾•2J$bf117043-804c-410a-972f-b9d32d5613f7
-x
-java:S1068
-"5Remove this unused "valorMovimentacao" private field.(ôœáá8ºÀš¾•2J$e1f8695c-6651-49c7-b95e-2597465486eb
-w
-java:S1068"4Remove this unused "dataMovimentacao" private field.(¹æ”8à§›¾•2J$9808d81d-b683-47e7-bc53-464fd89cb5c4
+”	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©Ò´{J$eb6a8789-22f7-4e12-b3d2-743007573586

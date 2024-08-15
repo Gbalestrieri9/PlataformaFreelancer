@@ -2,6 +2,7 @@ package br.com.plataformafreelancer.fourcamp.controller;
 
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.DepositarValorRequestDTO;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SacarValorRequestDTO;
+import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.MovimentacaoResponseDBDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseSaldoCarteiraDBDTO;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.CarteiraService;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/carteira")
@@ -49,14 +52,20 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-movimentacoes")
-    public ResponseEntity<?> buscarMovimentacoes(String email){
+    public ResponseEntity<?> buscarMovimentacoes(@RequestParam String email){
         LoggerUtils.logRequestStart(LOGGER, "visualizarSaldo", email);
 
         long startTime = System.currentTimeMillis();
 
-        carteiraService.buscarMovimentacoes(email);
+        List<MovimentacaoResponseDBDto> movimentacoes =
+                carteiraService.buscarMovimentacoes(email);
+
+        if (movimentacoes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         LoggerUtils.logElapsedTime(LOGGER, "visualizarSaldo", startTime);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(movimentacoes, HttpStatus.OK);
     }
 
     // Dsiponível somente para empresas

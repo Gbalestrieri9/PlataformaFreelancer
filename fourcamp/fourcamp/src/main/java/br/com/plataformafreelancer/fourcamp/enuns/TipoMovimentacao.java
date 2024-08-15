@@ -1,7 +1,12 @@
 package br.com.plataformafreelancer.fourcamp.enuns;
 
 public enum TipoMovimentacao {
-    SAQUE,
-    DEPOSITO,
-    TRANSFERENCIA
+    SAQUE ("Saque"),
+    DEPOSITO ( "Depósito"),
+    TRANSFERENCIA( "Transferencia");
+    private final String descricao;
+
+    TipoMovimentacao(String descricao){
+        this.descricao = descricao;
+    }
 }
