@@ -13,8 +13,28 @@ public class CarteiraJdbcTemplateDaoImpl implements ICarteiraJdbcTemplateDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Override
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String documento)  {
-        String sql = "SELECT public.visualizar_saldo(" + documento + ")";
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email){
+        String sql = "SELECT public.visualizar_saldo('" + email + "')";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(ResponseSaldoCarteiraDBDTO.class)
+        );
+    }
+
+    @Override
+    public ResponseSaldoCarteiraDBDTO depositarValor(String email, float valor) {
+        String sql = "SELECT public.depositar_valor('" + email + "', " + valor + ")";
+
+        return jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(ResponseSaldoCarteiraDBDTO.class)
+        );
+    }
+
+    @Override
+    public ResponseSaldoCarteiraDBDTO sacarValor(String email, float valor) {
+        String sql = "SELECT public.sacar_valor('" + email + "', " + valor + ")";
 
         return jdbcTemplate.queryForObject(
                 sql,

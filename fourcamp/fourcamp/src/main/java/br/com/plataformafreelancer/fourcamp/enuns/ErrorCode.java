@@ -32,7 +32,10 @@ public enum ErrorCode {
     OBJETO_VAZIO("objeto não encontrado", "Nenhum dado foi encontrado!"),
     PROJETO_NAO_EXCLUIDO("Projeto com id", "Projeto não pode ser excluído porque está associado a um freelancer."),
     DADO_INVALIDO("Dado invalido no Json", "Dado Inválido no Json"),
-    OUTRO_ERRO("Outro erro", "Erro desconhecido");
+    OUTRO_ERRO("Outro erro", "Erro desconhecido"),
+    VALOR_INVALIDO_VALOR_DEPOSITO("Valor inválido", "O valor informado para depósito é inválido: "),
+    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível.");
+
 
     private final String message;
     private final String customMessage;

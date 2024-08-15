@@ -31,7 +31,7 @@
 //    private EmpresaJdbcTemplateDaoImpl empresaJdbcTemplateDao;
 //
 //    @Mock
-//    private EmailService emailService;
+//    private ValidadorDeEmail validadorDeEmail;
 //
 //    @Mock
 //    private SenhaService senhaService;
@@ -80,7 +80,7 @@
 //        requestDto.setPais("Brasil");
 //
 //        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
-//        doNothing().when(emailService).validarEmail(requestDto.getEmail());
+//        doNothing().when(validadorDeEmail).validarEmail(requestDto.getEmail());
 //        doNothing().when(senhaService).validarSenha(requestDto.getSenha());
 //        doNothing().when(validadorDeCnpj).validarCnpj(requestDto.getCnpj());
 //        doNothing().when(telefoneService).validarNumeroTelefone(requestDto.getTelefone());

@@ -31,7 +31,7 @@ public class FreelancerService {
     private CepUtil cepUtil;
 
     @Autowired
-    private EmailService emailService;
+    private ValidadorDeEmail validadorDeEmail;
 
     @Autowired
     private SenhaService senhaService;
@@ -51,7 +51,7 @@ public class FreelancerService {
     public void salvarDadosCadastrais(RequestFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
-        emailService.validarEmail(request.getEmail());
+        validadorDeEmail.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         nomeService.validarNome(request.getNome());
         ValidadorDeCpf.validarCpf(request.getCpf());

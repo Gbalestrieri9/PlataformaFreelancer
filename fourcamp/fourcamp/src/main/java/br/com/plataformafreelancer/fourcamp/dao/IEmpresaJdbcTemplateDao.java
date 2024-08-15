@@ -11,15 +11,15 @@ import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import java.util.List;
 
 public interface IEmpresaJdbcTemplateDao {
-    public void salvarDadosCadastrais(Empresa empresa);
+    void salvarDadosCadastrais(Empresa empresa);
 
-    public void salvarDadosProjeto(Projeto projeto);
+    void salvarDadosProjeto(Projeto projeto);
 
-    public void analisarProposta(RequestAnalisarPropostaDto request);
+    void analisarProposta(RequestAnalisarPropostaDto request);
 
-    public  void avaliarFreelancer(Avaliacao avaliacao);
+    void avaliarFreelancer(Avaliacao avaliacao);
 
-    public List<ResponseFreelancerDto> listarFreelacer();
+    List<ResponseFreelancerDto> listarFreelacer();
 
     ResponseFreelancerCompletaDto obterDetalhesFreelancer(Integer freelancerId);
 

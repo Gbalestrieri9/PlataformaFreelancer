@@ -25,9 +25,6 @@ public class EmpresaService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmpresaService.class);
 
     @Autowired
-    EmailService emailService;
-
-    @Autowired
     SenhaService senhaService;
 
     @Autowired
@@ -45,7 +42,7 @@ public class EmpresaService {
     public void salvarDadosCadastrais(RequestEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
-        emailService.validarEmail(request.getEmail());
+        ValidadorDeEmail.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
         ValidadorDeCnpj.validarCnpj(request.getCnpj());

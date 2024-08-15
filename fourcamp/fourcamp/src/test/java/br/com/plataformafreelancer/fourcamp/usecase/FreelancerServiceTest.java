@@ -35,7 +35,7 @@
 //    private CepUtil cepUtil;
 //
 //    @Mock
-//    private EmailService emailService;
+//    private ValidadorDeEmail validadorDeEmail;
 //
 //    @Mock
 //    private SenhaService senhaService;
@@ -79,7 +79,7 @@
 //        requestDto.setDescricao("Desenvolvedor Java");
 //
 //        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
-//        doNothing().when(emailService).validarEmail(requestDto.getEmail());
+//        doNothing().when(validadorDeEmail).validarEmail(requestDto.getEmail());
 //        doNothing().when(senhaService).validarSenha(requestDto.getSenha());
 //        doNothing().when(nomeService).validarNome(requestDto.getNome());
 //        doNothing().when(cpfService).validarCpf(requestDto.getCpf());

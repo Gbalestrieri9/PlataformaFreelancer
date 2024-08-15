@@ -5,5 +5,9 @@ import br.com.plataformafreelancer.fourcamp.exceptions.PlataformaFreelancerDBExc
 
 public interface ICarteiraJdbcTemplateDao {
 
-    ResponseSaldoCarteiraDBDTO visualizarSaldo(String documento) throws PlataformaFreelancerDBException;
+    ResponseSaldoCarteiraDBDTO visualizarSaldo(String email);
+
+    ResponseSaldoCarteiraDBDTO depositarValor(String email, float valor);
+
+    ResponseSaldoCarteiraDBDTO sacarValor(String email, float valor);
 }
