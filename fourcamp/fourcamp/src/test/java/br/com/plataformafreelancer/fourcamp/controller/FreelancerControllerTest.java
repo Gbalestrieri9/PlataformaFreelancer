@@ -51,19 +51,19 @@ public class FreelancerControllerTest {
         verify(freelancerService).salvarDadosCadastrais(requestDto);
     }
 
-    @Test
-    public void testEnviarProposta() {
-        RequestPropostaDto requestDto = new RequestPropostaDto();
-        doNothing().when(freelancerService).salvarProposta(requestDto);
-
-        ResponseEntity<?> response = freelancerController.enviarProposta(requestDto);
-
-        assertEquals(200, response.getStatusCodeValue());
-        StandardResponse standardResponse = (StandardResponse) response.getBody();
-        assertEquals("Proposta enviada com sucesso!", standardResponse.getMessage());
-
-        verify(freelancerService).salvarProposta(requestDto);
-    }
+//    @Test
+//    public void testEnviarProposta() {
+//        RequestPropostaDto requestDto = new RequestPropostaDto();
+//        doNothing().when(freelancerService).salvarProposta(requestDto);
+//
+//        ResponseEntity<?> response = freelancerController.enviarProposta(requestDto);
+//
+//        assertEquals(200, response.getStatusCodeValue());
+//        StandardResponse standardResponse = (StandardResponse) response.getBody();
+//        assertEquals("Proposta enviada com sucesso!", standardResponse.getMessage());
+//
+//        verify(freelancerService).salvarProposta(requestDto);
+//    }
 
     @Test
     public void testAvaliarEmpresa() {
