@@ -127,3 +127,7 @@ ofourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/reque
 ufourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/responseDtos/MovimentacaoResponseDBDto.java,f\2\f2eb1447368fb75ec021daa21f838f85179fcaeb
 ê
 `fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/enuns/TipoMovimentacao.java,8\f\8f9a1b4c9a80401e80a931b76fd6df2e5ec8c1da
+ú
+lfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/controller/AdministradorController.java,e\1\e115f2b7feaebb53e71bf661ded7d9175acaca54
+ñ
+ffourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/usecase/AdministradorService.java,3\f\3fe3414c89d57ec12f4e35b59cbfd3fe836e1d04

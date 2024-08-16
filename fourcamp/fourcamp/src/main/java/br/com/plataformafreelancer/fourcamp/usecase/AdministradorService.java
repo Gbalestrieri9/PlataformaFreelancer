@@ -17,12 +17,7 @@ public class AdministradorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorService.class);
 
     @Autowired
-    private EmailService emailService;
-
-    @Autowired
     private DataService dataService;
-    @Autowired
-    private CpfService cpfService;
 
     @Autowired
     private SenhaService senhaService;
@@ -33,8 +28,8 @@ public class AdministradorService {
     public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto) {
         LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", requestAdministradorDto);
 
-        emailService.validarEmail(requestAdministradorDto.getEmail());
-        cpfService.validarCpf(requestAdministradorDto.getCpf());
+        ValidadorDeEmail.validarEmail(requestAdministradorDto.getEmail());
+        ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
         senhaService.validarSenha(requestAdministradorDto.getSenha());
         NomeService.validarNome(requestAdministradorDto.getNome());
 
