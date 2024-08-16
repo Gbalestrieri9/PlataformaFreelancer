@@ -1,3 +1,4 @@
+
 //package br.com.plataformafreelancer.fourcamp.controller;
 //
 //import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
@@ -51,6 +52,7 @@
 //        verify(freelancerService).salvarDadosCadastrais(requestDto);
 //    }
 //
+
 //    @Test
 //    public void testEnviarProposta() {
 //        RequestPropostaDto requestDto = new RequestPropostaDto();

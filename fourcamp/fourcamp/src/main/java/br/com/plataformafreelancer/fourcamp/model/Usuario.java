@@ -15,4 +15,10 @@ public class Usuario {
     private String email;
     private String senha;
     private TipoUsuario tipoUsuario;
+
+    public Usuario(String email, String senha, TipoUsuario tipoUsuario) {
+        this.email = email;
+        this.senha = senha;
+        this.tipoUsuario = tipoUsuario;
+    }
 }
