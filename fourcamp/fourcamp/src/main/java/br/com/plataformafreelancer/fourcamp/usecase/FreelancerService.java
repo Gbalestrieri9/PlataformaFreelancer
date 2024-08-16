@@ -1,5 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
+import br.com.plataformafreelancer.fourcamp.dao.IUsuarioJdbcTemplateDao;
 import br.com.plataformafreelancer.fourcamp.dao.impl.FreelancerJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAvaliacaoDto;
@@ -16,11 +17,14 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
+import java.util.Date;
 import java.util.List;
 
 @Service
