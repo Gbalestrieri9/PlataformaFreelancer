@@ -6,6 +6,7 @@ spring:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/PPF?ApplicationName=PlataformaParaFreelancer
     username: postgres
+
     password: thomas10
 
   hikari:

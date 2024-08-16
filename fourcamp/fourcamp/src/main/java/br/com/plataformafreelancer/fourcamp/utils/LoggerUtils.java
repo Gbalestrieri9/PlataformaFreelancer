@@ -8,6 +8,10 @@ public class LoggerUtils {
         logger.info("Início do método {} com request: {}", methodName, request);
     }
 
+    public static void logRequestStart(Logger logger, String methodName, Object firstParam, Object secondParam) {
+        logger.info("Início do método {} com request: {}", methodName, firstParam);
+    }
+
     public static void logElapsedTime(Logger logger, String methodName, long startTime) {
         long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;

@@ -25,16 +25,10 @@ public class EmpresaService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmpresaService.class);
 
     @Autowired
-    EmailService emailService;
-
-    @Autowired
     SenhaService senhaService;
 
     @Autowired
     CepUtil cepUtil;
-
-    @Autowired
-    CnpjService cnpjService;
 
     @Autowired
     TelefoneService telefoneService;
@@ -48,10 +42,10 @@ public class EmpresaService {
     public void salvarDadosCadastrais(RequestEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
-        emailService.validarEmail(request.getEmail());
+        ValidadorDeEmail.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
-        cnpjService.validarCnpj(request.getCnpj());
+        ValidadorDeCnpj.validarCnpj(request.getCnpj());
         telefoneService.validarNumeroTelefone(request.getTelefone());
 
         Usuario usuario = Usuario.builder()
