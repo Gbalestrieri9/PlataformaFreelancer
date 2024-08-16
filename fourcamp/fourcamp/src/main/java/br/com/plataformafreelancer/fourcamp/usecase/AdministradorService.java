@@ -26,10 +26,12 @@ public class AdministradorService {
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
 
     public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto) {
+        String cpfValidado;
+
         LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", requestAdministradorDto);
 
         ValidadorDeEmail.validarEmail(requestAdministradorDto.getEmail());
-        ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
+        cpfValidado = ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
         senhaService.validarSenha(requestAdministradorDto.getSenha());
         NomeService.validarNome(requestAdministradorDto.getNome());
 
@@ -43,7 +45,7 @@ public class AdministradorService {
                 .builder()
                 .usuario(usuario)
                 .nome(requestAdministradorDto.getNome())
-                .cpf(requestAdministradorDto.getCpf())
+                .cpf(cpfValidado)
                 .dataCriacao(DataService.coletarDataHoraAtual())
                 .statusAdministrador(StatusAdministrador.ATIVO)
                 .build();

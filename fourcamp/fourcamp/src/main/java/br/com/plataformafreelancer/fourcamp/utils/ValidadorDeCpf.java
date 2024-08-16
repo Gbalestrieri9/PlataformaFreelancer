@@ -9,15 +9,18 @@ public class ValidadorDeCpf {
 
     private ValidadorDeCpf(){}
 
-    public static boolean validarCpf(String cpf) {
+    private static String cpfValidado;
+
+    public static String validarCpf(String cpf) {
         if (cpf == null || !isValidCPF(cpf)) {
             throw new CpfInvalidoException(ErrorCode.CPF_INVALIDO.getCustomMessage() + cpf);
         } else {
-            return true;
+            return cpfValidado;
         }
     }
 
     private static boolean isValidCPF(String cpf) {
+
         // Remover caracteres não numéricos
         cpf = cpf.replaceAll("[^\\d]", "");
 
@@ -58,7 +61,12 @@ public class ValidadorDeCpf {
         }
 
         // Verificar se os dígitos verificadores estão corretos
-        return digits[9] == firstVerifier && digits[10] == secondVerifier;
+        if(digits[9] == firstVerifier && digits[10] == secondVerifier){
+            cpfValidado = cpf;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

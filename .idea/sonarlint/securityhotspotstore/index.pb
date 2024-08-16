@@ -131,3 +131,7 @@ ufourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/respo
 lfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/controller/AdministradorController.java,e\1\e115f2b7feaebb53e71bf661ded7d9175acaca54
 ñ
 ffourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/usecase/AdministradorService.java,3\f\3fe3414c89d57ec12f4e35b59cbfd3fe836e1d04
+å
+\fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/SenhaService.java,e\d\edc9b7b467993021f1508731793b85a034c5f010
+ê
+`fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/JwtPermissaoUtil.java,9\0\903740304466fe6a852542ddb679eae54bc824e7
