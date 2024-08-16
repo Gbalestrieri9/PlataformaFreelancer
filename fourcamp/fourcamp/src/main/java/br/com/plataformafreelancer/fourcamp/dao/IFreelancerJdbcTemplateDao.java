@@ -12,17 +12,17 @@ import java.util.List;
 
 public interface IFreelancerJdbcTemplateDao {
 
-    public void salvarDadosCadastrais(Freelancer freelancer);
+    void salvarDadosCadastrais(Freelancer freelancer);
 
-    public void salvarProposta(Proposta proposta);
+    void salvarProposta(Proposta proposta);
 
-    public  void avaliarEmpresa(Avaliacao avaliacao);
+    void avaliarEmpresa(Avaliacao avaliacao);
 
-    public List<ResponseEmpresaDto> listarEmpresas();
+    List<ResponseEmpresaDto> listarEmpresas();
 
-    public List<Projeto> listarTodosProjetos();
+    List<Projeto> listarTodosProjetos();
 
-    public ResponseEmpresaCompletaDto obterDetalhesEmpresa(Integer empresaId);
+    ResponseEmpresaCompletaDto obterDetalhesEmpresa(Integer empresaId);
 
     List<ResponseProjetoCompatibilidadeDto> buscarProjetosCompativeis(int idFreelancer);
 }

@@ -1,15 +1,16 @@
 package br.com.plataformafreelancer.fourcamp.controller;
 
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAvaliacaoDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestFreelancerDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestPropostaDto;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.*;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCompatibilidadeDto;
+import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.FreelancerService;
+import br.com.plataformafreelancer.fourcamp.usecase.UsuarioService;
+import br.com.plataformafreelancer.fourcamp.utils.JwtPermissaoUtil;
+import br.com.plataformafreelancer.fourcamp.utils.JwtUtil;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -28,6 +30,12 @@ import java.util.List;
 public class FreelancerController {
     @Autowired
     FreelancerService service;
+
+    @Autowired
+    UsuarioService usuarioService;
+
+    @Autowired
+    JwtPermissaoUtil jwtPermissaoUtil;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerController.class);
 
@@ -48,6 +56,22 @@ public class FreelancerController {
         return response;
     }
 
+    @Operation(summary = "Cadastrar um novo freelancer")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Freelancer cadastrado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
+    @PostMapping("/v1/login-freelancer")
+    public String Login(@RequestBody RequestLoginDto request) {
+        LoggerUtils.logRequestStart(LOGGER, "cadastrarFreelancer", request);
+        long startTime = System.currentTimeMillis();
+
+
+        LoggerUtils.logElapsedTime(LOGGER, "cadastrarFreelancer", startTime);
+        return usuarioService.login(request.getEmail(), request.getSenha());
+    }
+
     @Operation(summary = "Enviar uma proposta")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Proposta enviada com sucesso!"),
@@ -55,14 +79,26 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/enviar-proposta")
-    public ResponseEntity<?> enviarProposta(@RequestBody RequestPropostaDto request) {
+    public ResponseEntity<?> enviarProposta(@RequestHeader ("Authorization")String token, @RequestBody RequestPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "enviarProposta", request);
         long startTime = System.currentTimeMillis();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+        List<TipoUsuario> tipoPermitidos = Arrays.asList(TipoUsuario.FREELANCER);
 
-        service.salvarProposta(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada com sucesso!").build());
-        LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
-        return response;
+        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto,tipoPermitidos)){
+            service.salvarProposta(request);
+            ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
+            LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
+            return response;
+        }else {
+            ResponseEntity<StandardResponse> response = ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(StandardResponse.builder()
+                            .message("Not permission!")
+                            .build());
+            LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
+            return response;
+        }
     }
 
     @Operation(summary = "Avaliar uma empresa")

@@ -5,15 +5,17 @@ import br.com.plataformafreelancer.fourcamp.exceptions.CnpjInvalidoException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CnpjService {
+public class ValidadorDeCnpj {
 
-    public void validarCnpj(String cnpj) {
+    public static boolean validarCnpj(String cnpj) {
         if (cnpj == null || !isValidCNPJ(cnpj)) {
             throw new CnpjInvalidoException(ErrorCode.CNPJ_INVALIDO.getCustomMessage() + cnpj);
+        } else {
+            return true;
         }
     }
 
-    private boolean isValidCNPJ(String cnpj) {
+    private static boolean isValidCNPJ(String cnpj) {
         // Remove caracteres não numéricos
         cnpj = cnpj.replaceAll("\\D", "");
 

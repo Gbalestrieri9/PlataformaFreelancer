@@ -1,5 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
+import br.com.plataformafreelancer.fourcamp.dao.IUsuarioJdbcTemplateDao;
 import br.com.plataformafreelancer.fourcamp.dao.impl.FreelancerJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAvaliacaoDto;
@@ -16,11 +17,14 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +35,7 @@ public class FreelancerService {
     private CepUtil cepUtil;
 
     @Autowired
-    private EmailService emailService;
+    private ValidadorDeEmail validadorDeEmail;
 
     @Autowired
     private SenhaService senhaService;
@@ -46,18 +50,15 @@ public class FreelancerService {
     private TelefoneService telefoneService;
 
     @Autowired
-    private CpfService cpfService;
-
-    @Autowired
     private FreelancerJdbcTemplateDaoImpl freelancerJdbcTemplateDaoImpl;
 
     public void salvarDadosCadastrais(RequestFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
-        emailService.validarEmail(request.getEmail());
+        validadorDeEmail.validarEmail(request.getEmail());
         senhaService.validarSenha(request.getSenha());
         nomeService.validarNome(request.getNome());
-        cpfService.validarCpf(request.getCpf());
+        ValidadorDeCpf.validarCpf(request.getCpf());
         dataService.validarDataNascimento(request.getDataNascimento());
         telefoneService.validarNumeroTelefone(request.getTelefone());
 
@@ -79,6 +80,7 @@ public class FreelancerService {
                 .estado(responseEnderecoDto.getUf())
                 .pais(request.getPais())
                 .build();
+
 
         Freelancer freelancer = Freelancer.builder()
                 .usuario(usuario)

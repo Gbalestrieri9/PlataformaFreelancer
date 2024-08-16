@@ -5,15 +5,19 @@ import br.com.plataformafreelancer.fourcamp.exceptions.CpfInvalidoException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CpfService {
+public class ValidadorDeCpf {
 
-    public void validarCpf(String cpf) {
+    private ValidadorDeCpf(){}
+
+    public static boolean validarCpf(String cpf) {
         if (cpf == null || !isValidCPF(cpf)) {
             throw new CpfInvalidoException(ErrorCode.CPF_INVALIDO.getCustomMessage() + cpf);
+        } else {
+            return true;
         }
     }
 
-    private boolean isValidCPF(String cpf) {
+    private static boolean isValidCPF(String cpf) {
         // Remover caracteres não numéricos
         cpf = cpf.replaceAll("[^\\d]", "");
 

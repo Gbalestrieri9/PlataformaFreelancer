@@ -17,13 +17,13 @@ public class DataService {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
 
-    public void validarDataNascimento(String dataNascimento) {
+    public static void validarDataNascimento(String dataNascimento) {
         if (dataNascimento == null || !isValidDate(dataNascimento)) {
             throw new DataInvalidaException("Data de nascimento inválida: " + dataNascimento);
         }
     }
 
-    private boolean isValidDate(String date) {
+    private static boolean isValidDate(String date) {
         try {
             LocalDate parsedDate = LocalDate.parse(date, DATE_FORMATTER);
             return parsedDate.isBefore(LocalDate.now()); // A data deve ser anterior à data atual
@@ -32,11 +32,11 @@ public class DataService {
         }
     }
 
-    public LocalDate converterParaLocalDate(String data) {
+    public static LocalDate converterParaLocalDate(String data) {
         return LocalDate.parse(data, DATE_FORMATTER);
     }
 
-    public String coletarDataHoraAtual() {
+    public static String coletarDataHoraAtual() {
         LocalDateTime agora = LocalDateTime.now();
         return agora.format(DATE_TIME_FORMATTER);
     }
