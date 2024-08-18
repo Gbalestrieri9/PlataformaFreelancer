@@ -34,19 +34,19 @@
 //    private ValidadorDeEmail validadorDeEmail;
 //
 //    @Mock
-//    private SenhaService senhaService;
+//    private SenhaUtil senhaUtil;
 //
 //    @Mock
-//    private CepUtil cepUtil;
+//    private ValidadorDeCep validadorDeCep;
 //
 //    @Mock
 //    private ValidadorDeCnpj validadorDeCnpj;
 //
 //    @Mock
-//    private TelefoneService telefoneService;
+//    private ValidadorDeTelefones validadorDeTelefones;
 //
 //    @Mock
-//    private DataService dataService;
+//    private DatasUtil datasUtil;
 //
 //    @InjectMocks
 //    private EmpresaService empresaService;
@@ -79,11 +79,11 @@
 //        requestDto.setComplemento("Sala 1");
 //        requestDto.setPais("Brasil");
 //
-//        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
+//        when(validadorDeCep.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
 //        doNothing().when(validadorDeEmail).validarEmail(requestDto.getEmail());
-//        doNothing().when(senhaService).validarSenha(requestDto.getSenha());
+//        doNothing().when(senhaUtil).validarSenha(requestDto.getSenha());
 //        doNothing().when(validadorDeCnpj).validarCnpj(requestDto.getCnpj());
-//        doNothing().when(telefoneService).validarNumeroTelefone(requestDto.getTelefone());
+//        doNothing().when(validadorDeTelefones).validarNumeroTelefone(requestDto.getTelefone());
 //
 //        empresaService.salvarDadosCadastrais(requestDto);
 //
@@ -99,7 +99,7 @@
 //        requestDto.setPrazo("2023-12-31");
 //        requestDto.setIdEmpresa(1);
 //
-//        when(dataService.coletarDataHoraAtual()).thenReturn("2023-01-01");
+//        when(datasUtil.coletarDataHoraAtual()).thenReturn("2023-01-01");
 //
 //        empresaService.salvarDadosProjeto(requestDto);
 //
@@ -126,7 +126,7 @@
 //        requestDto.setComentario("Bom trabalho");
 //        requestDto.setNota(5);
 //
-//        when(dataService.coletarDataHoraAtual()).thenReturn("2023-01-01");
+//        when(datasUtil.coletarDataHoraAtual()).thenReturn("2023-01-01");
 //
 //        empresaService.avaliarFreelancer(requestDto);
 //
@@ -208,7 +208,7 @@
 //        empresaDto.setRamoAtuacao("Tecnologia");
 //        empresaDto.setSite("www.empresaatualizada.com");
 //
-//        doNothing().when(telefoneService).validarNumeroTelefone(anyString());
+//        doNothing().when(validadorDeTelefones).validarNumeroTelefone(anyString());
 //
 //        empresaService.atualizarDadosEmpresa(empresaDto);
 //

@@ -21,7 +21,7 @@ public class CarteiraService {
 
     LocalDate dataDaTransacao = LocalDate.now();
 
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email)  {
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email) {
         String emailValidado = ValidadorDeEmail.validarEmail(email);
         return carteiraJdbcTemplateDao.visualizarSaldo(emailValidado);
     }

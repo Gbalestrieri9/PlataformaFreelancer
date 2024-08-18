@@ -1,30 +1,21 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
-import br.com.plataformafreelancer.fourcamp.dao.IUsuarioJdbcTemplateDao;
 import br.com.plataformafreelancer.fourcamp.dao.impl.FreelancerJdbcTemplateDaoImpl;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAvaliacaoDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestFreelancerDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestPropostaDto;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.*;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEnderecoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCompatibilidadeDto;
-import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusFreelancer;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
-import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
+import br.com.plataformafreelancer.fourcamp.enuns.*;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
-import io.jsonwebtoken.Jwts;
+import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,22 +23,7 @@ public class FreelancerService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerService.class);
 
     @Autowired
-    private CepUtil cepUtil;
-
-    @Autowired
-    private ValidadorDeEmail validadorDeEmail;
-
-    @Autowired
-    private SenhaService senhaService;
-
-    @Autowired
-    private NomeService nomeService;
-
-    @Autowired
-    private DataService dataService;
-
-    @Autowired
-    private TelefoneService telefoneService;
+    private SenhaUtil senhaUtil;
 
     @Autowired
     private FreelancerJdbcTemplateDaoImpl freelancerJdbcTemplateDaoImpl;
@@ -55,14 +31,14 @@ public class FreelancerService {
     public void salvarDadosCadastrais(RequestFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
-        validadorDeEmail.validarEmail(request.getEmail());
-        senhaService.validarSenha(request.getSenha());
-        nomeService.validarNome(request.getNome());
+        ValidadorDeEmail.validarEmail(request.getEmail());
+        senhaUtil.validarSenha(request.getSenha());
+        ValidadorDeNomes.validarNome(request.getNome());
         ValidadorDeCpf.validarCpf(request.getCpf());
-        dataService.validarDataNascimento(request.getDataNascimento());
-        telefoneService.validarNumeroTelefone(request.getTelefone());
+        DatasUtil.validarDataNascimento(request.getDataNascimento());
+        ValidadorDeTelefones.validarNumeroTelefone(request.getTelefone());
 
-        ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
+        ResponseEnderecoDto responseEnderecoDto = ValidadorDeCep.buscaEnderecoPor(request.getCep());
 
         Usuario usuario = Usuario.builder()
                 .email(request.getEmail())
@@ -86,12 +62,12 @@ public class FreelancerService {
                 .usuario(usuario)
                 .nome(request.getNome())
                 .cpf(request.getCpf())
-                .dataNascimento(dataService.converterParaLocalDate(request.getDataNascimento()))
+                .dataNascimento(DatasUtil.converterParaLocalDate(request.getDataNascimento()))
                 .telefone(request.getTelefone())
                 .endereco(endereco)
                 .descricao(request.getDescricao())
                 .disponibilidade(request.getDisponibilidade())
-                .dataCriacao(dataService.coletarDataHoraAtual())
+                .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .statusFreelancer(StatusFreelancer.ATIVO)
                 .habilidades(request.getHabilidades())
                 .build();
@@ -100,16 +76,22 @@ public class FreelancerService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosCadastrais", System.currentTimeMillis());
     }
 
-    public void salvarProposta(RequestPropostaDto request) {
-        LoggerUtils.logRequestStart(LOGGER, "salvarProposta", request);
+    public void salvarProposta(RequestPropostaDto requestPropostaDto, JwtDto jwtDto) {
+        LoggerUtils.logRequestStart(LOGGER, "salvarProposta", requestPropostaDto);
+
+        int idFreelancerValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getFreelancerId());
+        int idProjetoValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getProjetoId());
+        double valorValidado = ValidadorDeProposta.validarValor(requestPropostaDto.getValor());
+        // Adiciona taxa de administração ao valor final
+        valorValidado = taxarProposta(valorValidado);
 
         Proposta proposta = Proposta.builder()
-                .freelancerId(request.getFreelancerId())
-                .projetoId(request.getProjetoId())
-                .valor(request.getValor())
-                .observacao(request.getObservacao())
+                .freelancerId(idFreelancerValidado)
+                .projetoId(idProjetoValidado)
+                .valor(valorValidado)
+                .observacao(requestPropostaDto.getObservacao())
                 .statusProposta(StatusProposta.PENDENTE)
-                .dataCriacao(dataService.coletarDataHoraAtual())
+                .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .build();
 
         freelancerJdbcTemplateDaoImpl.salvarProposta(proposta);
@@ -126,7 +108,7 @@ public class FreelancerService {
                 .comentario(request.getComentario())
                 .avaliado(TipoUsuario.EMPRESA)
                 .nota(request.getNota())
-                .dataAvaliacao(dataService.coletarDataHoraAtual())
+                .dataAvaliacao(DatasUtil.coletarDataHoraAtual())
                 .build();
 
         freelancerJdbcTemplateDaoImpl.avaliarEmpresa(avaliacao);
@@ -166,9 +148,9 @@ public class FreelancerService {
     }
 
     public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer) {
-        telefoneService.validarNumeroTelefone(freelancer.getTelefone());
+        ValidadorDeTelefones.validarNumeroTelefone(freelancer.getTelefone());
 
-        ResponseEnderecoDto endereco = cepUtil.buscaEnderecoPor(freelancer.getCep());
+        ResponseEnderecoDto endereco = ValidadorDeCep.buscaEnderecoPor(freelancer.getCep());
 
         freelancer.setBairro(endereco.getBairro());
         freelancer.setCidade(endereco.getLocalidade());
@@ -176,5 +158,9 @@ public class FreelancerService {
         freelancer.setLogradouro(endereco.getLogradouro());
 
         freelancerJdbcTemplateDaoImpl.atualizarDadosFreelancer(freelancer);
+    }
+
+    private double taxarProposta(double proposta) {
+        return proposta + (proposta * TaxasProposta.TAXA_PADRAO.getValor());
     }
 }

@@ -9,10 +9,12 @@ import java.util.regex.Pattern;
 @Service
 public class ValidadorDeEmail {
 
-    private ValidadorDeEmail(){}
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
     );
+
+    private ValidadorDeEmail() {
+    }
 
     public static String validarEmail(String email) {
         String emailValidado;

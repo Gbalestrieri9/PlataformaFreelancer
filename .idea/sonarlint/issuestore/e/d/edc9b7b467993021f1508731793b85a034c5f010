@@ -1,3 +1,6 @@
 
-R
-java:S6353"<Use concise character class syntax '\\d' instead of '[0-9]'.(Á¾ï‰
+}
+java:S1118
+":Add a private constructor to hide the implicit public one.(â¿Œ«8Ñáœ¼–2J$4da1ab6d-7b4b-42a7-a7d5-f0f7417da7c8
+x
+java:S6353"<Use concise character class syntax '\\d' instead of '[0-9]'.(Á¾ï‰J$b5ac8604-8006-498b-9dfb-8b2a3b219279

@@ -16,7 +16,7 @@ public class PropostaRowMapper implements RowMapper<ResponsePropostaDto> {
                 .freelancerTelefone(rs.getString("freelancerTelefone"))
                 .freelancerEmail(rs.getString("freelancerEmail"))
                 .projetoId(rs.getInt("projetoId"))
-                .valor(rs.getString("valor"))
+                .valor(rs.getBigDecimal("valor"))
                 .dataCriacao(rs.getString("dataCriacao"))
                 .statusProposta(StatusProposta.valueOf(rs.getString("status")))
                 .observacao(rs.getString("observacao"))

@@ -6,6 +6,7 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancer
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.EmpresaService;
+import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -73,7 +74,13 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
 
         service.analisarProposta(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta atualizada com sucesso!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(
+                StandardResponse
+                .builder()
+                .message(ConstantesPtBr.SUCESSO_ATUALIZAR_PROPOSTA)
+                .build()
+        );
+
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", startTime);
         return response;
     }

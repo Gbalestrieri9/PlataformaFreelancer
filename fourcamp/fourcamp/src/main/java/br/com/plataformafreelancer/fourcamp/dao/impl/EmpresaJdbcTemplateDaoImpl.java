@@ -7,6 +7,7 @@ import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.PropostaRowMapper;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAnalisarPropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarEmpresaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarProjetoDto;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SalvarAnalisePropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -74,13 +76,18 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
     }
 
     @Override
-    public void analisarProposta(RequestAnalisarPropostaDto request) {
-        LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
-        String sql = "CALL AtualizaStatusProposta(?, ?)";
-        jdbcTemplate.update(sql,
-                request.getIdProposta(),
-                request.getStatusProposta().toString()
-        );
+    public void analisarProposta(SalvarAnalisePropostaDto salvarAnalisePropostaDto) {
+        LoggerUtils.logRequestStart(LOGGER, "analisarProposta", salvarAnalisePropostaDto);
+        String sql = "CALL public.atualizar_status_proposta(?, ?, ?, ?)";
+
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
+            preparedStatement.setString(1, salvarAnalisePropostaDto.getEmailEmpresa());
+            preparedStatement.setInt(2, salvarAnalisePropostaDto.getIdProposta());
+            preparedStatement.setString(3, salvarAnalisePropostaDto.getStatus());
+            preparedStatement.setString(4, salvarAnalisePropostaDto.getDescricaoTransacao());
+            preparedStatement.execute();
+            return null;
+        });
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", System.currentTimeMillis());
     }
 

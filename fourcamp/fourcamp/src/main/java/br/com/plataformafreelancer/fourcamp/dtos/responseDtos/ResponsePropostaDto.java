@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class ResponsePropostaDto {
     private String freelancerTelefone;
     private String freelancerEmail;
     private Integer projetoId;
-    private String valor;
+    private BigDecimal valor;
     private String dataCriacao;
     private StatusProposta statusProposta;
     private String observacao;

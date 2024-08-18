@@ -34,7 +34,14 @@ public enum ErrorCode {
     DADO_INVALIDO("Dado invalido no Json", "Dado Inválido no Json"),
     OUTRO_ERRO("Outro erro", "Erro desconhecido"),
     VALOR_INVALIDO_VALOR_DEPOSITO("Valor inválido", "O valor informado para depósito é inválido: "),
-    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível.");
+    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível."),
+    ID_FREELANCER_FORMATO_INVALIDO("Id não é um número", "ID do freelancer inválido, por favor informar um ID válido."),
+    ID_FREELANCER_ID_INVALIDO("ID do freelancer é um número negativo ou zero", "ID do freelancer inválido, por favor informar um ID válido."),
+    VALOR_PROPOSTA_INVALIDO("Formato do valor inválido ou não é um número", "Valor da proposta inválido"),
+    ID_PROPOSTA_ID_INVALIDO("ID da proposta é um número negativo ou zero", "ID da proposta inválido, por favor informar um ID válido."),
+    ID_PROPOSTA_FORMATO_INVALIDO("Formato do ID da proposta inválido ou não é um número","Id da proposta inválido"),
+    PROPOSTA_STATUS_INEXISTENTE("Status da proposta não existe", "Status da proposta inválido. Opções aceitas: ACEITA, RECUSADA" ),
+    SALDO_INSUFICIENTE("Saldo insuficiente", "Saldo Insuficiente");
 
 
     private final String message;

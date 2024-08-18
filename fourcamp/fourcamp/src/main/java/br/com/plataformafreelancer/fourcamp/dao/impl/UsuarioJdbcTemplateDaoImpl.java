@@ -14,10 +14,11 @@ public class UsuarioJdbcTemplateDaoImpl implements IUsuarioJdbcTemplateDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
     public Usuario buscarClientePorEmail(String email) {
         String query = "SELECT * FROM usuario WHERE email = ?";
         @SuppressWarnings("deprecation")
-        List<Usuario> freelancers = jdbcTemplate.query(query, new Object[] { email }, (rs, rowNum) -> {
+        List<Usuario> freelancers = jdbcTemplate.query(query, new Object[]{email}, (rs, rowNum) -> {
             return new Usuario(
                     rs.getString("email"),
                     rs.getString("senha"),

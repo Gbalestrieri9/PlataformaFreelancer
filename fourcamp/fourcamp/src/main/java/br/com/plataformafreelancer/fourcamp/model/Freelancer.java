@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Freelancer{
+public class Freelancer {
     private Integer idFreelancer;
     private Usuario usuario;
     private String nome;

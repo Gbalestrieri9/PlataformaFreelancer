@@ -4,6 +4,7 @@ import br.com.plataformafreelancer.fourcamp.dao.impl.EmpresaJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.*;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEnderecoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerCompletaDto;
+import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
@@ -11,11 +12,11 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
+import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 
 import java.util.List;
 
@@ -25,28 +26,16 @@ public class EmpresaService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmpresaService.class);
 
     @Autowired
-    SenhaService senhaService;
-
-    @Autowired
-    CepUtil cepUtil;
-
-    @Autowired
-    TelefoneService telefoneService;
-
-    @Autowired
-    DataService dataService;
-
-    @Autowired
     EmpresaJdbcTemplateDaoImpl empresaJdbcTemplateDao;
 
     public void salvarDadosCadastrais(RequestEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosCadastrais", request);
 
         ValidadorDeEmail.validarEmail(request.getEmail());
-        senhaService.validarSenha(request.getSenha());
-        ResponseEnderecoDto responseEnderecoDto = cepUtil.buscaEnderecoPor(request.getCep());
+        SenhaUtil.validarSenha(request.getSenha());
+        ResponseEnderecoDto responseEnderecoDto = ValidadorDeCep.buscaEnderecoPor(request.getCep());
         ValidadorDeCnpj.validarCnpj(request.getCnpj());
-        telefoneService.validarNumeroTelefone(request.getTelefone());
+        ValidadorDeTelefones.validarNumeroTelefone(request.getTelefone());
 
         Usuario usuario = Usuario.builder()
                 .email(request.getEmail())
@@ -91,17 +80,38 @@ public class EmpresaService {
                 .empresaId(request.getIdEmpresa())
                 .habilidades(request.getHabilidades())
                 .statusProjeto(StatusProjeto.ATIVO)
-                .dataCriacao(dataService.coletarDataHoraAtual())
+                .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .build();
 
         empresaJdbcTemplateDao.salvarDadosProjeto(projeto);
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosProjeto", System.currentTimeMillis());
     }
 
-    public void analisarProposta(RequestAnalisarPropostaDto request) {
-        LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
+    public void analisarProposta(RequestAnalisarPropostaDto requestAnalisarPropostaDto) {
+        LoggerUtils.logRequestStart(LOGGER, "analisarProposta", requestAnalisarPropostaDto);
 
-        empresaJdbcTemplateDao.analisarProposta(request);
+        //String emailEmpresa = jwtDto.getEmail();
+
+        String emailEmpresa = requestAnalisarPropostaDto.getEmailEmpresa();
+
+        int idPropostaValidado =
+                ValidadorDeProposta.validarIdProposta(requestAnalisarPropostaDto.getIdProposta());
+
+        String statusPropostaValidado =
+                ValidadorDeProposta.validarStatusProposta(requestAnalisarPropostaDto.getStatusProposta());
+
+        String descricaoDaTransacao = ConstantesPtBr.CARTEIRA_REGISTRAR_PAGAMENTO + idPropostaValidado;
+
+        SalvarAnalisePropostaDto salvarAnalisePropostaDto =
+                SalvarAnalisePropostaDto
+                        .builder()
+                        .emailEmpresa(emailEmpresa)
+                        .idProposta(idPropostaValidado)
+                        .status(statusPropostaValidado)
+                        .descricaoTransacao(descricaoDaTransacao)
+                        .build();
+
+        empresaJdbcTemplateDao.analisarProposta(salvarAnalisePropostaDto);
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", System.currentTimeMillis());
     }
 
@@ -115,7 +125,7 @@ public class EmpresaService {
                 .comentario(request.getComentario())
                 .avaliado(TipoUsuario.FREELANCER)
                 .nota(request.getNota())
-                .dataAvaliacao(dataService.coletarDataHoraAtual())
+                .dataAvaliacao(DatasUtil.coletarDataHoraAtual())
                 .build();
 
         empresaJdbcTemplateDao.avaliarFreelancer(avaliacao);
@@ -148,7 +158,7 @@ public class EmpresaService {
     }
 
     public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa) {
-        telefoneService.validarNumeroTelefone(empresa.getTelefone());
+        ValidadorDeTelefones.validarNumeroTelefone(empresa.getTelefone());
 
         empresaJdbcTemplateDao.atualizarDadosEmpresa(empresa);
     }

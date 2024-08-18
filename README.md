@@ -2,7 +2,11 @@
 
 ## Descrição do Projeto
 
-A **Plataforma Freelancer** é uma aplicação desenvolvida para conectar freelancers a empresas em busca de serviços especializados. A plataforma permite que freelancers se cadastrem, completem seus perfis, busquem por trabalhos disponíveis, e que empresas publiquem projetos e contratem profissionais de forma rápida e eficiente. O projeto disponibilizado pela empresa só será considerado concluído quando houver a avaliação final do projeto por ambas as partes (Freelancer e Empresa) garantindo um sistema de reputação confiável.
+A **Plataforma Freelancer** é uma aplicação desenvolvida para conectar freelancers a empresas em busca de serviços
+especializados. A plataforma permite que freelancers se cadastrem, completem seus perfis, busquem por trabalhos
+disponíveis, e que empresas publiquem projetos e contratem profissionais de forma rápida e eficiente. O projeto
+disponibilizado pela empresa só será considerado concluído quando houver a avaliação final do projeto por ambas as
+partes (Freelancer e Empresa) garantindo um sistema de reputação confiável.
 
 ## Estrutura de Diretórios
 
@@ -46,9 +50,11 @@ A **Plataforma Freelancer** é uma aplicação desenvolvida para conectar freela
 
 2. **Configurar o Banco de Dados**
 
-   - O projeto utiliza um banco de dados que está em outro repositório. Certifique-se de cloná-lo e configurá-lo corretamente. Você pode encontrar o repositório do banco de dados em: [Link para o Repositório do Banco de Dados](https://github.com/GustavoRSSBr/PlataformaFreelancerBaseDeDados.git)
+    - O projeto utiliza um banco de dados que está em outro repositório. Certifique-se de cloná-lo e configurá-lo
+      corretamente. Você pode encontrar o repositório do banco de dados
+      em: [Link para o Repositório do Banco de Dados](https://github.com/GustavoRSSBr/PlataformaFreelancerBaseDeDados.git)
 
-   - Após configurar o banco de dados, insira as credenciais no arquivo `application.properties`.
+    - Após configurar o banco de dados, insira as credenciais no arquivo `application.properties`.
 
 3. **Compilar e Executar a Aplicação**
 
@@ -59,12 +65,12 @@ A **Plataforma Freelancer** é uma aplicação desenvolvida para conectar freela
 
 4. **Acessar a Aplicação**
 
-   - A aplicação estará disponível em `http://localhost:8080`.
+    - A aplicação estará disponível em `http://localhost:8080`.
 
 ## Como Usar
 
-
-Para mais detalhes sobre os endpoints, com a aplicação inicializada, acesse o Swagger UI em `http://localhost:8080/swagger-ui/index.html#/`.
+Para mais detalhes sobre os endpoints, com a aplicação inicializada, acesse o Swagger UI
+em `http://localhost:8080/swagger-ui/index.html#/`.
 
 ## Funcionalidades Principais
 
@@ -74,12 +80,12 @@ Para mais detalhes sobre os endpoints, com a aplicação inicializada, acesse o 
 - Apenas um freelancer pode ser associado a um projeto para garantir uma avaliação assertiva
 - Sistema de busca de projetos com a opção de listar projetos por habilidades compatíveis
 - Diversas validações de dados:
-  - Nome
-  - Email
-  - CPF 
-  - CNPJ
-  - Telefone
-  - Chamada da API ViaCEP para validação de endereços
+    - Nome
+    - Email
+    - CPF
+    - CNPJ
+    - Telefone
+    - Chamada da API ViaCEP para validação de endereços
 
 ## Contribuições
 

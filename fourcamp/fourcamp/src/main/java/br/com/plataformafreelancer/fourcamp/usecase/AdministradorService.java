@@ -17,10 +17,10 @@ public class AdministradorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorService.class);
 
     @Autowired
-    private DataService dataService;
+    private DatasUtil datasUtil;
 
     @Autowired
-    private SenhaService senhaService;
+    private SenhaUtil senhaUtil;
 
     @Autowired
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
@@ -32,8 +32,8 @@ public class AdministradorService {
 
         ValidadorDeEmail.validarEmail(requestAdministradorDto.getEmail());
         cpfValidado = ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
-        senhaService.validarSenha(requestAdministradorDto.getSenha());
-        NomeService.validarNome(requestAdministradorDto.getNome());
+        senhaUtil.validarSenha(requestAdministradorDto.getSenha());
+        ValidadorDeNomes.validarNome(requestAdministradorDto.getNome());
 
         Usuario usuario = Usuario.builder()
                 .email(requestAdministradorDto.getEmail())
@@ -46,7 +46,7 @@ public class AdministradorService {
                 .usuario(usuario)
                 .nome(requestAdministradorDto.getNome())
                 .cpf(cpfValidado)
-                .dataCriacao(DataService.coletarDataHoraAtual())
+                .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .statusAdministrador(StatusAdministrador.ATIVO)
                 .build();
 

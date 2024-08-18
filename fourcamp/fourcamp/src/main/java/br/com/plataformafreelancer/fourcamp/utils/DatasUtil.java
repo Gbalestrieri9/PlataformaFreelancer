@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 @Service
-public class DataService {
+public class DatasUtil {
 
     private static final String DATE_FORMAT = "dd/MM/yyyy";
     private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";

@@ -26,6 +26,7 @@ public class CarteiraController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarteiraController.class);
     @Autowired
     CarteiraService carteiraService;
+
     // Disponível para todos os perfis
     @Operation(summary = "Verificar saldo da carteira")
     @ApiResponses(value = {
@@ -34,7 +35,7 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-saldo")
-    public ResponseEntity<?> buscarSaldo(String email){
+    public ResponseEntity<?> buscarSaldo(String email) {
         LoggerUtils.logRequestStart(LOGGER, "visualizarSaldo", email);
 
         long startTime = System.currentTimeMillis();
@@ -52,7 +53,7 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-movimentacoes")
-    public ResponseEntity<?> buscarMovimentacoes(@RequestParam String email){
+    public ResponseEntity<?> buscarMovimentacoes(@RequestParam String email) {
         LoggerUtils.logRequestStart(LOGGER, "visualizarSaldo", email);
 
         long startTime = System.currentTimeMillis();
@@ -76,7 +77,7 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/depositar-valor")
-    public ResponseEntity<?> depositarValor(@RequestBody DepositarValorRequestDTO depositarValorRequestDTO){
+    public ResponseEntity<?> depositarValor(@RequestBody DepositarValorRequestDTO depositarValorRequestDTO) {
         LoggerUtils.logRequestStart(LOGGER, "depositarValor", depositarValorRequestDTO);
 
         long startTime = System.currentTimeMillis();
@@ -100,7 +101,7 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/sacar-valor")
-    public ResponseEntity<?> sacarValor(@RequestBody SacarValorRequestDTO sacarValorRequestDTO){
+    public ResponseEntity<?> sacarValor(@RequestBody SacarValorRequestDTO sacarValorRequestDTO) {
         LoggerUtils.logRequestStart(LOGGER, "sacarValor", sacarValorRequestDTO);
 
         long startTime = System.currentTimeMillis();
