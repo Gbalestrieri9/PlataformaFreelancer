@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,6 +17,8 @@ public class Proposta {
     private Integer freelancerId;
     private Integer projetoId;
     private double valor;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private String dataCriacao;
     private StatusProposta statusProposta;
     private String observacao;

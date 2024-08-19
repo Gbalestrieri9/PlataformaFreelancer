@@ -18,6 +18,7 @@ import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Service;
@@ -121,8 +122,12 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
 
     @Override
     public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
-        String sql = "SELECT * FROM listar_propostas_por_projeto(?)";
-        return jdbcTemplate.query(sql, new Object[]{projetoId}, new PropostaRowMapper());
+        String sql = "SELECT * FROM public.listar_propostas_por_projeto("+ projetoId +")";
+
+        return jdbcTemplate.query(
+                sql,
+                new BeanPropertyRowMapper<>(ResponsePropostaDto.class)
+        );
     }
 
     public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto request) {

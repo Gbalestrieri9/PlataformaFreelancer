@@ -9,10 +9,12 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDt
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
+import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
 import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,6 +152,11 @@ public class EmpresaService {
     }
 
     public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(projetoId)){
+            throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
+        }
+
         List<ResponsePropostaDto> propostas = empresaJdbcTemplateDao.listarPropostasPorProjeto(projetoId);
         if (propostas == null || propostas.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());

@@ -1,4 +1,4 @@
-package br.com.plataformafreelancer.fourcamp.utils;
+package br.com.plataformafreelancer.fourcamp.utils.validators.general;
 
 public class ValidadorDeNumerosPositivos {
 

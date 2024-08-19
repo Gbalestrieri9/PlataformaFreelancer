@@ -13,6 +13,8 @@ public class RequestPropostaDto {
     private String freelancerId;
     private String projetoId;
     private String valor;
+    private String dataInicio;
+    private String dataFim;
     private String observacao;
 }
 

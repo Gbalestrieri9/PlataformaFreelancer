@@ -22,9 +22,13 @@ public class UsuarioService {
 
             Key chaveSecreta = JwtConfig.getChaveSecreta();
 
-            String token = Jwts.builder().claim("email", usuario.getEmail()).claim("senha", usuario.getSenha()).claim("tipoUsuario", usuario.getTipoUsuario())
-                    .setExpiration(new Date(System.currentTimeMillis() + 86400000)).signWith(chaveSecreta).compact();
-            return token;
+            return Jwts.builder()
+                    .claim("email", usuario.getEmail()).claim("senha", usuario.getSenha())
+                    .claim("tipoUsuario", usuario.getTipoUsuario())
+                    .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                    .signWith(chaveSecreta)
+                    .compact();
+
         } else {
             return null;
         }

@@ -1,4 +1,4 @@
-package br.com.plataformafreelancer.fourcamp.utils;
+package br.com.plataformafreelancer.fourcamp.utils.validators.general;
 
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.exceptions.TelefoneInvalidoException;

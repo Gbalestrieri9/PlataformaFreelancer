@@ -19,9 +19,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.SqlTypeValue;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.SQLData;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.List;
 
 @Service
@@ -64,7 +69,7 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
     @Override
     public void salvarProposta(Proposta proposta) {
         LoggerUtils.logRequestStart(LOGGER, "salvarProposta", proposta);
-        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?)";
+        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
             preparedStatement.setInt(1, proposta.getFreelancerId());
@@ -73,6 +78,8 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
             preparedStatement.setString(4, proposta.getDataCriacao());
             preparedStatement.setString(5, String.valueOf(proposta.getStatusProposta()));
             preparedStatement.setString(6, proposta.getObservacao());
+            preparedStatement.setObject(7, proposta.getDataInicio(), Types.DATE);
+            preparedStatement.setObject(8, proposta.getDataFim(), Types.DATE);
             preparedStatement.execute();
             return null;
         });

@@ -169,3 +169,11 @@ efourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions
 sfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/SalvarAnalisePropostaDto.java,9\7\970deb606ea3b99e35ecb4c3036c7cd21c50da56
 â
 Yfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/SenhaUtil.java,c\f\cffc9e148a90db9c3d0f0d8d89c9d44ae856c1ff
+ê
+`fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/usecase/UsuarioService.java,2\f\2f0dffe220c3094d767c06b9c572ca2ed1b03234
+Æ
+~fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/validators/general/ValidadorDeValoresNegativos.java,e\4\e4b1ba50e049fc7bede245e4217dd1b47be9e73e
+Æ
+~fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/validators/general/ValidadorDeNumerosPositivos.java,b\3\b3518299889ee90982d40b90daada65221448822
+ò
+hfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions/IdInvalidoException.java,4\e\4e30bf1ff3640a599b6e78195a01061e6b39d90a

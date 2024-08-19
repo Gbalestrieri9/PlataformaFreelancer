@@ -1,5 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.utils;
 
+import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.exceptions.DataInvalidaException;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,8 @@ public class DatasUtil {
         }
     }
 
-    public static LocalDate converterParaLocalDate(String data) {
-        return LocalDate.parse(data, DATE_FORMATTER);
+    public static LocalDate converterParaLocalDate(String date) {
+        return LocalDate.parse(date, DATE_FORMATTER);
     }
 
     public static String coletarDataHoraAtual() {

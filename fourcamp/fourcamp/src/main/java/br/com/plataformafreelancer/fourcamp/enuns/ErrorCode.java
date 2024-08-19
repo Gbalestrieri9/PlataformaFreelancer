@@ -41,7 +41,8 @@ public enum ErrorCode {
     ID_PROPOSTA_ID_INVALIDO("ID da proposta é um número negativo ou zero", "ID da proposta inválido, por favor informar um ID válido."),
     ID_PROPOSTA_FORMATO_INVALIDO("Formato do ID da proposta inválido ou não é um número","Id da proposta inválido"),
     PROPOSTA_STATUS_INEXISTENTE("Status da proposta não existe", "Status da proposta inválido. Opções aceitas: ACEITA, RECUSADA" ),
-    SALDO_INSUFICIENTE("Saldo insuficiente", "Saldo Insuficiente");
+    SALDO_INSUFICIENTE("Saldo insuficiente", "Saldo Insuficiente"),
+    DATA_INVALIDA("Data inválida", "Data ou formato da data inválido.");
 
 
     private final String message;

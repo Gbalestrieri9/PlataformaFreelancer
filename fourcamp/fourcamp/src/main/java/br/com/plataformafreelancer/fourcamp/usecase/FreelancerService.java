@@ -11,11 +11,13 @@ import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
 import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -85,10 +87,18 @@ public class FreelancerService {
         // Adiciona taxa de administração ao valor final
         valorValidado = taxarProposta(valorValidado);
 
+        LocalDate dataInicioValidada = ValidadorDeProposta.validarDataInicio(requestPropostaDto.getDataInicio());
+        LocalDate dataFimValidada = ValidadorDeProposta.validarDataFim(requestPropostaDto.getDataFim());
+
+        // Validar consistencia de datas
+        ValidadorDeProposta.validarConsistenciaDatasInicioFim(dataInicioValidada, dataFimValidada);
+
         Proposta proposta = Proposta.builder()
                 .freelancerId(idFreelancerValidado)
                 .projetoId(idProjetoValidado)
                 .valor(valorValidado)
+                .dataInicio(dataInicioValidada)
+                .dataFim(dataFimValidada)
                 .observacao(requestPropostaDto.getObservacao())
                 .statusProposta(StatusProposta.PENDENTE)
                 .dataCriacao(DatasUtil.coletarDataHoraAtual())
