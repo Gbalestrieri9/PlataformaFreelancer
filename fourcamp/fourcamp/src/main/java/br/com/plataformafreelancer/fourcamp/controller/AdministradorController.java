@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/administrador")
 public class AdministradorController {
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(AdministradorController.class);
     @Autowired
     AdministradorService administradorService;
-
-    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(AdministradorController.class);
 
     @PostMapping("/v1/cadastrar-administrador")
     public ResponseEntity<?> cadastrarAdministrador(@RequestBody RequestAdministradorDto request) {

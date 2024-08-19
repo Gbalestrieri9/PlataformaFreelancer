@@ -1,6 +1,8 @@
 package br.com.plataformafreelancer.fourcamp.dao;
+
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAnalisarPropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarProjetoDto;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SalvarAnalisePropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
@@ -15,7 +17,7 @@ public interface IEmpresaJdbcTemplateDao {
 
     void salvarDadosProjeto(Projeto projeto);
 
-    void analisarProposta(RequestAnalisarPropostaDto request);
+    void analisarProposta(SalvarAnalisePropostaDto salvarAnalisePropostaDto);
 
     void avaliarFreelancer(Avaliacao avaliacao);
 

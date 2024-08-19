@@ -1,10 +1,12 @@
 package br.com.plataformafreelancer.fourcamp.model;
 
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -14,7 +16,9 @@ public class Proposta {
     private Integer propostaId;
     private Integer freelancerId;
     private Integer projetoId;
-    private String valor;
+    private double valor;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private String dataCriacao;
     private StatusProposta statusProposta;
     private String observacao;

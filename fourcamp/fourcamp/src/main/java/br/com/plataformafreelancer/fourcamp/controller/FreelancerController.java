@@ -28,16 +28,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/freelancer")
 public class FreelancerController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerController.class);
     @Autowired
     FreelancerService service;
-
     @Autowired
     UsuarioService usuarioService;
-
     @Autowired
     JwtPermissaoUtil jwtPermissaoUtil;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerController.class);
 
     @Operation(summary = "Cadastrar um novo freelancer")
     @ApiResponses(value = {
@@ -79,18 +76,21 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/enviar-proposta")
-    public ResponseEntity<?> enviarProposta(@RequestHeader ("Authorization")String token, @RequestBody RequestPropostaDto request) {
+    public ResponseEntity<?> enviarProposta(@RequestHeader("Authorization") String token, @RequestBody RequestPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "enviarProposta", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
+
         List<TipoUsuario> tipoPermitidos = Arrays.asList(TipoUsuario.FREELANCER);
 
-        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto,tipoPermitidos)){
-            service.salvarProposta(request);
+        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto, tipoPermitidos)) {
+
+            service.salvarProposta(request, jwtDto);
+
             ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
             LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
             return response;
-        }else {
+        } else {
             ResponseEntity<StandardResponse> response = ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(StandardResponse.builder()

@@ -1,4 +1,4 @@
-package br.com.plataformafreelancer.fourcamp.utils;
+package br.com.plataformafreelancer.fourcamp.utils.validators.general;
 
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEnderecoDto;
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class CepUtil {
+public class ValidadorDeCep {
     private static final String CEP_API_URL = "https://viacep.com.br/ws/%s/json/";
 
-    public ResponseEnderecoDto buscaEnderecoPor(String cep) {
+    public static ResponseEnderecoDto buscaEnderecoPor(String cep) {
         if (!isValidCep(cep)) {
             throw new CepException(ErrorCode.CEP_INVALIDO.getCustomMessage() + cep);
         }
@@ -25,7 +25,7 @@ public class CepUtil {
         return responseEnderecoDto;
     }
 
-    private boolean isValidCep(String cep) {
+    private static boolean isValidCep(String cep) {
         return cep != null && cep.matches("\\d{8}");
     }
 }

@@ -1,4 +1,4 @@
-package br.com.plataformafreelancer.fourcamp.utils;
+package br.com.plataformafreelancer.fourcamp.utils.validators.general;
 
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.exceptions.CpfInvalidoException;
@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ValidadorDeCpf {
 
-    private ValidadorDeCpf(){}
-
     private static String cpfValidado;
+
+    private ValidadorDeCpf() {
+    }
 
     public static String validarCpf(String cpf) {
         if (cpf == null || !isValidCPF(cpf)) {
@@ -61,7 +62,7 @@ public class ValidadorDeCpf {
         }
 
         // Verificar se os dígitos verificadores estão corretos
-        if(digits[9] == firstVerifier && digits[10] == secondVerifier){
+        if (digits[9] == firstVerifier && digits[10] == secondVerifier) {
             cpfValidado = cpf;
             return true;
         } else {

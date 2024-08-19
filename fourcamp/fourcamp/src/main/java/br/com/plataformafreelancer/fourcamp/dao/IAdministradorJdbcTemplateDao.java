@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public interface IAdministradorJdbcTemplateDao {
     Optional<Administrador> findById(Integer idAdministrador);
+
     public void salvarAdministrador(Administrador administrador);
 
 }

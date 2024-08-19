@@ -4,8 +4,8 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCom
 import br.com.plataformafreelancer.fourcamp.model.Avaliacao;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.jdbc.core.RowMapper;
 import lombok.SneakyThrows;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

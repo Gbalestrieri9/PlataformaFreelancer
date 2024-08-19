@@ -1,7 +1,9 @@
 
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞJ$7832c357-528d-4de9-b177-6e65940cffc7
-r
-java:S1874p"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎJ$1d123f57-1e49-4417-99f6-8879c97f154a
-n
-java:S1874v"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿJ$2b68cceb-6e0c-4ce3-89c9-23d609f00305
+…
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄÞ8ÊËÆÃ–2J$aa986b97-a627-4d8b-9f00-edfe66b3b3b2
+y
+java:S1874x"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8×ËÆÃ–2J$d50760dd-c364-4cd9-bf7d-1fdf4a57cc0f
+¦
+java:S1128"cRemove this unused import 'br.com.plataformafreelancer.fourcamp.dao.impl.mapper.PropostaRowMapper'.(ƒ˜¿¼8£„ÇÃ–2J$20add7c5-c568-458d-80b6-58b6d832e3c2
+µ
+java:S1128"mRemove this unused import 'br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAnalisarPropostaDto'.(óø—¬ýÿÿÿÿ8¤„ÇÃ–2J$4ca038ec-1918-4d30-9179-5a4ac64bffd4

@@ -1,10 +1,10 @@
 package br.com.plataformafreelancer.fourcamp.model;
 
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 

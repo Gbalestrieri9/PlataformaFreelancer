@@ -3,8 +3,8 @@ package br.com.plataformafreelancer.fourcamp.dao.impl;
 import br.com.plataformafreelancer.fourcamp.dao.IAdministradorJdbcTemplateDao;
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class AdministradorJdbcTemplateDaoImpl implements IAdministradorJdbcTempl
 
     @Override
     public void salvarAdministrador(Administrador administrador) {
-        LoggerUtils.logRequestStart(LOGGER,"salvarAdministrador", administrador);
+        LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", administrador);
         String sql = "CALL cadastrar_administrador(?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 administrador.getUsuario().getEmail(),
@@ -37,6 +37,6 @@ public class AdministradorJdbcTemplateDaoImpl implements IAdministradorJdbcTempl
                 administrador.getStatusAdministrador().toString()
         );
 
-        LoggerUtils.logElapsedTime(LOGGER,"salvaAdministrador", System.currentTimeMillis());
+        LoggerUtils.logElapsedTime(LOGGER, "salvaAdministrador", System.currentTimeMillis());
     }
 }

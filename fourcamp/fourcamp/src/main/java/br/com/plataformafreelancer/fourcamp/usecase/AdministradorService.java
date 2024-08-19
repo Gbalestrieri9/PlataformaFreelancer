@@ -7,6 +7,9 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
 import br.com.plataformafreelancer.fourcamp.utils.*;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeCpf;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeEmail;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeNomes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,10 @@ public class AdministradorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorService.class);
 
     @Autowired
-    private DataService dataService;
+    private DatasUtil datasUtil;
 
     @Autowired
-    private SenhaService senhaService;
+    private SenhaUtil senhaUtil;
 
     @Autowired
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
@@ -32,8 +35,8 @@ public class AdministradorService {
 
         ValidadorDeEmail.validarEmail(requestAdministradorDto.getEmail());
         cpfValidado = ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
-        senhaService.validarSenha(requestAdministradorDto.getSenha());
-        NomeService.validarNome(requestAdministradorDto.getNome());
+        senhaUtil.validarSenha(requestAdministradorDto.getSenha());
+        ValidadorDeNomes.validarNome(requestAdministradorDto.getNome());
 
         Usuario usuario = Usuario.builder()
                 .email(requestAdministradorDto.getEmail())
@@ -46,7 +49,7 @@ public class AdministradorService {
                 .usuario(usuario)
                 .nome(requestAdministradorDto.getNome())
                 .cpf(cpfValidado)
-                .dataCriacao(DataService.coletarDataHoraAtual())
+                .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .statusAdministrador(StatusAdministrador.ATIVO)
                 .build();
 

@@ -16,8 +16,9 @@ public class CarteiraJdbcTemplateDaoImpl implements ICarteiraJdbcTemplateDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
     @Override
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email){
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email) {
         String sql = "SELECT public.visualizar_saldo('" + email + "')";
 
         return jdbcTemplate.queryForObject(
@@ -28,7 +29,7 @@ public class CarteiraJdbcTemplateDaoImpl implements ICarteiraJdbcTemplateDao {
 
     @Override
     public ResponseSaldoCarteiraDBDTO depositarValor(String email, float valor, LocalDate dataDaTransacao) {
-        String sql = "SELECT public.depositar_valor('" + email + "', " + valor + ", '"+ dataDaTransacao + "')";
+        String sql = "SELECT public.depositar_valor('" + email + "', " + valor + ", '" + dataDaTransacao + "')";
 
         return jdbcTemplate.queryForObject(
                 sql,
@@ -38,7 +39,7 @@ public class CarteiraJdbcTemplateDaoImpl implements ICarteiraJdbcTemplateDao {
 
     @Override
     public ResponseSaldoCarteiraDBDTO sacarValor(String email, float valor, LocalDate dataDaTranscao) {
-        String sql = "SELECT public.sacar_valor('" + email + "', " + valor + ", '"+ dataDaTranscao + "')";
+        String sql = "SELECT public.sacar_valor('" + email + "', " + valor + ", '" + dataDaTranscao + "')";
 
         return jdbcTemplate.queryForObject(
                 sql,

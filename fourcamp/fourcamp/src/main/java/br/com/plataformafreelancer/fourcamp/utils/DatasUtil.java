@@ -1,5 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.utils;
 
+import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.exceptions.DataInvalidaException;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 @Service
-public class DataService {
+public class DatasUtil {
 
     private static final String DATE_FORMAT = "dd/MM/yyyy";
     private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
@@ -32,8 +33,8 @@ public class DataService {
         }
     }
 
-    public static LocalDate converterParaLocalDate(String data) {
-        return LocalDate.parse(data, DATE_FORMATTER);
+    public static LocalDate converterParaLocalDate(String date) {
+        return LocalDate.parse(date, DATE_FORMATTER);
     }
 
     public static String coletarDataHoraAtual() {

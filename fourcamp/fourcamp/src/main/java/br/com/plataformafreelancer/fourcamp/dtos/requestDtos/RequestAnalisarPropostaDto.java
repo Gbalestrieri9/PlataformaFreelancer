@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RequestAnalisarPropostaDto {
-    private Integer idProposta;
-    private StatusProposta statusProposta;
+    private String emailEmpresa;
+    private String idProposta;
+    private String statusProposta;
 }

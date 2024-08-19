@@ -1,11 +1,14 @@
 package br.com.plataformafreelancer.fourcamp.dao.impl;
 
 import br.com.plataformafreelancer.fourcamp.dao.IFreelancerJdbcTemplateDao;
-import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.*;
-import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCompatibilidadeDto;
+import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.EmpresaCompletaDtoRowMapper;
+import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.EmpresaDtoRowMapper;
+import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.ProjetoCompatibilidadeDtoRowMapper;
+import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.ProjetoDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaDto;
+import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCompatibilidadeDto;
 import br.com.plataformafreelancer.fourcamp.model.Avaliacao;
 import br.com.plataformafreelancer.fourcamp.model.Freelancer;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
@@ -15,8 +18,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.SqlTypeValue;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.SQLData;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.List;
 
 @Service
@@ -59,15 +69,20 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
     @Override
     public void salvarProposta(Proposta proposta) {
         LoggerUtils.logRequestStart(LOGGER, "salvarProposta", proposta);
-        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql,
-                proposta.getFreelancerId(),
-                proposta.getProjetoId(),
-                proposta.getValor(),
-                proposta.getDataCriacao(),
-                proposta.getStatusProposta().toString(),
-                proposta.getObservacao()
-        );
+        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
+            preparedStatement.setInt(1, proposta.getFreelancerId());
+            preparedStatement.setInt(2, proposta.getProjetoId());
+            preparedStatement.setBigDecimal(3, BigDecimal.valueOf(proposta.getValor()));
+            preparedStatement.setString(4, proposta.getDataCriacao());
+            preparedStatement.setString(5, String.valueOf(proposta.getStatusProposta()));
+            preparedStatement.setString(6, proposta.getObservacao());
+            preparedStatement.setObject(7, proposta.getDataInicio(), Types.DATE);
+            preparedStatement.setObject(8, proposta.getDataFim(), Types.DATE);
+            preparedStatement.execute();
+            return null;
+        });
         LoggerUtils.logElapsedTime(LOGGER, "salvarProposta", System.currentTimeMillis());
     }
 
