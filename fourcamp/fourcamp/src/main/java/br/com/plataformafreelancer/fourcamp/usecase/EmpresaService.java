@@ -36,7 +36,7 @@ public class EmpresaService {
         ValidadorDeEmail.validarEmail(request.getEmail());
         SenhaUtil.validarSenha(request.getSenha());
         ResponseEnderecoDto responseEnderecoDto = ValidadorDeCep.buscaEnderecoPor(request.getCep());
-        ValidadorDeCnpj.validarCnpj(request.getCnpj());
+        String cnpjValidado = ValidadorDeCnpj.validarCnpj(request.getCnpj());
         ValidadorDeTelefones.validarNumeroTelefone(request.getTelefone());
 
         Usuario usuario = Usuario.builder()
@@ -58,7 +58,7 @@ public class EmpresaService {
 
         Empresa empresa = Empresa.builder()
                 .usuario(usuario)
-                .cnpj(request.getCnpj())
+                .cnpj(cnpjValidado)
                 .nome(request.getNome())
                 .telefone(request.getTelefone())
                 .endereco(endereco)
