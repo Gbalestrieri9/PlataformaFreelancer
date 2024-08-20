@@ -9,6 +9,9 @@ public class ValidadorDeCnpj {
 
     private static String cnpjValidado;
 
+    private ValidadorDeCnpj() {
+    }
+
     public static String validarCnpj(String cnpj) {
         if (cnpj == null || !isValidCNPJ(cnpj)) {
             throw new CnpjInvalidoException(ErrorCode.CNPJ_INVALIDO.getCustomMessage() + cnpj);
@@ -18,10 +21,11 @@ public class ValidadorDeCnpj {
     }
 
     private static boolean isValidCNPJ(String cnpj) {
-        // Remove caracteres não numéricos
-        cnpj = cnpj.replaceAll("\\D", "");
 
-        // Verifica se o CNPJ tem 14 dígitos
+        // Remover caracteres não numéricos
+        cnpj = cnpj.replaceAll("[^\\d]", "");
+
+        // Verificar se o CNPJ tem 14 dígitos
         if (cnpj.length() != 14) {
             return false;
         }
@@ -31,48 +35,40 @@ public class ValidadorDeCnpj {
             return false;
         }
 
-        char dig13, dig14;
-        int sm, i, r, num, peso;
-
-        // Cálculo do primeiro dígito verificador
-        sm = 0;
-        peso = 2;
-        for (i = 11; i >= 0; i--) {
-            num = (int) (cnpj.charAt(i) - 48);
-            sm = sm + (num * peso);
-            peso = peso + 1;
-            if (peso == 10) {
-                peso = 2;
-            }
+        // Calcular os dígitos verificadores
+        int[] digits = new int[14];
+        for (int i = 0; i < 14; i++) {
+            digits[i] = Character.getNumericValue(cnpj.charAt(i));
         }
 
-        r = sm % 11;
-        if ((r == 0) || (r == 1)) {
-            dig13 = '0';
+        // Calcular primeiro dígito verificador
+        int sum = 0;
+        int[] weight1 = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        for (int i = 0; i < 12; i++) {
+            sum += digits[i] * weight1[i];
+        }
+        int firstVerifier = 11 - (sum % 11);
+        if (firstVerifier >= 10) {
+            firstVerifier = 0;
+        }
+
+        // Calcular segundo dígito verificador
+        sum = 0;
+        int[] weight2 = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        for (int i = 0; i < 13; i++) {
+            sum += digits[i] * weight2[i];
+        }
+        int secondVerifier = 11 - (sum % 11);
+        if (secondVerifier >= 10) {
+            secondVerifier = 0;
+        }
+
+        // Verificar se os dígitos verificadores estão corretos
+        if (digits[12] == firstVerifier && digits[13] == secondVerifier) {
+            cnpjValidado = cnpj;
+            return true;
         } else {
-            dig13 = (char) ((11 - r) + 48);
+            return false;
         }
-
-        // Cálculo do segundo dígito verificador
-        sm = 0;
-        peso = 2;
-        for (i = 12; i >= 0; i--) {
-            num = (int) (cnpj.charAt(i) - 48);
-            sm = sm + (num * peso);
-            peso = peso + 1;
-            if (peso == 10) {
-                peso = 2;
-            }
-        }
-
-        r = sm % 11;
-        if ((r == 0) || (r == 1)) {
-            dig14 = '0';
-        } else {
-            dig14 = (char) ((11 - r) + 48);
-        }
-
-        // Verifica se os dígitos calculados conferem com os dígitos informados
-        return (dig13 == cnpj.charAt(12)) && (dig14 == cnpj.charAt(13));
     }
 }
