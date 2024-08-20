@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ValidadorDeCnpj {
 
-    public static boolean validarCnpj(String cnpj) {
+    private static String cnpjValidado;
+
+    public static String validarCnpj(String cnpj) {
         if (cnpj == null || !isValidCNPJ(cnpj)) {
             throw new CnpjInvalidoException(ErrorCode.CNPJ_INVALIDO.getCustomMessage() + cnpj);
         } else {
-            return true;
+            return cnpjValidado;
         }
     }
 
