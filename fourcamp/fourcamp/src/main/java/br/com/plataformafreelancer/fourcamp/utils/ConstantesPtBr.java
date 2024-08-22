@@ -10,4 +10,8 @@ public class ConstantesPtBr {
     public static final String DATA_FIM_PROJETO_INVALIDA = "A data final deve ser maior ou igual data atual.";
     public static final String DATAS_INICIO_FIM_PROJETO_INCONSISTENTES = "A data do fim do projeto não pode ser menor ou igual a data de inicio.";
     public static final String ID_INVALIDO = "O id deve ser um valor numérico inteiro e positivo.";
+    public static final String SUCESSO_ENTREGA_PROJETO = "Entrega do projeto registrada com sucesso!";
+    public static final String SUCESSO_REGISTRO_VALIDACAO_EMPRESA = "Sua resposta foi registrada com sucesso.";
+    public static final String STATUS_VALIDACAO_INVALIDO = "Status inválido! Valores aceitos: ACEITA ou RECUSADA.";
+    public static final String SUCESSO_PROJETO_APROVADO = "Projeto aprovado com sucesso.";
 }

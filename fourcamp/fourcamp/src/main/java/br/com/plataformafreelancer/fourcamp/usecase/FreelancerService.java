@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -83,9 +84,10 @@ public class FreelancerService {
 
         int idFreelancerValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getFreelancerId());
         int idProjetoValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getProjetoId());
-        double valorValidado = ValidadorDeProposta.validarValor(requestPropostaDto.getValor());
+        double valorFreelancerValidado = ValidadorDeProposta.validarValor(requestPropostaDto.getValor());
+
         // Adiciona taxa de administração ao valor final
-        valorValidado = taxarProposta(valorValidado);
+        double valorFinal = taxarProposta(valorFreelancerValidado);
 
         LocalDate dataInicioValidada = ValidadorDeProposta.validarDataInicio(requestPropostaDto.getDataInicio());
         LocalDate dataFimValidada = ValidadorDeProposta.validarDataFim(requestPropostaDto.getDataFim());
@@ -96,7 +98,8 @@ public class FreelancerService {
         Proposta proposta = Proposta.builder()
                 .freelancerId(idFreelancerValidado)
                 .projetoId(idProjetoValidado)
-                .valor(valorValidado)
+                .valorFreelancer(valorFreelancerValidado)
+                .valorFinal(valorFinal)
                 .dataInicio(dataInicioValidada)
                 .dataFim(dataFimValidada)
                 .observacao(requestPropostaDto.getObservacao())
@@ -172,5 +175,22 @@ public class FreelancerService {
 
     private double taxarProposta(double proposta) {
         return proposta + (proposta * TaxasProposta.TAXA_PADRAO.getValor());
+    }
+
+    public void registrarEntregaProjeto(EntregarProjetoRequestDto entregarProjetoRequestDto) {
+        int idDoProjetoValidado
+                = Integer.parseInt(entregarProjetoRequestDto.getIdProjeto());
+        int idDoFreelancerValidado
+                = Integer.parseInt(entregarProjetoRequestDto.getIdFreelancer());
+
+        RegistarEntregaDto registrarEntregaDto = RegistarEntregaDto
+                .builder()
+                .idFreelancer(idDoFreelancerValidado)
+                .idProjeto(idDoProjetoValidado)
+                .observacao(entregarProjetoRequestDto.getObservacao())
+                .dataEntrega(DatasUtil.coletarDataAtual())
+                .build();
+
+        freelancerJdbcTemplateDaoImpl.registrarEntregaProjeto(registrarEntregaDto);
     }
 }

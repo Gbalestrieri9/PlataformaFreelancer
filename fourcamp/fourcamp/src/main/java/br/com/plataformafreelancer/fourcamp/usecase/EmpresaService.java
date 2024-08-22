@@ -7,10 +7,12 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancer
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
+import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
+import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
+import br.com.plataformafreelancer.fourcamp.exceptions.ValorInvalidoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
 import br.com.plataformafreelancer.fourcamp.utils.*;
 import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
@@ -20,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -81,7 +84,7 @@ public class EmpresaService {
                 .prazo(request.getPrazo())
                 .empresaId(request.getIdEmpresa())
                 .habilidades(request.getHabilidades())
-                .statusProjeto(StatusProjeto.ATIVO)
+                .statusValidacaoEntrega(StatusValidacaoEntrega.ATIVO)
                 .dataCriacao(DatasUtil.coletarDataHoraAtual())
                 .build();
 
@@ -99,7 +102,7 @@ public class EmpresaService {
         int idPropostaValidado =
                 ValidadorDeProposta.validarIdProposta(requestAnalisarPropostaDto.getIdProposta());
 
-        String statusPropostaValidado =
+        StatusProposta statusPropostaValidado =
                 ValidadorDeProposta.validarStatusProposta(requestAnalisarPropostaDto.getStatusProposta());
 
         String descricaoDaTransacao = ConstantesPtBr.CARTEIRA_REGISTRAR_PAGAMENTO + idPropostaValidado;
@@ -109,7 +112,7 @@ public class EmpresaService {
                         .builder()
                         .emailEmpresa(emailEmpresa)
                         .idProposta(idPropostaValidado)
-                        .status(statusPropostaValidado)
+                        .statusProposta(statusPropostaValidado)
                         .descricaoTransacao(descricaoDaTransacao)
                         .build();
 
@@ -176,5 +179,37 @@ public class EmpresaService {
 
     public void excluirProjetoSeNaoAssociado(Integer idProjeto) {
         empresaJdbcTemplateDao.excluirProjetoSeNaoAssociado(idProjeto);
+    }
+
+    public void validarEntregaDoProjeto(RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
+        LocalDate dataAtual = DatasUtil.coletarDataAtual();
+        int idProjetoValidado;
+        int idEmpresaValidado;
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdProjeto())){
+            throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
+        } else {
+            idProjetoValidado = Integer.parseInt(requestValidarEntregaProjetoDto.getIdProjeto());
+        }
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdEmpresa())){
+            throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
+        } else {
+            idEmpresaValidado = Integer.parseInt(requestValidarEntregaProjetoDto.getIdEmpresa());
+        }
+
+        StatusValidacaoEntrega statusValidacaoEntregaValidado =
+                ValidadorDeStatusEntrega.validarStatus(requestValidarEntregaProjetoDto.getValidacao());
+
+        ValidarEntregaProjeto validarEntregaProjeto = ValidarEntregaProjeto
+                .builder()
+                .idEmpresa(idEmpresaValidado)
+                .idProjeto(idProjetoValidado)
+                .statusValidacaoEntrega(statusValidacaoEntregaValidado)
+                .observacao(requestValidarEntregaProjetoDto.getObservacaoEntrega())
+                .dataValidacao(dataAtual)
+                .build();
+
+        empresaJdbcTemplateDao.validarEntregaDoProjeto(validarEntregaProjeto, dataAtual);
     }
 }

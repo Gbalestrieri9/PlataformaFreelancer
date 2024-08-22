@@ -5,6 +5,7 @@ import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.EmpresaCompletaDtoRo
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.EmpresaDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.ProjetoCompatibilidadeDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.ProjetoDtoRowMapper;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RegistarEntregaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaDto;
@@ -69,17 +70,18 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
     @Override
     public void salvarProposta(Proposta proposta) {
         LoggerUtils.logRequestStart(LOGGER, "salvarProposta", proposta);
-        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "CALL criar_proposta(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
             preparedStatement.setInt(1, proposta.getFreelancerId());
             preparedStatement.setInt(2, proposta.getProjetoId());
-            preparedStatement.setBigDecimal(3, BigDecimal.valueOf(proposta.getValor()));
-            preparedStatement.setString(4, proposta.getDataCriacao());
-            preparedStatement.setString(5, String.valueOf(proposta.getStatusProposta()));
-            preparedStatement.setString(6, proposta.getObservacao());
-            preparedStatement.setObject(7, proposta.getDataInicio(), Types.DATE);
-            preparedStatement.setObject(8, proposta.getDataFim(), Types.DATE);
+            preparedStatement.setBigDecimal(3, BigDecimal.valueOf(proposta.getValorFinal()));
+            preparedStatement.setBigDecimal(4, BigDecimal.valueOf(proposta.getValorFreelancer()));
+            preparedStatement.setString(5, proposta.getDataCriacao());
+            preparedStatement.setString(6, String.valueOf(proposta.getStatusProposta()));
+            preparedStatement.setString(7, proposta.getObservacao());
+            preparedStatement.setObject(8, proposta.getDataInicio(), Types.DATE);
+            preparedStatement.setObject(9, proposta.getDataFim(), Types.DATE);
             preparedStatement.execute();
             return null;
         });
@@ -124,6 +126,22 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
         LoggerUtils.logRequestStart(LOGGER, "buscarProjetosCompativeis", idFreelancer);
         String sql = "SELECT * FROM buscar_projetos_compatíveis(?)";
         return jdbcTemplate.query(sql, new Object[]{idFreelancer}, new ProjetoCompatibilidadeDtoRowMapper());
+    }
+
+    @Override
+    public void registrarEntregaProjeto(RegistarEntregaDto registrarEntregaDto) {
+        LoggerUtils.logRequestStart(LOGGER, "registrarEntregaProjeto", registrarEntregaDto);
+
+        String sql = "CALL public.registrar_entrega_projeto(?, ?, ?, ?)";
+
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement ->{
+            preparedStatement.setInt(1, registrarEntregaDto.getIdFreelancer());
+            preparedStatement.setInt(2, registrarEntregaDto.getIdProjeto());
+            preparedStatement.setString(3, registrarEntregaDto.getObservacao());
+            preparedStatement.setObject(4, registrarEntregaDto.getDataEntrega(), Types.DATE);
+            preparedStatement.execute();
+            return null;
+        } );
     }
 
     public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto request) {

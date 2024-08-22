@@ -42,7 +42,12 @@ public enum ErrorCode {
     ID_PROPOSTA_FORMATO_INVALIDO("Formato do ID da proposta inválido ou não é um número","Id da proposta inválido"),
     PROPOSTA_STATUS_INEXISTENTE("Status da proposta não existe", "Status da proposta inválido. Opções aceitas: ACEITA, RECUSADA" ),
     SALDO_INSUFICIENTE("Saldo insuficiente", "Saldo Insuficiente"),
-    DATA_INVALIDA("Data inválida", "Data ou formato da data inválido.");
+    DATA_INVALIDA("Data inválida", "Data ou formato da data inválido."),
+    PROJETO_AGUARDANDO_APROVACAO_EMPRESA("Projeto já foi entregue.", "Projeto já foi entregue."),
+    PROJETO_AINDA_NAO_INICIADO("Sua proposta ainda não foi aceita.", "Sua proposta ainda não foi aceita."),
+    PROJETO_AGUARDANDO_APROVACAO_ADM("Aguardando aprovação do Administrador.", "O projeto está aguardando a valicação do Administrador"),
+    PROJETO_NAO_PERTENCE_A_EMPRESA("Empresa não está associada ao projeto", "Não foi possível atualizar este projeto, entre em contato com o administrador."),
+    PROJETO_NAO_DISPONIVEL_PARA_ENCERRAMENTO("Projeto não disponível para encerramento.", "Projeto não disponível para encerramento.");
 
 
     private final String message;

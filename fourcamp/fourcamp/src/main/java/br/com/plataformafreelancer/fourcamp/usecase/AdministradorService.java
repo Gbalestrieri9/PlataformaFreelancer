@@ -1,19 +1,24 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
 import br.com.plataformafreelancer.fourcamp.dao.impl.AdministradorJdbcTemplateDaoImpl;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequesAprovarProjetoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAdministradorDto;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusAdministrador;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
+import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
 import br.com.plataformafreelancer.fourcamp.utils.*;
 import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeCpf;
 import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeEmail;
 import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeNomes;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeNumerosPositivos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class AdministradorService {
@@ -55,5 +60,18 @@ public class AdministradorService {
 
         administradorJdbcTemplateDao.salvarAdministrador(administrador);
         LoggerUtils.logElapsedTime(LOGGER, "salvarAdministrador", System.currentTimeMillis());
+    }
+
+    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
+        int idValidado;
+        LocalDate dataAtual = DatasUtil.coletarDataAtual();
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestAprovarEntregaProjetoDto.getIdProjeto())){
+            throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
+        } else {
+            idValidado = Integer.parseInt(requestAprovarEntregaProjetoDto.getIdProjeto());
+        }
+
+        administradorJdbcTemplateDao.aprovarProjeto(idValidado, dataAtual);
     }
 }
