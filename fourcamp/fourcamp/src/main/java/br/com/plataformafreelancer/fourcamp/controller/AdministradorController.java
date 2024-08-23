@@ -2,16 +2,17 @@ package br.com.plataformafreelancer.fourcamp.controller;
 
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequesAprovarProjetoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAdministradorDto;
+import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.AdministradorService;
 import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/administrador")
@@ -43,4 +44,13 @@ public class AdministradorController {
         LoggerUtils.logElapsedTime(LOGGER, "aprovarProjeto", startTime);
         return response;
     }
+
+    @GetMapping("/v1/projetos-pendentes")
+    public ResponseEntity<?> listaProjetosPendente() {
+        long startTime = System.currentTimeMillis();
+        List<Projeto> lista = administradorService.listarProjetoPendente();
+        LoggerUtils.logElapsedTime(LOGGER, "listaProjetosPendente", startTime);
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
 }
