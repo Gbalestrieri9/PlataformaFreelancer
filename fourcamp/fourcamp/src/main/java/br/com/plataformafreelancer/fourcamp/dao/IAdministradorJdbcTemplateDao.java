@@ -2,6 +2,7 @@ package br.com.plataformafreelancer.fourcamp.dao;
 
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 public interface IAdministradorJdbcTemplateDao {
@@ -9,4 +10,5 @@ public interface IAdministradorJdbcTemplateDao {
 
     public void salvarAdministrador(Administrador administrador);
 
+    void aprovarProjeto(int idValidado, LocalDate dataAtual);
 }

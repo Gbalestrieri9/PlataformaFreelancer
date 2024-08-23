@@ -16,7 +16,8 @@ public class Proposta {
     private Integer propostaId;
     private Integer freelancerId;
     private Integer projetoId;
-    private double valor;
+    private double valorFinal;
+    private double valorFreelancer;
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private String dataCriacao;

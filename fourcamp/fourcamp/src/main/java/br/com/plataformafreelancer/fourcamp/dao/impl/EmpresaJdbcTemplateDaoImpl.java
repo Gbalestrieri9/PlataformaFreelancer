@@ -4,25 +4,24 @@ import br.com.plataformafreelancer.fourcamp.dao.IEmpresaJdbcTemplateDao;
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.FreelancerCompletaDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.FreelancerDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.PropostaRowMapper;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAnalisarPropostaDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarEmpresaDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarProjetoDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SalvarAnalisePropostaDto;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.*;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.model.Avaliacao;
 import br.com.plataformafreelancer.fourcamp.model.Empresa;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
+import br.com.plataformafreelancer.fourcamp.model.ValidarEntregaProjeto;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Service;
 
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -68,7 +67,7 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
                 projeto.getDescricao(),
                 projeto.getOrcamento(),
                 projeto.getPrazo(),
-                projeto.getStatusProjeto().toString(),
+                projeto.getStatusValidacaoEntrega().toString(),
                 projeto.getDataCriacao(),
                 projeto.getEmpresaId(),
                 projeto.getHabilidades().toArray(new String[0])
@@ -84,7 +83,7 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
         jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
             preparedStatement.setString(1, salvarAnalisePropostaDto.getEmailEmpresa());
             preparedStatement.setInt(2, salvarAnalisePropostaDto.getIdProposta());
-            preparedStatement.setString(3, salvarAnalisePropostaDto.getStatus());
+            preparedStatement.setString(3, String.valueOf(salvarAnalisePropostaDto.getStatusProposta()));
             preparedStatement.setString(4, salvarAnalisePropostaDto.getDescricaoTransacao());
             preparedStatement.execute();
             return null;
@@ -122,12 +121,9 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
 
     @Override
     public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
-        String sql = "SELECT * FROM public.listar_propostas_por_projeto("+ projetoId +")";
+        String sql = "SELECT * FROM listar_propostas_por_projeto(?)";
 
-        return jdbcTemplate.query(
-                sql,
-                new BeanPropertyRowMapper<>(ResponsePropostaDto.class)
-        );
+        return jdbcTemplate.query(sql, new Object[]{projetoId}, new PropostaRowMapper());
     }
 
     public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto request) {
@@ -163,6 +159,22 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
         LoggerUtils.logRequestStart(LOGGER, "excluirProjetoSeNaoAssociado", idProjeto);
         String sql = "CALL excluir_projeto_se_nao_associado(?)";
         jdbcTemplate.update(sql, idProjeto);
+        LoggerUtils.logElapsedTime(LOGGER, "excluirProjetoSeNaoAssociado", System.currentTimeMillis());
+    }
+
+    @Override
+    public void validarEntregaDoProjeto(ValidarEntregaProjeto validarEntregaProjeto, LocalDate dataAtual) {
+        LoggerUtils.logRequestStart(LOGGER, "excluirProjetoSeNaoAssociado", validarEntregaProjeto);
+        String sql = "CALL public.salvar_validacao_entrega_projeto(?, ?, ?, ?, ?)";
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
+           preparedStatement.setInt(1, validarEntregaProjeto.getIdEmpresa());
+            preparedStatement.setInt(2, validarEntregaProjeto.getIdProjeto());
+           preparedStatement.setString(3, String.valueOf(validarEntregaProjeto.getStatusValidacaoEntrega()));
+           preparedStatement.setString(4, validarEntregaProjeto.getObservacao());
+           preparedStatement.setObject(5, dataAtual, Types.DATE);
+            preparedStatement.execute();
+            return null;
+        });
         LoggerUtils.logElapsedTime(LOGGER, "excluirProjetoSeNaoAssociado", System.currentTimeMillis());
     }
 }

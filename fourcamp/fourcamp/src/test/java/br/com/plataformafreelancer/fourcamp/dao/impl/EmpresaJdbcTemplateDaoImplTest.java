@@ -9,7 +9,7 @@
 //import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 //import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 //import br.com.plataformafreelancer.fourcamp.model.*;
-//import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
+//import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
 //import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
 //import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 //import org.junit.jupiter.api.BeforeEach;
@@ -71,7 +71,7 @@
 //        projeto.setDescricao("Descrição do Projeto Teste");
 //        projeto.setOrcamento("10000.0");
 //        projeto.setPrazo("2024-12-31");
-//        projeto.setStatusProjeto(StatusProjeto.ATIVO);
+//        projeto.setStatusValidacaoEntrega(StatusValidacaoEntrega.ATIVO);
 //        projeto.setHabilidades(Arrays.asList("Java", "Spring"));
 //        projeto.setEmpresaId(1);
 //

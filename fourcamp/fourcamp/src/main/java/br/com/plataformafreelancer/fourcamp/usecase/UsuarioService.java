@@ -23,7 +23,8 @@ public class UsuarioService {
             Key chaveSecreta = JwtConfig.getChaveSecreta();
 
             return Jwts.builder()
-                    .claim("email", usuario.getEmail()).claim("senha", usuario.getSenha())
+                    .claim("email", usuario.getEmail())
+                    .claim("senha", usuario.getSenha())
                     .claim("tipoUsuario", usuario.getTipoUsuario())
                     .setExpiration(new Date(System.currentTimeMillis() + 86400000))
                     .signWith(chaveSecreta)

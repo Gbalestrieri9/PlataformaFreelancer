@@ -20,6 +20,8 @@ public class PropostaRowMapper implements RowMapper<ResponsePropostaDto> {
                 .dataCriacao(rs.getString("dataCriacao"))
                 .statusProposta(StatusProposta.valueOf(rs.getString("status")))
                 .observacao(rs.getString("observacao"))
+                .dataInicio(rs.getDate("data_inicio").toLocalDate())
+                .dataFim(rs.getDate("data_fim").toLocalDate())
                 .build();
     }
 }

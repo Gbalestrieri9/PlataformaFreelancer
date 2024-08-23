@@ -42,6 +42,10 @@ public class DatasUtil {
         return agora.format(DATE_TIME_FORMATTER);
     }
 
+    public static LocalDate coletarDataAtual() {
+        return LocalDate.now();
+    }
+
 
 }
 

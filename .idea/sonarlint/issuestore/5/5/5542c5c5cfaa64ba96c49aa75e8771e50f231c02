@@ -1,23 +1,26 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8È¶í–2J$6ac40dd5-50ce-4f55-beb8-c257912f8e88
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ø€¸—2J$8d725b6c-aa5b-4bfb-aa8e-2817e8808885
 n
-java:S1452&"&Remove usage of generic wildcard type.(³Íµóùÿÿÿÿ8Î¶í–2J$4fced65a-d0cc-4921-900d-2c3eb31c6b5a
+java:S1452&"&Remove usage of generic wildcard type.(³Íµóùÿÿÿÿ8‡¸—2J$5ce895d6-d3b8-4a34-96ab-0a1fe1e1428b
 n
-java:S14527"&Remove usage of generic wildcard type.(åşÿ¹üÿÿÿÿ8Ï¶í–2J$45ae6252-20d0-4129-aaa8-4a90928d8d38
+java:S14527"&Remove usage of generic wildcard type.(åşÿ¹üÿÿÿÿ8Œ¸—2J$08616756-ccca-448a-b926-c7a9452577cb
 i
-java:S1452H"&Remove usage of generic wildcard type.(÷Ñîë8Ñ¶í–2J$5f1b21ab-8b81-4f73-a027-a28bbc333f02
+java:S1452H"&Remove usage of generic wildcard type.(÷Ñîë8‘¸—2J$5975d668-fbbb-4a30-85a9-ded9f6e1813d
 h
-java:S1452_"&Remove usage of generic wildcard type.(Æ¸8«£ô–2J$a8c96c21-b8c4-42b6-9444-f2b7244fdd48
+java:S1452_"&Remove usage of generic wildcard type.(Æ¸8–¸—2J$2c03f466-844c-4237-a237-3a6641ff6266
 n
-java:S1452o"&Remove usage of generic wildcard type.(Öï˜£ıÿÿÿÿ8­£ô–2J$6faf3b06-50e0-4c12-b376-b50ba3a5c0d1
+java:S1452o"&Remove usage of generic wildcard type.(Öï˜£ıÿÿÿÿ8š¸—2J$2a37470b-cb7f-48ce-8c50-9794dd858125
 n
-java:S1452}"&Remove usage of generic wildcard type.(µ¾Ê¢ùÿÿÿÿ8¯£ô–2J$7bf76636-fa03-4096-a591-121d57253b12
+java:S1452}"&Remove usage of generic wildcard type.(µ¾Ê¢ùÿÿÿÿ8¸—2J$908fe26c-4010-4a22-91bf-64c39660c915
 o
-java:S1452Š"&Remove usage of generic wildcard type.(œ»™£ıÿÿÿÿ8°£ô–2J$d3025071-764d-4dda-a165-50ea4cbaa015
+java:S1452Š"&Remove usage of generic wildcard type.(œ»™£ıÿÿÿÿ8¡¸—2J$2f64c216-7f20-4bca-a85f-9a94870d149a
 o
-java:S1452˜"&Remove usage of generic wildcard type.(Ê„òµùÿÿÿÿ8±£ô–2J$f674a4c3-1690-4166-8a7c-dc9c7aefda47
+java:S1452˜"&Remove usage of generic wildcard type.(Ê„òµùÿÿÿÿ8¤¸—2J$23941968-629d-4c3e-bb6d-310a0abdab7f
 o
-java:S1452©"&Remove usage of generic wildcard type.(˜Øèıÿÿÿÿ8³£ô–2J$ebe4ff53-f0a1-4177-aa5b-21d9e472dab7
+java:S1452©"&Remove usage of generic wildcard type.(˜Øèıÿÿÿÿ8¨¸—2J$1f088072-fa3b-4959-9019-862867faa1b1
 o
-java:S1452º"&Remove usage of generic wildcard type.(ŠÖ°Çÿÿÿÿÿ8µ£ô–2J$5f7bef5e-af17-4d5c-95a4-aca3aa76eeb9
+java:S1452º"&Remove usage of generic wildcard type.(ŠÖ°Çÿÿÿÿÿ8¬¸—2J$33f08a6f-a8a3-41f3-a5cf-3d27f63f517f
+o
+java:S1452Æ"&Remove usage of generic wildcard type.(ùŸ˜úÿÿÿÿ8¯¸—2J$d8a8e3fc-355d-49e6-8837-fe66dd2ce6bc
+	java:S125Ê"<This block of commented-out lines of code should be removed.(ìïÑÀ8²¸—2J$d5a95577-ba2f-49be-9483-08b31363e3c3

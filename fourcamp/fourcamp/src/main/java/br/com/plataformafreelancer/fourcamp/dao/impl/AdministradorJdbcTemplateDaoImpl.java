@@ -7,8 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Service;
 
+import java.sql.Types;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -39,4 +42,20 @@ public class AdministradorJdbcTemplateDaoImpl implements IAdministradorJdbcTempl
 
         LoggerUtils.logElapsedTime(LOGGER, "salvaAdministrador", System.currentTimeMillis());
     }
+
+    @Override
+    public void aprovarProjeto(int idValidado, LocalDate dataAtual) {
+        LoggerUtils.logRequestStart(LOGGER, "aprovarProjeto", idValidado);
+        String sql = "CALL public.aprovar_projeto(?, ?)";
+
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
+            preparedStatement.setInt(1, idValidado);
+            preparedStatement.setObject(2, dataAtual, Types.DATE);
+            preparedStatement.execute();
+            return null;
+        });
+
+        LoggerUtils.logElapsedTime(LOGGER, "aprovarProjeto", System.currentTimeMillis());
+    }
+
 }

@@ -70,18 +70,20 @@ public class ValidadorDeProposta {
         return valorValidado;
     }
 
-    public static String validarStatusProposta(String statusProposta) {
-        List<String> listaDeStatusDePropostas =
+    public static StatusProposta validarStatusProposta(String statusProposta) {
+        StatusProposta statusPropostaValidado = StatusProposta.valueOf(statusProposta);
+
+        List<StatusProposta> listaDeStatusDePropostas =
                 Arrays.asList(
-                        StatusProposta.ACEITA.getStatus(),
-                        StatusProposta.PENDENTE.getStatus(),
-                        StatusProposta.RECUSADA.getStatus()
+                        StatusProposta.ACEITA,
+                        StatusProposta.PENDENTE,
+                        StatusProposta.RECUSADA
                 );
 
-        if(!listaDeStatusDePropostas.contains(statusProposta)){
+        if(!listaDeStatusDePropostas.contains(statusPropostaValidado)){
             throw new StatusDaPropostaInvalidoException(ErrorCode.PROPOSTA_STATUS_INEXISTENTE.getCustomMessage());
         } else {
-            return statusProposta;
+            return statusPropostaValidado;
         }
     }
 
