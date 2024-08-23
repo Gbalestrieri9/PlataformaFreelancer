@@ -7,7 +7,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/PPF?ApplicationName=PlataformaParaFreelancer
     username: postgres
 
-    password: thomas10
+    password: password
 
   hikari:
     maximumPoolSize: 3

@@ -5,11 +5,14 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
 import br.com.plataformafreelancer.fourcamp.utils.JwtConfig;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UsuarioService {
@@ -22,9 +25,25 @@ public class UsuarioService {
 
             Key chaveSecreta = JwtConfig.getChaveSecreta();
 
-            String token = Jwts.builder().claim("email", usuario.getEmail()).claim("senha", usuario.getSenha()).claim("tipoUsuario",usuario.getTipoUsuario())
-                    .setExpiration(new Date(System.currentTimeMillis() + 86400000)).signWith(chaveSecreta).compact();
-            return token;
+            TipoUsuario tipoUsuario = usuario.getTipoUsuario();
+
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("email", email);
+            claims.put("tipoUsuario", tipoUsuario);
+
+//            String token = Jwts.builder()
+//                    .claim("email", usuario.getEmail())
+//                    .claim("senha", usuario.getSenha())
+//                    .claim("tipoUsuario",usuario.getTipoUsuario())
+//                    .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+//                    .signWith(chaveSecreta).compact();
+//            return token;
+
+            return Jwts.builder()
+                    .setClaims(claims)
+                    .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                    .signWith(chaveSecreta)
+                    .compact();
         } else {
             return null;
         }

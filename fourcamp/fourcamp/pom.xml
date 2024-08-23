@@ -76,6 +76,11 @@
 			<version>0.11.2</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.lbovolini</groupId>
+			<artifactId>ObjectMapper</artifactId>
+			<version>0.2.3</version>
+		</dependency>
 	</dependencies>
 
 
