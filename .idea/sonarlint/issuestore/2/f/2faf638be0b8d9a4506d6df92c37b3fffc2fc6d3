@@ -1,9 +1,9 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‰êÀ‰—2J$71c251df-9300-42e8-9b92-9d95b8705cf8
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‰êÀ‰—2J$71c251df-9300-42e8-9b92-9d95b8705cf8
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ŠêÀ‰—2J$d572aee2-6684-48e0-9357-450a5ab4fe70
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8ŠêÀ‰—2J$d572aee2-6684-48e0-9357-450a5ab4fe70
 }
-java:S2209&"5Change this instance-reference to a static reference.(ÊÁûÿÿÿÿ8ŸêÀ‰—2J$eadef285-8ff7-444c-b57f-b80f5a39dcb9
+java:S2209'"5Change this instance-reference to a static reference.(ÊÁûÿÿÿÿ8ŸêÀ‰—2J$eadef285-8ff7-444c-b57f-b80f5a39dcb9
 u
-java:S1172R"-Remove this unused method parameter "jwtDto".(çË¡öúÿÿÿÿ8ÇêÀ‰—2J$33fea738-cfa1-462b-ad9c-cc4d9c5f35bd
+java:S1172S"-Remove this unused method parameter "jwtDto".(çË¡öúÿÿÿÿ8ÇêÀ‰—2J$33fea738-cfa1-462b-ad9c-cc4d9c5f35bd

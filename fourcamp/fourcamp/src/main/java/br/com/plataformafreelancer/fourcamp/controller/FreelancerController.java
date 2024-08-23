@@ -204,10 +204,10 @@ public class FreelancerController {
 
         ResponseEntity<StandardResponse> response =
                 ResponseEntity.ok(StandardResponse
-                                .builder()
-                                .message(ConstantesPtBr.SUCESSO_ENTREGA_PROJETO)
-                                .build()
-        );
+                        .builder()
+                        .message(ConstantesPtBr.SUCESSO_ENTREGA_PROJETO)
+                        .build()
+                );
         LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", startTime);
         return response;
     }

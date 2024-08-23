@@ -74,11 +74,12 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
 
         empresaService.analisarProposta(request);
+
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(
                 StandardResponse
-                .builder()
-                .message(ConstantesPtBr.SUCESSO_ATUALIZAR_PROPOSTA)
-                .build()
+                        .builder()
+                        .message(ConstantesPtBr.SUCESSO_ATUALIZAR_PROPOSTA)
+                        .build()
         );
 
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", startTime);

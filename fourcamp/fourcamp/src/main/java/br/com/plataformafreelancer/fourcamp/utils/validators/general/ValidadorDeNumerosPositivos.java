@@ -14,11 +14,11 @@ public class ValidadorDeNumerosPositivos {
 
     public static boolean validarNumero(String numero) {
 
-        try{
+        try {
             int numeroValidado = Integer.parseInt(numero);
 
             return numeroValidado > 0;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
         }
     }

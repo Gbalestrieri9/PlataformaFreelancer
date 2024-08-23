@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,5 @@ public class SalvarAnalisePropostaDto {
     int idProposta;
     StatusProposta statusProposta;
     String descricaoTransacao;
+    LocalDate dataAtual;
 }

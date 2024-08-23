@@ -1,8 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.dao;
 
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAnalisarPropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAtualizarProjetoDto;
-import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestValidarEntregaProjetoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SalvarAnalisePropostaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
