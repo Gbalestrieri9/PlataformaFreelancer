@@ -1,9 +1,9 @@
 
 ¡
-java:S1192Ÿ"]Define a constant instead of duplicating this literal "excluirProjetoSeNaoAssociado" 4 times.(›ıË8ë±˜·—2J$389546c4-ce78-45d7-8d27-2c3263302c0c
+java:S1192¢"]Define a constant instead of duplicating this literal "excluirProjetoSeNaoAssociado" 4 times.(›ıË8°¸È‚˜2J$dd3ed742-6e18-4c2b-86ac-b2d9aa5205a2
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8ï±˜·—2J$8cfaed02-f439-45a7-a8e9-912c9bf0c15a
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8´¸È‚˜2J$eca25ea9-734d-45f8-bc50-df70db5aac8b
 y
-java:S1874w"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8Œ²˜·—2J$8ab9eada-7e4f-4dd2-9b8f-ba6de6df4c02
-u
-java:S1874~"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿ8˜²˜·—2J$b665635f-39e9-4050-92fe-334c7877a180
+java:S1874z"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8Ö¸È‚˜2J$6b44818c-1bdf-459f-bb2e-dd212136aa47
+v
+java:S1874"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿ8Ş¸È‚˜2J$b09fdcb6-382f-456b-89ba-f1d8a63cf433

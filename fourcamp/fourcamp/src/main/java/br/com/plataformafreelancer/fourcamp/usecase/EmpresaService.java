@@ -7,19 +7,23 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancer
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancerDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
+import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.ValorInvalidoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
-import br.com.plataformafreelancer.fourcamp.utils.*;
+import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
+import br.com.plataformafreelancer.fourcamp.utils.DatasUtil;
+import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
+import br.com.plataformafreelancer.fourcamp.utils.SenhaUtil;
 import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
 import br.com.plataformafreelancer.fourcamp.utils.validators.general.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -107,6 +111,8 @@ public class EmpresaService {
 
         String descricaoDaTransacao = ConstantesPtBr.CARTEIRA_REGISTRAR_PAGAMENTO + idPropostaValidado;
 
+        LocalDate dataAtual = DatasUtil.coletarDataAtual();
+
         SalvarAnalisePropostaDto salvarAnalisePropostaDto =
                 SalvarAnalisePropostaDto
                         .builder()
@@ -114,6 +120,7 @@ public class EmpresaService {
                         .idProposta(idPropostaValidado)
                         .statusProposta(statusPropostaValidado)
                         .descricaoTransacao(descricaoDaTransacao)
+                        .dataAtual(dataAtual)
                         .build();
 
         empresaJdbcTemplateDao.analisarProposta(salvarAnalisePropostaDto);
@@ -156,7 +163,7 @@ public class EmpresaService {
 
     public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
 
-        if(!ValidadorDeNumerosPositivos.validarNumero(projetoId)){
+        if (!ValidadorDeNumerosPositivos.validarNumero(projetoId)) {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
         }
 
@@ -186,13 +193,13 @@ public class EmpresaService {
         int idProjetoValidado;
         int idEmpresaValidado;
 
-        if(!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdProjeto())){
+        if (!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdProjeto())) {
             throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
         } else {
             idProjetoValidado = Integer.parseInt(requestValidarEntregaProjetoDto.getIdProjeto());
         }
 
-        if(!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdEmpresa())){
+        if (!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdEmpresa())) {
             throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
         } else {
             idEmpresaValidado = Integer.parseInt(requestValidarEntregaProjetoDto.getIdEmpresa());

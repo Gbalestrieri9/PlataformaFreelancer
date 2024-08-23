@@ -1,16 +1,19 @@
 package br.com.plataformafreelancer.fourcamp.dtos.requestDtos;
 
+import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RequestAnalisarPropostaDto {
-    private String emailEmpresa;
-    private String idProposta;
-    private String statusProposta;
+@AllArgsConstructor
+public class PathsAndRoles {
+
+    private String path;
+    private List<TipoUsuario> roles;
 }

@@ -1,6 +1,5 @@
 package br.com.plataformafreelancer.fourcamp.utils;
 
-import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.exceptions.DataInvalidaException;
 import org.springframework.stereotype.Service;
 

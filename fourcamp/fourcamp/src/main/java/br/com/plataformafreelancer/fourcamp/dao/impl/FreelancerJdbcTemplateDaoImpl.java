@@ -20,13 +20,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.SqlTypeValue;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.SQLData;
-import java.sql.SQLType;
 import java.sql.Types;
 import java.util.List;
 
@@ -134,14 +130,14 @@ public class FreelancerJdbcTemplateDaoImpl implements IFreelancerJdbcTemplateDao
 
         String sql = "CALL public.registrar_entrega_projeto(?, ?, ?, ?)";
 
-        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement ->{
+        jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
             preparedStatement.setInt(1, registrarEntregaDto.getIdFreelancer());
             preparedStatement.setInt(2, registrarEntregaDto.getIdProjeto());
             preparedStatement.setString(3, registrarEntregaDto.getObservacao());
             preparedStatement.setObject(4, registrarEntregaDto.getDataEntrega(), Types.DATE);
             preparedStatement.execute();
             return null;
-        } );
+        });
     }
 
     public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto request) {
