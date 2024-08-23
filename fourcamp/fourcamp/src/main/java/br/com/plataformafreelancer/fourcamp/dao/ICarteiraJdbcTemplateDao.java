@@ -2,7 +2,6 @@ package br.com.plataformafreelancer.fourcamp.dao;
 
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.MovimentacaoResponseDBDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseSaldoCarteiraDBDTO;
-import br.com.plataformafreelancer.fourcamp.exceptions.PlataformaFreelancerDBException;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,2 +1,4 @@
 
-v	java:S115%"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(­œ·8üÀñ¸•2
+°
+java:S1192"hDefine a constant instead of duplicating this literal "Empresa nÃ£o estÃ¡ associada ao projeto" 3 times.(ÀÌøÿÿÿÿ8ÿƒì·—2J$e4314a0d-0835-4c21-88ca-4b3bc6d880fe
+¡	java:S115%"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÃµÄÉıÿÿÿÿ8²ĞÅ·—2J$08f832b0-9a3b-4b27-af8f-00a60bd35868

@@ -1,6 +1,5 @@
 package br.com.plataformafreelancer.fourcamp.dtos.requestDtos;
 
-import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RequestAnalisarPropostaDto {
-    private Integer idProposta;
-    private StatusProposta statusProposta;
+    private String emailEmpresa;
+    private String idProposta;
+    private String statusProposta;
 }

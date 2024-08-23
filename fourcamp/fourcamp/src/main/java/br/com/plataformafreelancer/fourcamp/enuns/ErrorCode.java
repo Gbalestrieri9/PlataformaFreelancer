@@ -34,7 +34,20 @@ public enum ErrorCode {
     DADO_INVALIDO("Dado invalido no Json", "Dado Inválido no Json"),
     OUTRO_ERRO("Outro erro", "Erro desconhecido"),
     VALOR_INVALIDO_VALOR_DEPOSITO("Valor inválido", "O valor informado para depósito é inválido: "),
-    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível.");
+    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível."),
+    ID_FREELANCER_FORMATO_INVALIDO("Id não é um número", "ID do freelancer inválido, por favor informar um ID válido."),
+    ID_FREELANCER_ID_INVALIDO("ID do freelancer é um número negativo ou zero", "ID do freelancer inválido, por favor informar um ID válido."),
+    VALOR_PROPOSTA_INVALIDO("Formato do valor inválido ou não é um número", "Valor da proposta inválido"),
+    ID_PROPOSTA_ID_INVALIDO("ID da proposta é um número negativo ou zero", "ID da proposta inválido, por favor informar um ID válido."),
+    ID_PROPOSTA_FORMATO_INVALIDO("Formato do ID da proposta inválido ou não é um número", "Id da proposta inválido"),
+    PROPOSTA_STATUS_INEXISTENTE("Status da proposta não existe", "Status da proposta inválido. Opções aceitas: ACEITA, RECUSADA"),
+    SALDO_INSUFICIENTE("Saldo insuficiente", "Saldo Insuficiente"),
+    DATA_INVALIDA("Data inválida", "Data ou formato da data inválido."),
+    PROJETO_AGUARDANDO_APROVACAO_EMPRESA("Projeto já foi entregue.", "Projeto já foi entregue."),
+    PROJETO_AINDA_NAO_INICIADO("Sua proposta ainda não foi aceita.", "Sua proposta ainda não foi aceita."),
+    PROJETO_AGUARDANDO_APROVACAO_ADM("Aguardando aprovação do Administrador.", "O projeto está aguardando a valicação do Administrador"),
+    PROJETO_NAO_PERTENCE_A_EMPRESA("Empresa não está associada ao projeto", "Não foi possível atualizar este projeto, entre em contato com o administrador."),
+    PROJETO_NAO_DISPONIVEL_PARA_ENCERRAMENTO("Projeto não disponível para encerramento.", "Projeto não disponível para encerramento.");
 
 
     private final String message;

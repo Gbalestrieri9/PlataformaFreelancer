@@ -32,22 +32,22 @@
 //    private FreelancerJdbcTemplateDaoImpl freelancerJdbcTemplateDaoImpl;
 //
 //    @Mock
-//    private CepUtil cepUtil;
+//    private ValidadorDeCep validadorDeCep;
 //
 //    @Mock
 //    private ValidadorDeEmail validadorDeEmail;
 //
 //    @Mock
-//    private SenhaService senhaService;
+//    private SenhaUtil senhaUtil;
 //
 //    @Mock
-//    private NomeService nomeService;
+//    private ValidadorDeNomes nomeService;
 //
 //    @Mock
-//    private DataService dataService;
+//    private DatasUtil datasUtil;
 //
 //    @Mock
-//    private TelefoneService telefoneService;
+//    private ValidadorDeTelefones validadorDeTelefones;
 //
 //    @Mock
 //    private ValidadorDeCpf cpfService;
@@ -78,14 +78,14 @@
 //        requestDto.setNome("Freelancer Exemplo");
 //        requestDto.setDescricao("Desenvolvedor Java");
 //
-//        when(cepUtil.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
+//        when(validadorDeCep.buscaEnderecoPor(requestDto.getCep())).thenReturn(responseEnderecoDto);
 //        doNothing().when(validadorDeEmail).validarEmail(requestDto.getEmail());
-//        doNothing().when(senhaService).validarSenha(requestDto.getSenha());
+//        doNothing().when(senhaUtil).validarSenha(requestDto.getSenha());
 //        doNothing().when(nomeService).validarNome(requestDto.getNome());
 //        doNothing().when(cpfService).validarCpf(requestDto.getCpf());
-//        doNothing().when(telefoneService).validarNumeroTelefone(requestDto.getTelefone());
-//        when(dataService.converterParaLocalDate(requestDto.getDataNascimento())).thenReturn(null);
-//        when(dataService.coletarDataHoraAtual()).thenReturn("2023-01-01");
+//        doNothing().when(validadorDeTelefones).validarNumeroTelefone(requestDto.getTelefone());
+//        when(datasUtil.converterParaLocalDate(requestDto.getDataNascimento())).thenReturn(null);
+//        when(datasUtil.coletarDataHoraAtual()).thenReturn("2023-01-01");
 //
 //        freelancerService.salvarDadosCadastrais(requestDto);
 //
@@ -100,7 +100,7 @@
 //        requestDto.setValor("5000");
 //        requestDto.setObservacao("Proposta para o projeto");
 //
-//        when(dataService.coletarDataHoraAtual()).thenReturn("2023-01-01");
+//        when(datasUtil.coletarDataHoraAtual()).thenReturn("2023-01-01");
 //
 //        freelancerService.salvarProposta(requestDto);
 //
@@ -116,7 +116,7 @@
 //        requestDto.setComentario("Boa empresa");
 //        requestDto.setNota(5);
 //
-//        when(dataService.coletarDataHoraAtual()).thenReturn("2023-01-01");
+//        when(datasUtil.coletarDataHoraAtual()).thenReturn("2023-01-01");
 //
 //        freelancerService.avaliarEmpresa(requestDto);
 //
@@ -225,8 +225,8 @@
 //        responseEnderecoDto.setCep("01000-000");
 //        responseEnderecoDto.setUf("SP");
 //
-//        when(cepUtil.buscaEnderecoPor(freelancerDto.getCep())).thenReturn(responseEnderecoDto);
-//        doNothing().when(telefoneService).validarNumeroTelefone(freelancerDto.getTelefone());
+//        when(validadorDeCep.buscaEnderecoPor(freelancerDto.getCep())).thenReturn(responseEnderecoDto);
+//        doNothing().when(validadorDeTelefones).validarNumeroTelefone(freelancerDto.getTelefone());
 //
 //        freelancerService.atualizarDadosFreelancer(freelancerDto);
 //

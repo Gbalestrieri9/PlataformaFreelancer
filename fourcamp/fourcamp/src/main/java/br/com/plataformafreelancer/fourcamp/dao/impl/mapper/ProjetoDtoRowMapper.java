@@ -1,7 +1,7 @@
 package br.com.plataformafreelancer.fourcamp.dao.impl.mapper;
 
+import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ public class ProjetoDtoRowMapper implements RowMapper<Projeto> {
                 .descricao(rs.getString("descricao"))
                 .orcamento(rs.getString("orcamento"))
                 .prazo(rs.getString("prazo"))
-                .statusProjeto(StatusProjeto.valueOf(rs.getString("status")))
+                .statusValidacaoEntrega(StatusValidacaoEntrega.valueOf(rs.getString("status")))
                 .dataCriacao(rs.getString("data_criacao"))
                 .empresaId(rs.getInt("empresa_id"))
                 .freelancerId(rs.getInt("freelancer_id"))

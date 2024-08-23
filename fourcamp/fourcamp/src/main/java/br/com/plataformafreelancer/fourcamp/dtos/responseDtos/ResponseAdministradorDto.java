@@ -1,7 +1,6 @@
 package br.com.plataformafreelancer.fourcamp.dtos.responseDtos;
 
 import br.com.plataformafreelancer.fourcamp.enuns.StatusAdministrador;
-import br.com.plataformafreelancer.fourcamp.enuns.StatusFreelancer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

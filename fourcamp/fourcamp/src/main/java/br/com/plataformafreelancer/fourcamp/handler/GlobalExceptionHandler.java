@@ -17,21 +17,23 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NegocioException.class)
     @ResponseBody
     public ResponseEntity<ErrorResponseDto> handleNegocioException(NegocioException e) {
-        ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+        ErrorResponseDto errorResponse =
+                new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseEntity<ErrorResponseDto> handleAllExceptions(Exception e) {
-        ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), "Verifique os dados e tente novamente.");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
     public ResponseEntity<ErrorResponseDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), ErrorCode.DADO_INVALIDO.getCustomMessage());
+        ErrorResponseDto errorResponse =
+                new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), ErrorCode.DADO_INVALIDO.getCustomMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -42,10 +44,12 @@ public class GlobalExceptionHandler {
         ErrorCode errorCode = ErrorCode.fromMessage(errorMessage);
 
         if (errorCode == ErrorCode.OUTRO_ERRO) {
-            ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Outro erro: " + errorMessage);
+            ErrorResponseDto errorResponse =
+                    new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Outro erro: " + errorMessage);
             return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         } else {
-            ErrorResponseDto errorResponse = new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), errorCode.getCustomMessage());
+            ErrorResponseDto errorResponse =
+                    new ErrorResponseDto(HttpStatus.BAD_REQUEST.value(), errorCode.getCustomMessage());
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
     }

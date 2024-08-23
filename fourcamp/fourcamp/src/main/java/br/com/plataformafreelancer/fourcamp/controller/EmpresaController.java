@@ -6,6 +6,7 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseFreelancer
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponsePropostaDto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.EmpresaService;
+import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,7 +26,7 @@ public class EmpresaController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmpresaController.class);
 
     @Autowired
-    EmpresaService service;
+    EmpresaService empresaService;
 
     @Operation(summary = "Cadastrar uma nova empresa")
     @ApiResponses(value = {
@@ -38,7 +39,7 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarEmpresa", request);
         long startTime = System.currentTimeMillis();
 
-        service.salvarDadosCadastrais(request);
+        empresaService.salvarDadosCadastrais(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa cadastrada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarEmpresa", startTime);
         return response;
@@ -55,7 +56,7 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarProjeto", request);
         long startTime = System.currentTimeMillis();
 
-        service.salvarDadosProjeto(request);
+        empresaService.salvarDadosProjeto(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto cadastrado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarProjeto", startTime);
         return response;
@@ -72,8 +73,15 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
         long startTime = System.currentTimeMillis();
 
-        service.analisarProposta(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta atualizada com sucesso!").build());
+        empresaService.analisarProposta(request);
+
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(
+                StandardResponse
+                        .builder()
+                        .message(ConstantesPtBr.SUCESSO_ATUALIZAR_PROPOSTA)
+                        .build()
+        );
+
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", startTime);
         return response;
     }
@@ -89,7 +97,7 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "avaliarFreelancer", request);
         long startTime = System.currentTimeMillis();
 
-        service.avaliarFreelancer(request);
+        empresaService.avaliarFreelancer(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarFreelancer", startTime);
         return response;
@@ -103,7 +111,7 @@ public class EmpresaController {
     @GetMapping("/v1/listar-freelancers")
     public ResponseEntity<?> listaFreelancer() {
         long startTime = System.currentTimeMillis();
-        List<ResponseFreelancerDto> lista = service.listarFreelancer();
+        List<ResponseFreelancerDto> lista = empresaService.listarFreelancer();
         LoggerUtils.logElapsedTime(LOGGER, "listarFreelancer", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -117,7 +125,7 @@ public class EmpresaController {
     @GetMapping("/v1/exibir-detalhes-freelancer/{id}")
     public ResponseEntity<?> exibirDetalheFreelancer(@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        ResponseFreelancerCompletaDto freelancer = service.obterDetalhesFreelancer(id);
+        ResponseFreelancerCompletaDto freelancer = empresaService.obterDetalhesFreelancer(id);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalheFreelancer", startTime);
         return new ResponseEntity<>(freelancer, HttpStatus.OK);
     }
@@ -130,7 +138,7 @@ public class EmpresaController {
     @GetMapping("/v1/buscar-propostas-por-projeto/{id}")
     public ResponseEntity<?> buscarPropostaPorProjeto(@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        List<ResponsePropostaDto> propostas = service.listarPropostasPorProjeto(id);
+        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(id);
         LoggerUtils.logElapsedTime(LOGGER, "buscarPropostaPorProjeto", startTime);
         return new ResponseEntity<>(propostas, HttpStatus.OK);
     }
@@ -146,7 +154,7 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "atualizarEmpresa", request);
         long startTime = System.currentTimeMillis();
 
-        service.atualizarDadosEmpresa(request);
+        empresaService.atualizarDadosEmpresa(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa atualizada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarEmpresa", startTime);
         return response;
@@ -163,7 +171,7 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "atualizarProjeto", request);
         long startTime = System.currentTimeMillis();
 
-        service.atualizarDadosProjeto(request);
+        empresaService.atualizarDadosProjeto(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto atualizado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarProjeto", startTime);
         return response;
@@ -177,7 +185,33 @@ public class EmpresaController {
     })
     @DeleteMapping("/v1/excluir-projeto/{id}")
     public ResponseEntity<?> excluirProjeto(@PathVariable("id") Integer idProjeto) {
-        service.excluirProjetoSeNaoAssociado(idProjeto);
+        empresaService.excluirProjetoSeNaoAssociado(idProjeto);
         return ResponseEntity.ok(StandardResponse.builder().message("Projeto excluído com sucesso!").build());
     }
+
+    @Operation(summary = "Validar entrega do projeto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Validação registrada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
+    @PostMapping("/v1/v/projeto-validar-entrega")
+    public ResponseEntity<?> validarEntregadoProjeto(@RequestBody RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
+        LoggerUtils.logRequestStart(LOGGER, "validarEntrega", requestValidarEntregaProjetoDto);
+        long startTime = System.currentTimeMillis();
+
+        //jwtDto.getEmail() ou jwtDto.getIdEmpresa();
+
+        empresaService.validarEntregaDoProjeto(requestValidarEntregaProjetoDto);
+
+        ResponseEntity<StandardResponse> response
+                = ResponseEntity.ok(StandardResponse.builder()
+                .message(ConstantesPtBr.SUCESSO_REGISTRO_VALIDACAO_EMPRESA)
+                .build()
+        );
+        LoggerUtils.logElapsedTime(LOGGER, "validarEntrega", startTime);
+        return response;
+    }
+
+
 }

@@ -5,8 +5,8 @@ import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.DepositarValorReque
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SacarValorRequestDTO;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.MovimentacaoResponseDBDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseSaldoCarteiraDBDTO;
-import br.com.plataformafreelancer.fourcamp.utils.ValidadorDeEmail;
-import br.com.plataformafreelancer.fourcamp.utils.ValidadorDeValoresNegativos;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeEmail;
+import br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeValoresNegativos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class CarteiraService {
 
     LocalDate dataDaTransacao = LocalDate.now();
 
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email)  {
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email) {
         String emailValidado = ValidadorDeEmail.validarEmail(email);
         return carteiraJdbcTemplateDao.visualizarSaldo(emailValidado);
     }

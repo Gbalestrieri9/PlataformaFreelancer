@@ -1,10 +1,10 @@
 package br.com.plataformafreelancer.fourcamp.model;
 
-import br.com.plataformafreelancer.fourcamp.enuns.StatusProjeto;
+import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Projeto {
     private String descricao;
     private String orcamento;
     private String prazo;
-    private StatusProjeto statusProjeto;
+    private StatusValidacaoEntrega statusValidacaoEntrega;
     private String dataCriacao;
     private Integer empresaId;
     private Integer freelancerId;

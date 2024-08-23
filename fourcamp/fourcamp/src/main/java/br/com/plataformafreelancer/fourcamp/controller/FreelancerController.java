@@ -9,6 +9,7 @@ import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.FreelancerService;
 import br.com.plataformafreelancer.fourcamp.usecase.UsuarioService;
+import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.JwtPermissaoUtil;
 import br.com.plataformafreelancer.fourcamp.utils.JwtUtil;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
@@ -28,16 +29,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/freelancer")
 public class FreelancerController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerController.class);
     @Autowired
-    FreelancerService service;
-
+    FreelancerService freelancerService;
     @Autowired
     UsuarioService usuarioService;
-
     @Autowired
     JwtPermissaoUtil jwtPermissaoUtil;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(FreelancerController.class);
 
     @Operation(summary = "Cadastrar um novo freelancer")
     @ApiResponses(value = {
@@ -50,7 +48,7 @@ public class FreelancerController {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarFreelancer", request);
         long startTime = System.currentTimeMillis();
 
-        service.salvarDadosCadastrais(request);
+        freelancerService.salvarDadosCadastrais(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer cadastrado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarFreelancer", startTime);
         return response;
@@ -79,18 +77,21 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/enviar-proposta")
-    public ResponseEntity<?> enviarProposta(@RequestHeader ("Authorization")String token, @RequestBody RequestPropostaDto request) {
+    public ResponseEntity<?> enviarProposta(@RequestHeader("Authorization") String token, @RequestBody RequestPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "enviarProposta", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
+
         List<TipoUsuario> tipoPermitidos = Arrays.asList(TipoUsuario.FREELANCER);
 
-        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto,tipoPermitidos)){
-            service.salvarProposta(request);
+        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto, tipoPermitidos)) {
+
+            freelancerService.salvarProposta(request, jwtDto);
+
             ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
             LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
             return response;
-        }else {
+        } else {
             ResponseEntity<StandardResponse> response = ResponseEntity
                     .status(HttpStatus.UNAUTHORIZED)
                     .body(StandardResponse.builder()
@@ -112,7 +113,7 @@ public class FreelancerController {
         LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", request);
         long startTime = System.currentTimeMillis();
 
-        service.avaliarEmpresa(request);
+        freelancerService.avaliarEmpresa(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", startTime);
         return response;
@@ -126,7 +127,7 @@ public class FreelancerController {
     @GetMapping("/v1/listar-empresas")
     public ResponseEntity<?> listaEmpresa() {
         long startTime = System.currentTimeMillis();
-        List<ResponseEmpresaDto> lista = service.listarEmpresa();
+        List<ResponseEmpresaDto> lista = freelancerService.listarEmpresa();
         LoggerUtils.logElapsedTime(LOGGER, "listaEmpresa", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -139,7 +140,7 @@ public class FreelancerController {
     @GetMapping("/v1/listar-projetos")
     public ResponseEntity<?> listaProjetos() {
         long startTime = System.currentTimeMillis();
-        List<Projeto> lista = service.listarTodosProjetos();
+        List<Projeto> lista = freelancerService.listarTodosProjetos();
         LoggerUtils.logElapsedTime(LOGGER, "listaProjetos", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -153,7 +154,7 @@ public class FreelancerController {
     @GetMapping("/v1/exibir-detalhes-empresa/{id}")
     public ResponseEntity<?> exibirDetalhesEmpresa(@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        ResponseEmpresaCompletaDto empresa = service.obterDetalhesEmpresa(id);
+        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(id);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalhesEmpresa", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -166,7 +167,7 @@ public class FreelancerController {
     @GetMapping("/v1/buscar-projeto-compativel/{id}")
     public ResponseEntity<?> buscarProjetoCompativel(@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        List<ResponseProjetoCompatibilidadeDto> empresa = service.listaProjetosCompativeis(id);
+        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(id);
         LoggerUtils.logElapsedTime(LOGGER, "buscarProjetoCompativel", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -182,9 +183,32 @@ public class FreelancerController {
         LoggerUtils.logRequestStart(LOGGER, "atualizarFreelancer", request);
         long startTime = System.currentTimeMillis();
 
-        service.atualizarDadosFreelancer(request);
+        freelancerService.atualizarDadosFreelancer(request);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer atualizado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarFreelancer", startTime);
+        return response;
+    }
+
+    @Operation(summary = "Entregar projeto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Projeto entregue com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
+            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
+    })
+    @PostMapping("/v1/entregar-projeto")
+    public ResponseEntity<?> registrarEntregaDoProjeto(@RequestBody EntregarProjetoRequestDto entregarProjetoRequestDto) {
+        LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", entregarProjetoRequestDto);
+        long startTime = System.currentTimeMillis();
+
+        freelancerService.registrarEntregaProjeto(entregarProjetoRequestDto);
+
+        ResponseEntity<StandardResponse> response =
+                ResponseEntity.ok(StandardResponse
+                        .builder()
+                        .message(ConstantesPtBr.SUCESSO_ENTREGA_PROJETO)
+                        .build()
+                );
+        LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", startTime);
         return response;
     }
 }

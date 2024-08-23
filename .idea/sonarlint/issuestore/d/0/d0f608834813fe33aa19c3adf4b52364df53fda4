@@ -1,7 +1,9 @@
 
-~
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$7832c357-528d-4de9-b177-6e65940cffc7
-r
-java:S1874p"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎJ$1d123f57-1e49-4417-99f6-8879c97f154a
-n
-java:S1874v"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿJ$2b68cceb-6e0c-4ce3-89c9-23d609f00305
+¡
+java:S1192¢"]Define a constant instead of duplicating this literal "excluirProjetoSeNaoAssociado" 4 times.(›ıË8°¸È‚˜2J$dd3ed742-6e18-4c2b-86ac-b2d9aa5205a2
+…
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8´¸È‚˜2J$eca25ea9-734d-45f8-bc50-df70db5aac8b
+y
+java:S1874z"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8Ö¸È‚˜2J$6b44818c-1bdf-459f-bb2e-dd212136aa47
+v
+java:S1874"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿ8Ş¸È‚˜2J$b09fdcb6-382f-456b-89ba-f1d8a63cf433

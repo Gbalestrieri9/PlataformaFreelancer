@@ -17,6 +17,7 @@ public class ResponseFreelancerCompletaDto {
     private Integer idFreelancer;
     private String email;
     private String nome;
+    private String cpf;
     private String dataNascimento;
     private String telefone;
     private String logradouro;
