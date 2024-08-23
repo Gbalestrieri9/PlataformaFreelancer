@@ -9,7 +9,9 @@ import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCom
 import br.com.plataformafreelancer.fourcamp.enuns.*;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.*;
-import br.com.plataformafreelancer.fourcamp.utils.*;
+import br.com.plataformafreelancer.fourcamp.utils.DatasUtil;
+import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
+import br.com.plataformafreelancer.fourcamp.utils.SenhaUtil;
 import br.com.plataformafreelancer.fourcamp.utils.validators.entities.ValidadorDeProposta;
 import br.com.plataformafreelancer.fourcamp.utils.validators.general.*;
 import org.slf4j.Logger;
@@ -17,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.Buffer;
 import java.time.LocalDate;
 import java.util.List;
 

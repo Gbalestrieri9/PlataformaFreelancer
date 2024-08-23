@@ -16,13 +16,11 @@ import java.util.List;
 
 public class ValidadorDeProposta {
 
-    private ValidadorDeProposta() {
-    }
-
     private static final String DATE_FORMAT = "dd/MM/yyyy";
-
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
+    private ValidadorDeProposta() {
+    }
 
     public static int validarIdFreelancer(String id) {
         int idValidado;
@@ -80,7 +78,7 @@ public class ValidadorDeProposta {
                         StatusProposta.RECUSADA
                 );
 
-        if(!listaDeStatusDePropostas.contains(statusPropostaValidado)){
+        if (!listaDeStatusDePropostas.contains(statusPropostaValidado)) {
             throw new StatusDaPropostaInvalidoException(ErrorCode.PROPOSTA_STATUS_INEXISTENTE.getCustomMessage());
         } else {
             return statusPropostaValidado;
@@ -90,14 +88,14 @@ public class ValidadorDeProposta {
     public static LocalDate validarDataInicio(String dataInicio) {
         LocalDate dataInicioValidada;
 
-        try{
+        try {
             dataInicioValidada = LocalDate.parse(dataInicio, DATE_FORMATTER);
 
-            if(dataInicioValidada.isBefore(LocalDate.now())){
+            if (dataInicioValidada.isBefore(LocalDate.now())) {
                 throw new DataInvalidaException(ConstantesPtBr.DATA_INICIO_PROJETO_INVALIDA);
             }
 
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DataInvalidaException(ConstantesPtBr.DATA_FORMATO_INVALIDO);
         }
 
@@ -108,14 +106,14 @@ public class ValidadorDeProposta {
     public static LocalDate validarDataFim(String dataFim) {
         LocalDate dataFimValidada;
 
-        try{
+        try {
             dataFimValidada = LocalDate.parse(dataFim, DATE_FORMATTER);
 
-            if(dataFimValidada.isBefore(LocalDate.now())){
+            if (dataFimValidada.isBefore(LocalDate.now())) {
                 throw new DataInvalidaException(ConstantesPtBr.DATA_FIM_PROJETO_INVALIDA);
             }
 
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new DataInvalidaException(ConstantesPtBr.DATA_FORMATO_INVALIDO);
         }
 
@@ -123,7 +121,7 @@ public class ValidadorDeProposta {
     }
 
     public static void validarConsistenciaDatasInicioFim(LocalDate dataInicio, LocalDate dataFim) {
-        if(dataFim.isBefore(dataInicio) || dataFim.equals(dataInicio)){
+        if (dataFim.isBefore(dataInicio) || dataFim.equals(dataInicio)) {
             throw new DataInvalidaException(ConstantesPtBr.DATAS_INICIO_FIM_PROJETO_INCONSISTENTES);
         }
     }
