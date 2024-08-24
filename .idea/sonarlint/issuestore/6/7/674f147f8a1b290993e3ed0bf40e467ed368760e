@@ -1,0 +1,9 @@
+
+–
+java:S1192,"NDefine a constant instead of duplicating this literal "Authorization" 3 times.(ßö›‰ùÿÿÿÿ8Á¥õ±˜2J$57e44340-625e-40e9-98ad-0fbc91c87da0
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Æ¥õ±˜2J$f9a77ce7-c399-4d07-a4c7-14e84f867d6c
+‰
+java:S1126J"AReplace this if-then-else statement by a single return statement.(Ùôœùøÿÿÿÿ8û÷±˜2J$985c7b87-5749-46cd-819e-2aa440dcfdbd
+Š
+java:S1128"BRemove this unused import 'org.springframework.web.ErrorResponse'.(Å¶âüÿÿÿÿ8³Ü¼²˜2J$1782bde6-eac7-4537-b79c-5a8833934a09

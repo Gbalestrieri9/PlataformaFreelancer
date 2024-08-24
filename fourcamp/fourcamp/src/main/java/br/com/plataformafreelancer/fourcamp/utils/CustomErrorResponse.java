@@ -1,7 +1,12 @@
 package br.com.plataformafreelancer.fourcamp.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,46 +17,21 @@ import org.springframework.web.ErrorResponse;
 import java.util.Locale;
 
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@NoArgsConstructor
+@Builder
 public class CustomErrorResponse implements ErrorResponse {
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 
     private String mensagem;
     private String path;
     private Integer code;
-
-    public CustomErrorResponse(String message, HttpServletRequest request, HttpStatus status) {
-    }
 
     public CustomErrorResponse(String mensagem, String path, Integer code){
         this.mensagem = mensagem;
         this.path = path;
         this.code = code;
     }
-
-
 
     @JsonIgnore
     public HttpStatusCode getStatusCode() {

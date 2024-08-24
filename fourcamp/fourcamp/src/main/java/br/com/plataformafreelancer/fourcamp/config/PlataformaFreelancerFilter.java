@@ -39,12 +39,18 @@ public class PlataformaFreelancerFilter extends OncePerRequestFilter {
             if (!checkHeadersExistence(request)) {
                 sendBadRequestResponse(response, request);
                 return;
-
             } else {
-                JwtDto jwtDto = JwtUtil.decodeToken(request.getHeader("Authorization"));
-                TipoUsuario tipoUsuario = jwtDto.getTipoUsuario();
-                if (!isRoleAuthorized(request, tipoUsuario)) {
-                    sendForbiddenResponse(response, request);
+                try {
+                    JwtDto jwtDto = JwtUtil.decodeToken(request.getHeader("Authorization"));
+                    TipoUsuario tipoUsuario = jwtDto.getTipoUsuario();
+
+                    if (!isRoleAuthorized(request, tipoUsuario)) {
+                        sendForbiddenResponse(response, request);
+                        return;
+                    }
+
+                }catch (Exception e){
+                    sendInvalidTokenResponse(response, request);
                     return;
                 }
             }
@@ -91,9 +97,22 @@ public class PlataformaFreelancerFilter extends OncePerRequestFilter {
     private void sendForbiddenResponse(HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        CustomErrorResponse errorResponse
-                = ErrorResponseFactory.createResponseError(
-                ConstantesUtil.DESC_ROLE_SEM_PERMISSAO, request.getServletPath(), HttpStatus.FORBIDDEN.value());
+        CustomErrorResponse errorResponse = ErrorResponseFactory
+                .createResponseError(
+                ConstantesUtil.DESC_ROLE_SEM_PERMISSAO,
+                request.getServletPath(),
+                HttpStatus.FORBIDDEN.value()
+        );
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
     }
+
+    private void sendInvalidTokenResponse(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        CustomErrorResponse errorResponse
+                = ErrorResponseFactory.createResponseError(
+                ConstantesUtil.DESC_TOKEN_INVALIDO, request.getServletPath(), HttpStatus.BAD_REQUEST.value());
+        response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
+    }
+
 }
