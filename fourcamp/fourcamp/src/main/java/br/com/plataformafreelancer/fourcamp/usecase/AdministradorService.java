@@ -1,6 +1,7 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
 import br.com.plataformafreelancer.fourcamp.dao.impl.AdministradorJdbcTemplateDaoImpl;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.JwtDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequesAprovarProjetoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAdministradorDto;
 import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
@@ -40,7 +41,7 @@ public class AdministradorService {
     @Autowired
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
 
-    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto) {
+    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto, JwtDto jwtDto) {
         String cpfValidado;
 
         LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", requestAdministradorDto);
@@ -69,7 +70,7 @@ public class AdministradorService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarAdministrador", System.currentTimeMillis());
     }
 
-    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
+    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto, JwtDto jwtDto) {
         int idValidado;
         LocalDate dataAtual = DatasUtil.coletarDataAtual();
 
@@ -82,7 +83,7 @@ public class AdministradorService {
         administradorJdbcTemplateDao.aprovarProjeto(idValidado, dataAtual);
     }
 
-    public List<Projeto> listarProjetoPendente() {
+    public List<Projeto> listarProjetoPendente(JwtDto jwtDto) {
         List<Projeto> lista = administradorJdbcTemplateDao.listarProjetoPendente();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());

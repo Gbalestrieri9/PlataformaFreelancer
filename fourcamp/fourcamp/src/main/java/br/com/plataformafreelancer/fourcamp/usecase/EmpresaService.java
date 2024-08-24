@@ -23,7 +23,6 @@ import br.com.plataformafreelancer.fourcamp.utils.validators.general.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -78,7 +77,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosCadastrais", System.currentTimeMillis());
     }
 
-    public void salvarDadosProjeto(RequestProjetoDto request) {
+    public void salvarDadosProjeto(RequestProjetoDto request, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosProjeto", request);
 
         Projeto projeto = Projeto.builder()
@@ -96,7 +95,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosProjeto", System.currentTimeMillis());
     }
 
-    public void analisarProposta(RequestAnalisarPropostaDto requestAnalisarPropostaDto) {
+    public void analisarProposta(RequestAnalisarPropostaDto requestAnalisarPropostaDto, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", requestAnalisarPropostaDto);
 
         //String emailEmpresa = jwtDto.getEmail();
@@ -127,7 +126,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "analisarProposta", System.currentTimeMillis());
     }
 
-    public void avaliarFreelancer(RequestAvaliacaoDto request) {
+    public void avaliarFreelancer(RequestAvaliacaoDto request, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarFreelancer", request);
 
         Avaliacao avaliacao = Avaliacao.builder()
@@ -144,7 +143,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "avaliarFreelancer", System.currentTimeMillis());
     }
 
-    public List<ResponseFreelancerDto> listarFreelancer() {
+    public List<ResponseFreelancerDto> listarFreelancer(JwtDto jwtDto) {
         List<ResponseFreelancerDto> lista = empresaJdbcTemplateDao.listarFreelacer();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
@@ -153,7 +152,7 @@ public class EmpresaService {
         return lista;
     }
 
-    public ResponseFreelancerCompletaDto obterDetalhesFreelancer(Integer freelancerID) {
+    public ResponseFreelancerCompletaDto obterDetalhesFreelancer(Integer freelancerID, JwtDto jwtDto) {
         ResponseFreelancerCompletaDto freelancer = empresaJdbcTemplateDao.obterDetalhesFreelancer(freelancerID);
         if (freelancer == null) {
             throw new NaoEncontradoException(ErrorCode.OBJETO_VAZIO.getCustomMessage());
@@ -161,7 +160,7 @@ public class EmpresaService {
         return freelancer;
     }
 
-    public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
+    public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId, JwtDto jwtDto) {
 
         if (!ValidadorDeNumerosPositivos.validarNumero(projetoId)) {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
@@ -174,21 +173,21 @@ public class EmpresaService {
         return propostas;
     }
 
-    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa) {
+    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa, JwtDto jwtDto) {
         ValidadorDeTelefones.validarNumeroTelefone(empresa.getTelefone());
 
         empresaJdbcTemplateDao.atualizarDadosEmpresa(empresa);
     }
 
-    public void atualizarDadosProjeto(RequestAtualizarProjetoDto projeto) {
+    public void atualizarDadosProjeto(RequestAtualizarProjetoDto projeto, JwtDto jwtDto) {
         empresaJdbcTemplateDao.atualizarProjeto(projeto);
     }
 
-    public void excluirProjetoSeNaoAssociado(Integer idProjeto) {
+    public void excluirProjetoSeNaoAssociado(Integer idProjeto, JwtDto jwtDto) {
         empresaJdbcTemplateDao.excluirProjetoSeNaoAssociado(idProjeto);
     }
 
-    public void validarEntregaDoProjeto(RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
+    public void validarEntregaDoProjeto(RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto, JwtDto jwtDto) {
         LocalDate dataAtual = DatasUtil.coletarDataAtual();
         int idProjetoValidado;
         int idEmpresaValidado;
