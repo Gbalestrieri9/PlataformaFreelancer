@@ -112,7 +112,7 @@ public class FreelancerService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarProposta", System.currentTimeMillis());
     }
 
-    public void avaliarEmpresa(RequestAvaliacaoDto request) {
+    public void avaliarEmpresa(RequestAvaliacaoDto request, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", request);
 
         Avaliacao avaliacao = Avaliacao.builder()
@@ -129,7 +129,7 @@ public class FreelancerService {
         LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", System.currentTimeMillis());
     }
 
-    public List<ResponseEmpresaDto> listarEmpresa() {
+    public List<ResponseEmpresaDto> listarEmpresa(JwtDto jwtDto) {
         List<ResponseEmpresaDto> lista = freelancerJdbcTemplateDaoImpl.listarEmpresas();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
@@ -137,7 +137,7 @@ public class FreelancerService {
         return lista;
     }
 
-    public List<Projeto> listarTodosProjetos() {
+    public List<Projeto> listarTodosProjetos(JwtDto jwtDto) {
         List<Projeto> lista = freelancerJdbcTemplateDaoImpl.listarTodosProjetos();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
@@ -145,7 +145,7 @@ public class FreelancerService {
         return lista;
     }
 
-    public ResponseEmpresaCompletaDto obterDetalhesEmpresa(Integer empresaId) {
+    public ResponseEmpresaCompletaDto obterDetalhesEmpresa(JwtDto jwtDto, Integer empresaId) {
         ResponseEmpresaCompletaDto empresa = freelancerJdbcTemplateDaoImpl.obterDetalhesEmpresa(empresaId);
         if (empresa == null) {
             throw new NaoEncontradoException(ErrorCode.OBJETO_VAZIO.getCustomMessage());
@@ -153,7 +153,7 @@ public class FreelancerService {
         return empresa;
     }
 
-    public List<ResponseProjetoCompatibilidadeDto> listaProjetosCompativeis(Integer id) {
+    public List<ResponseProjetoCompatibilidadeDto> listaProjetosCompativeis(JwtDto jwtDto, Integer id) {
         List<ResponseProjetoCompatibilidadeDto> lista = freelancerJdbcTemplateDaoImpl.buscarProjetosCompativeis(id);
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
@@ -161,7 +161,7 @@ public class FreelancerService {
         return lista;
     }
 
-    public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer) {
+    public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer, JwtDto jwtDto) {
         ValidadorDeTelefones.validarNumeroTelefone(freelancer.getTelefone());
 
         ResponseEnderecoDto endereco = ValidadorDeCep.buscaEnderecoPor(freelancer.getCep());
@@ -178,7 +178,7 @@ public class FreelancerService {
         return proposta + (proposta * TaxasProposta.TAXA_PADRAO.getValor());
     }
 
-    public void registrarEntregaProjeto(EntregarProjetoRequestDto entregarProjetoRequestDto) {
+    public void registrarEntregaProjeto(EntregarProjetoRequestDto entregarProjetoRequestDto, JwtDto jwtDto) {
         int idDoProjetoValidado
                 = Integer.parseInt(entregarProjetoRequestDto.getIdProjeto());
         int idDoFreelancerValidado
