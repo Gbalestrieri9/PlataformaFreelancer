@@ -185,3 +185,11 @@ rfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/reque
 kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/IAdministradorJdbcTemplateDao.java,a\3\a3f28a091d2aa2aa2f65be9f42b53a0a09ed3b5c
 £
 sfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/AdministradorJdbcTemplateDaoImpl.java,8\b\8b8b11e5d793310e767d2d68da8813bd898a3cc7
+›
+kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/config/PlataformaFreelancerFilter.java,6\7\674f147f8a1b290993e3ed0bf40e467ed368760e
+Ž
+^fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/ConstantesUtil.java,4\6\464996f38bf823f39f96a5329e811ef831e584e5
+”
+dfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/ErrorResponseFactory.java,c\4\c4f48b4e7548576ce044cff84ccbb57aa92e1898
+“
+cfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/CustomErrorResponse.java,8\2\8214e240afbaf326a937ed5d33e8f7c2b9e390c4

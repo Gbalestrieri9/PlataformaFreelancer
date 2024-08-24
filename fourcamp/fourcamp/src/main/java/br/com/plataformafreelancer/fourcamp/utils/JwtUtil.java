@@ -12,27 +12,22 @@ import java.security.Key;
 import static br.com.plataformafreelancer.fourcamp.utils.ConstantesUtil.TOKEN_INVALIDO;
 
 public class JwtUtil {
+    static Key chaveSecreta = JwtConfig.getChaveSecreta();
+
+    private JwtUtil() {
+    }
+
     public static JwtDto decodeToken(String token) {
-        Key chaveSecreta = JwtConfig.getChaveSecreta();
+        Jws<Claims> jws = Jwts.parserBuilder()
+                .setSigningKey(chaveSecreta)
+                .build()
+                .parseClaimsJws(token);
+        Claims claims = jws.getBody();
 
-        try {
-            Jws<Claims> jws = Jwts.parserBuilder()
-                    .setSigningKey(chaveSecreta)
-                    .build()
-                    .parseClaimsJws(token);
-            Claims claims = jws.getBody();
+        JwtDto jwtDto = new JwtDto();
+        jwtDto.setEmail(claims.get("email", String.class));
+        jwtDto.setTipoUsuario(TipoUsuario.valueOf(claims.get("tipoUsuario", String.class)));
 
-            JwtDto jwtDto = new JwtDto();
-            jwtDto.setEmail(claims.get("email", String.class));
-//            jwtDto.setSenha(claims.get("senha", String.class));
-            jwtDto.setTipoUsuario(TipoUsuario.valueOf(claims.get("tipoUsuario", String.class)));
-
-            return jwtDto;
-
-        } catch (Exception e) {
-//            if (jwtDto == null){
-             throw new TokenInvalidoException(TOKEN_INVALIDO);
-//            }
-        }
+        return jwtDto;
     }
 }

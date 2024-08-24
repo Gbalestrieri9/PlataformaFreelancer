@@ -1,3 +1,5 @@
 
-v
-java:S1118":Add a private constructor to hide the implicit public one.(×ÇÃêJ$6cdcc122-dbb9-47d7-9a86-c071a2e23b61
+¥
+java:S1128"cRemove this unused import 'br.com.plataformafreelancer.fourcamp.exceptions.TokenInvalidoException'.(ÊƒÆc8ð£ä±˜2J$60b9a3a2-b3a7-484d-86fc-e38feaeab4c5
+¨
+java:S1128"eRemove this unused import 'br.com.plataformafreelancer.fourcamp.utils.ConstantesUtil.TOKEN_INVALIDO'.(¶æ Ÿ8ð£ä±˜2J$0eb2625c-88e2-4ebd-94b6-584288b74266

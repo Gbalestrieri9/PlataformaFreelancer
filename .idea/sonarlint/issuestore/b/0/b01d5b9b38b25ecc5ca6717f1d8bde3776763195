@@ -1,32 +1,29 @@
 
-—
-java:S11920"TDefine a constant instead of duplicating this literal "cadastrarFreelancer" 4 times.(ÇÙª8÷¢÷ã–2J$94e2e975-ccf9-4a14-bc0b-b74595a63496
-’
-java:S1192q"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8ø¢÷ã–2J$da731f33-285b-4dc4-ada1-61a097a3981e
-—
-java:S1192Q"ODefine a constant instead of duplicating this literal "enviarProposta" 3 times.(ùİóûÿÿÿÿ8ø¢÷ã–2J$a19d310a-6380-4228-96e4-9af04ffd9d72
-…
-java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ8ü¢÷ã–2J$43ed3486-30d8-463b-ab07-32b5db1d7acf
-…
-java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8ü¢÷ã–2J$b7ae2046-f710-431e-b6fe-0750d159bb80
-…
-java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄŞ8ü¢÷ã–2J$0eb81ffc-af00-4617-a838-d0fcc55eab0e
-n
-java:S1452/"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ˆ£÷ã–2J$d1271251-78d1-43db-aebb-bf1ba4286f90
-	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¼í¬8£÷ã–2J$7a1fc533-4009-43b3-9422-af122923047f
-i
-java:S1452P"&Remove usage of generic wildcard type.(±°¯«8—£÷ã–2J$9f4eda66-1fb2-4971-b4a2-04e7d4376859
-h
-java:S1452p"&Remove usage of generic wildcard type.(ªÁá`8 £÷ã–2J$c65b8818-6bb1-4352-a4b8-589c22c33977
-o
-java:S1452€"&Remove usage of generic wildcard type.(œöùÔıÿÿÿÿ8¥£÷ã–2J$6b2a2f60-c434-4012-a1cc-2c1a11abb6f1
-o
-java:S1452"&Remove usage of generic wildcard type.(Ì®ÊÒùÿÿÿÿ8§£÷ã–2J$f004beee-6eb7-4c52-8be7-f4b154a37629
-j
-java:S1452›"&Remove usage of generic wildcard type.(×”‘ã8«£÷ã–2J$4da4eedf-388b-479b-a854-44cfba07afac
-o
-java:S1452¨"&Remove usage of generic wildcard type.(…ˆ€Êüÿÿÿÿ8¯£÷ã–2J$e0b845f5-0936-4d10-80f0-b76099c6bd00
-j
-java:S1452¶"&Remove usage of generic wildcard type.(§ìè8¶£÷ã–2J$3adb9908-8b87-4554-96f1-ea6a359edc3c
-o
-java:S1452Ç"&Remove usage of generic wildcard type.(äâ‡şÿÿÿÿ8»£÷ã–2J$16232cd1-ad42-47a6-ab31-06e04f7284f8
+l
+java:S1192Q"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2
+_
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2
+_
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2
+H
+java:S1452,"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2
+C
+java:S1452="&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2
+H
+java:S1452P"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2
+C
+java:S1452a"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2
+C
+java:S1452p"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2
+I
+java:S1452€"&Remove usage of generic wildcard type.(ğİµ·ıÿÿÿÿ8¶ÂŞ±˜2
+D
+java:S1452"&Remove usage of generic wildcard type.(ñß–®8½ÂŞ±˜2
+D
+java:S1452Ÿ"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2
+I
+java:S1452±"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2
+u
+java:S1128"SRemove this unused import 'br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario'.(ñııÿÿÿÿ8ÜÂŞ±˜2
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ŞÂŞ±˜2
