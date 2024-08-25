@@ -209,7 +209,7 @@ public class EmpresaController {
             @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    @PostMapping("/v1/v/projeto-validar-entrega")
+    @PostMapping("/v1/projeto-validar-entrega")
     public ResponseEntity<?> validarEntregadoProjeto(@RequestHeader("Authorization") String token,@RequestBody RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
         LoggerUtils.logRequestStart(LOGGER, "validarEntrega", requestValidarEntregaProjetoDto);
         long startTime = System.currentTimeMillis();

@@ -1,5 +1,9 @@
 [
   {
+    "path": "/freelancer/v1/cadastrar-freelancer",
+    "roles": ["FREELANCER"]
+  },
+  {
     "path": "/freelancer/v1/enviar-proposta",
     "roles": ["FREELANCER"]
   },
@@ -28,6 +32,10 @@
     "roles": ["FREELANCER"]
   },
   {
+    "path": "/freelancer/v1/entregar-projeto",
+    "roles": ["FREELANCER"]
+  },
+  {
     "path": "/carteira/v1/buscar-saldo",
     "roles": ["FREELANCER", "ADMINISTRADOR", "EMPRESA"]
   },
@@ -42,6 +50,10 @@
   {
     "path": "/carteira/v1/sacar-valor",
     "roles": ["FREELANCER", "EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/cadastrar-empresa",
+    "roles": ["EMPRESA"]
   },
   {
     "path": "/empresa/v1/cadastrar-projeto",
@@ -80,7 +92,19 @@
     "roles": ["EMPRESA"]
   },
   {
+    "path": "/empresa/v1/projeto-validar-entrega",
+    "roles": ["EMPRESA"]
+  },
+  {
     "path": "/administrador/v1/cadastrar-administrador",
+    "roles": ["ADMINISTRADOR"]
+  },
+  {
+    "path": "/administrador/v1/projetos-pendentes",
+    "roles": ["ADMINISTRADOR"]
+  },
+  {
+    "path": "/administrador/v1/aprovar-projeto",
     "roles": ["ADMINISTRADOR"]
   },
   {
