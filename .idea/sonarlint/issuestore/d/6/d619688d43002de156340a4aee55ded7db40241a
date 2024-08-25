@@ -1,5 +1,9 @@
 
-_
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ë±‡—2
-p
-java:S1602"SRemove useless curly braces around statement and then remove useless return keyword(¹ÔÈÁ8ó±‡—2
+d
+java:S6813"BRemove this field injection and use constructor injection instead.(µáÎüÿÿÿÿ8Ó÷à·˜2
+X
+java:S1874"6Remove this use of "queryForObject"; it is deprecated.(æÀö€øÿÿÿÿ8Ö÷à·˜2
+°
+java:S1128"mRemove this unused import 'br.com.plataformafreelancer.fourcamp.dao.impl.mapper.EmpresaCompletaDtoRowMapper'.(ÕáØ÷8û¹º¶˜2J$fc6b8032-73be-487c-a26d-4f4a28f0a0b7
+m
+java:S1128"PRemove this unused import 'org.springframework.jdbc.core.BeanPropertyRowMapper'.(¼º¡Ú8×÷à·˜2

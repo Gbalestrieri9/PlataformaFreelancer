@@ -37,12 +37,12 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-saldo")
-    public ResponseEntity<?> buscarSaldo(@RequestHeader("Authorization") String token,String email) {
+    public ResponseEntity<?> buscarSaldo(@RequestHeader("Authorization") String token, String email) {
         LoggerUtils.logRequestStart(LOGGER, "visualizarSaldo", email);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        ResponseSaldoCarteiraDBDTO response = carteiraService.visualizarSaldo(email,jwtDto);
+        ResponseSaldoCarteiraDBDTO response = carteiraService.visualizarSaldo(email, jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "visualizarSaldo", startTime);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -55,13 +55,13 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-movimentacoes")
-    public ResponseEntity<?> buscarMovimentacoes(@RequestHeader("Authorization") String token,@RequestParam String email) {
+    public ResponseEntity<?> buscarMovimentacoes(@RequestHeader("Authorization") String token, @RequestParam String email) {
         LoggerUtils.logRequestStart(LOGGER, "visualizarSaldo", email);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         List<MovimentacaoResponseDBDto> movimentacoes =
-                carteiraService.buscarMovimentacoes(email,jwtDto);
+                carteiraService.buscarMovimentacoes(email, jwtDto);
 
         if (movimentacoes.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -79,12 +79,12 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/depositar-valor")
-    public ResponseEntity<?> depositarValor(@RequestHeader("Authorization") String token,@RequestBody DepositarValorRequestDTO depositarValorRequestDTO) {
+    public ResponseEntity<?> depositarValor(@RequestHeader("Authorization") String token, @RequestBody DepositarValorRequestDTO depositarValorRequestDTO) {
         LoggerUtils.logRequestStart(LOGGER, "depositarValor", depositarValorRequestDTO);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        carteiraService.depositarValor(depositarValorRequestDTO,jwtDto);
+        carteiraService.depositarValor(depositarValorRequestDTO, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(
                 StandardResponse
                         .builder()
@@ -103,12 +103,12 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/sacar-valor")
-    public ResponseEntity<?> sacarValor(@RequestHeader("Authorization") String token,@RequestBody SacarValorRequestDTO sacarValorRequestDTO) {
+    public ResponseEntity<?> sacarValor(@RequestHeader("Authorization") String token, @RequestBody SacarValorRequestDTO sacarValorRequestDTO) {
         LoggerUtils.logRequestStart(LOGGER, "sacarValor", sacarValorRequestDTO);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        carteiraService.sacarValor(sacarValorRequestDTO,jwtDto);
+        carteiraService.sacarValor(sacarValorRequestDTO, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(
                 StandardResponse
                         .builder()

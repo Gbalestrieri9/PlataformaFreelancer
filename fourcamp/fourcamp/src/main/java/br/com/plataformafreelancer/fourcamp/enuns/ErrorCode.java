@@ -47,7 +47,8 @@ public enum ErrorCode {
     PROJETO_AINDA_NAO_INICIADO("Sua proposta ainda não foi aceita.", "Sua proposta ainda não foi aceita."),
     PROJETO_AGUARDANDO_APROVACAO_ADM("Aguardando aprovação do Administrador.", "O projeto está aguardando a valicação do Administrador"),
     PROJETO_NAO_PERTENCE_A_EMPRESA("Empresa não está associada ao projeto", "Não foi possível atualizar este projeto, entre em contato com o administrador."),
-    PROJETO_NAO_DISPONIVEL_PARA_ENCERRAMENTO("Projeto não disponível para encerramento.", "Projeto não disponível para encerramento.");
+    PROJETO_NAO_DISPONIVEL_PARA_ENCERRAMENTO("Projeto não disponível para encerramento.", "Projeto não disponível para encerramento."),
+    EMAIL_OU_SENHA_INVALIDOS("O e-mail informado não existe na base de dados.", "E-mail ou senha inválidos");
 
 
     private final String message;

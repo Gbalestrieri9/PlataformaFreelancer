@@ -1,87 +1,142 @@
 [
   {
     "path": "/freelancer/v1/enviar-proposta",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
+  },
+  {
+    "path": "/empresa/v1/cadastrar-empresa",
+    "roles": []
   },
   {
     "path": "/freelancer/v1/avaliar-empresa",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/freelancer/v1/listar-empresas",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/freelancer/v1/listar-projetos",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/freelancer/v1/exibir-detalhes-empresa/{id}",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/freelancer/v1/buscar-projeto-compativel/{id}",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/freelancer/v1/atualizar-freelancer",
-    "roles": ["FREELANCER"]
+    "roles": [
+      "FREELANCER"
+    ]
   },
   {
     "path": "/carteira/v1/buscar-saldo",
-    "roles": ["FREELANCER", "ADMINISTRADOR", "EMPRESA"]
+    "roles": [
+      "FREELANCER",
+      "ADMINISTRADOR",
+      "EMPRESA"
+    ]
   },
   {
     "path": "/carteira/v1/buscar-movimentacoes",
-    "roles": ["FREELANCER", "ADMINISTRADOR", "EMPRESA"]
+    "roles": [
+      "FREELANCER",
+      "ADMINISTRADOR",
+      "EMPRESA"
+    ]
   },
   {
     "path": "/carteira/v1/depositar-valor",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/carteira/v1/sacar-valor",
-    "roles": ["FREELANCER", "EMPRESA"]
+    "roles": [
+      "FREELANCER",
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/cadastrar-projeto",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/analisar-proposta",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/avaliar-freelancer",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/listar-freelancers",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/exibir-detalhes-freelancer/{id}",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
+  },
+  {
+    "path": "/freelancer/v1/cadastrar-freelancer",
+    "roles": []
   },
   {
     "path": "/empresa/v1/buscar-propostas-por-projeto/{id}",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/atualizar-empresa",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/atualizar-projeto",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/empresa/v1/excluir-projeto/{id}",
-    "roles": ["EMPRESA"]
+    "roles": [
+      "EMPRESA"
+    ]
   },
   {
     "path": "/administrador/v1/cadastrar-administrador",
-    "roles": ["ADMINISTRADOR"]
+    "roles": [
+      "ADMINISTRADOR"
+    ]
   },
   {
     "path": "/usuario/v1/login-usuario",

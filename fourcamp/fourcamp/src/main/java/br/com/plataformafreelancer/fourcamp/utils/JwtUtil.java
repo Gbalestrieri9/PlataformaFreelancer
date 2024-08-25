@@ -2,14 +2,11 @@ package br.com.plataformafreelancer.fourcamp.utils;
 
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.JwtDto;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
-import br.com.plataformafreelancer.fourcamp.exceptions.TokenInvalidoException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 
 import java.security.Key;
-
-import static br.com.plataformafreelancer.fourcamp.utils.ConstantesUtil.TOKEN_INVALIDO;
 
 public class JwtUtil {
     static Key chaveSecreta = JwtConfig.getChaveSecreta();
@@ -25,6 +22,7 @@ public class JwtUtil {
         Claims claims = jws.getBody();
 
         JwtDto jwtDto = new JwtDto();
+        jwtDto.setId(claims.get("id", Integer.class));
         jwtDto.setEmail(claims.get("email", String.class));
         jwtDto.setTipoUsuario(TipoUsuario.valueOf(claims.get("tipoUsuario", String.class)));
 

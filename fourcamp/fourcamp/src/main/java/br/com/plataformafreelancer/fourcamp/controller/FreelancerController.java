@@ -4,7 +4,6 @@ import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.*;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaCompletaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseEmpresaDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseProjetoCompatibilidadeDto;
-import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.FreelancerService;
@@ -22,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -125,11 +123,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/exibir-detalhes-empresa/{id}")
-    public ResponseEntity<?> exibirDetalhesEmpresa(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
+    public ResponseEntity<?> exibirDetalhesEmpresa(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(jwtDto,id);
+        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(jwtDto, id);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalhesEmpresa", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -140,11 +138,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-projeto-compativel/{id}")
-    public ResponseEntity<?> buscarProjetoCompativel(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
+    public ResponseEntity<?> buscarProjetoCompativel(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(jwtDto,id);
+        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(jwtDto, id);
         LoggerUtils.logElapsedTime(LOGGER, "buscarProjetoCompativel", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -156,12 +154,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/atualizar-freelancer")
-    public ResponseEntity<?> atualizarFreelancer(@RequestHeader("Authorization") String token,@RequestBody RequestAtualizarFreelancerDto request) {
+    public ResponseEntity<?> atualizarFreelancer(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarFreelancer", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.atualizarDadosFreelancer(request,jwtDto);
+        freelancerService.atualizarDadosFreelancer(request, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer atualizado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarFreelancer", startTime);
         return response;
@@ -174,12 +172,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/entregar-projeto")
-    public ResponseEntity<?> registrarEntregaDoProjeto(@RequestHeader("Authorization") String token,@RequestBody EntregarProjetoRequestDto entregarProjetoRequestDto) {
+    public ResponseEntity<?> registrarEntregaDoProjeto(@RequestHeader("Authorization") String token, @RequestBody EntregarProjetoRequestDto entregarProjetoRequestDto) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", entregarProjetoRequestDto);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.registrarEntregaProjeto(entregarProjetoRequestDto,jwtDto);
+        freelancerService.registrarEntregaProjeto(entregarProjetoRequestDto, jwtDto);
 
         ResponseEntity<StandardResponse> response =
                 ResponseEntity.ok(StandardResponse

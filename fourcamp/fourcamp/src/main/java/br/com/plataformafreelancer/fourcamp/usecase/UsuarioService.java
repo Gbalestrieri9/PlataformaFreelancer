@@ -5,7 +5,6 @@ import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
 import br.com.plataformafreelancer.fourcamp.utils.JwtConfig;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,25 +18,21 @@ public class UsuarioService {
 
     @Autowired
     UsuarioJdbcTemplateDaoImpl usuarioJdbcTemplateDao;
+
     public String login(String email, String senha) {
         Usuario usuario = usuarioJdbcTemplateDao.buscarClientePorEmail(email);
+
         if (usuario != null && usuario.getSenha().equals(senha)) {
 
             Key chaveSecreta = JwtConfig.getChaveSecreta();
 
             TipoUsuario tipoUsuario = usuario.getTipoUsuario();
+            int id = usuario.getId();
 
             Map<String, Object> claims = new HashMap<>();
+            claims.put("id", id);
             claims.put("email", email);
             claims.put("tipoUsuario", tipoUsuario);
-
-//            String token = Jwts.builder()
-//                    .claim("email", usuario.getEmail())
-//                    .claim("senha", usuario.getSenha())
-//                    .claim("tipoUsuario",usuario.getTipoUsuario())
-//                    .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-//                    .signWith(chaveSecreta).compact();
-//            return token;
 
             return Jwts.builder()
                     .setClaims(claims)

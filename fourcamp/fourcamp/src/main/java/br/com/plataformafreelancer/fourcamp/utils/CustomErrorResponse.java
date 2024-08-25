@@ -2,14 +2,10 @@ package br.com.plataformafreelancer.fourcamp.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.ErrorResponse;
@@ -27,7 +23,7 @@ public class CustomErrorResponse implements ErrorResponse {
     private String path;
     private Integer code;
 
-    public CustomErrorResponse(String mensagem, String path, Integer code){
+    public CustomErrorResponse(String mensagem, String path, Integer code) {
         this.mensagem = mensagem;
         this.path = path;
         this.code = code;

@@ -53,7 +53,7 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/cadastrar-projeto")
-    public ResponseEntity<?> cadastrarProjeto(@RequestHeader("Authorization") String token,@RequestBody RequestProjetoDto request) {
+    public ResponseEntity<?> cadastrarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarProjeto", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
@@ -71,12 +71,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/analisar-proposta")
-    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token,@RequestBody RequestAnalisarPropostaDto request) {
+    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token, @RequestBody RequestAnalisarPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.analisarProposta(request,jwtDto);
+        empresaService.analisarProposta(request, jwtDto);
 
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(
                 StandardResponse
@@ -96,12 +96,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/avaliar-freelancer")
-    public ResponseEntity<?> avaliarFreelancer(@RequestHeader("Authorization") String token,@RequestBody RequestAvaliacaoDto request) {
+    public ResponseEntity<?> avaliarFreelancer(@RequestHeader("Authorization") String token, @RequestBody RequestAvaliacaoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarFreelancer", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.avaliarFreelancer(request,jwtDto);
+        empresaService.avaliarFreelancer(request, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarFreelancer", startTime);
         return response;
@@ -129,11 +129,11 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/exibir-detalhes-freelancer/{id}")
-    public ResponseEntity<?> exibirDetalheFreelancer(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
+    public ResponseEntity<?> exibirDetalheFreelancer(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        ResponseFreelancerCompletaDto freelancer = empresaService.obterDetalhesFreelancer(id,jwtDto);
+        ResponseFreelancerCompletaDto freelancer = empresaService.obterDetalhesFreelancer(id, jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalheFreelancer", startTime);
         return new ResponseEntity<>(freelancer, HttpStatus.OK);
     }
@@ -144,11 +144,11 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-propostas-por-projeto/{id}")
-    public ResponseEntity<?> buscarPropostaPorProjeto(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
+    public ResponseEntity<?> buscarPropostaPorProjeto(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(id,jwtDto);
+        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(id, jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "buscarPropostaPorProjeto", startTime);
         return new ResponseEntity<>(propostas, HttpStatus.OK);
     }
@@ -160,12 +160,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/atualizar-empresa")
-    public ResponseEntity<?> atualizarEmpresa(@RequestHeader("Authorization") String token,@RequestBody RequestAtualizarEmpresaDto request) {
+    public ResponseEntity<?> atualizarEmpresa(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarEmpresa", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.atualizarDadosEmpresa(request,jwtDto);
+        empresaService.atualizarDadosEmpresa(request, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa atualizada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarEmpresa", startTime);
         return response;
@@ -178,12 +178,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/atualizar-projeto")
-    public ResponseEntity<?> atualizarProjeto(@RequestHeader("Authorization") String token,@RequestBody RequestAtualizarProjetoDto request) {
+    public ResponseEntity<?> atualizarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarProjeto", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.atualizarDadosProjeto(request,jwtDto);
+        empresaService.atualizarDadosProjeto(request, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto atualizado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarProjeto", startTime);
         return response;
@@ -196,10 +196,10 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @DeleteMapping("/v1/excluir-projeto/{id}")
-    public ResponseEntity<?> excluirProjeto(@RequestHeader("Authorization") String token,@PathVariable("id") Integer idProjeto) {
+    public ResponseEntity<?> excluirProjeto(@RequestHeader("Authorization") String token, @PathVariable("id") Integer idProjeto) {
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.excluirProjetoSeNaoAssociado(idProjeto,jwtDto);
+        empresaService.excluirProjetoSeNaoAssociado(idProjeto, jwtDto);
         return ResponseEntity.ok(StandardResponse.builder().message("Projeto excluído com sucesso!").build());
     }
 
@@ -210,12 +210,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/v/projeto-validar-entrega")
-    public ResponseEntity<?> validarEntregadoProjeto(@RequestHeader("Authorization") String token,@RequestBody RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
+    public ResponseEntity<?> validarEntregadoProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto) {
         LoggerUtils.logRequestStart(LOGGER, "validarEntrega", requestValidarEntregaProjetoDto);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.validarEntregaDoProjeto(requestValidarEntregaProjetoDto,jwtDto);
+        empresaService.validarEntregaDoProjeto(requestValidarEntregaProjetoDto, jwtDto);
 
         ResponseEntity<StandardResponse> response
                 = ResponseEntity.ok(StandardResponse.builder()
