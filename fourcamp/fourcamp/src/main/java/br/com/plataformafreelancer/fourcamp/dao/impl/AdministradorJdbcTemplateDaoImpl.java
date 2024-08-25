@@ -1,7 +1,9 @@
 package br.com.plataformafreelancer.fourcamp.dao.impl;
 
 import br.com.plataformafreelancer.fourcamp.dao.IAdministradorJdbcTemplateDao;
+import br.com.plataformafreelancer.fourcamp.dao.impl.mapper.ProjetoDtoRowMapper;
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
+import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Types;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +59,11 @@ public class AdministradorJdbcTemplateDaoImpl implements IAdministradorJdbcTempl
         });
 
         LoggerUtils.logElapsedTime(LOGGER, "aprovarProjeto", System.currentTimeMillis());
+    }
+    @Override
+    public List<Projeto> listarProjetoPendente() {
+        String sql = "SELECT * FROM listar_projetos_pendentes()";
+        return jdbcTemplate.query(sql, new ProjetoDtoRowMapper());
     }
 
 }

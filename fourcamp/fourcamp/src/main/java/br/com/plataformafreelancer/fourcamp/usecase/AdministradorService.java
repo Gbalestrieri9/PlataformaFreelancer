@@ -1,12 +1,16 @@
 package br.com.plataformafreelancer.fourcamp.usecase;
 
 import br.com.plataformafreelancer.fourcamp.dao.impl.AdministradorJdbcTemplateDaoImpl;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.JwtDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequesAprovarProjetoDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.RequestAdministradorDto;
+import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusAdministrador;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
 import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
+import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.model.Administrador;
+import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
 import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.DatasUtil;
@@ -22,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class AdministradorService {
@@ -36,7 +41,7 @@ public class AdministradorService {
     @Autowired
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
 
-    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto) {
+    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto, JwtDto jwtDto) {
         String cpfValidado;
 
         LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", requestAdministradorDto);
@@ -65,7 +70,7 @@ public class AdministradorService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarAdministrador", System.currentTimeMillis());
     }
 
-    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
+    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto, JwtDto jwtDto) {
         int idValidado;
         LocalDate dataAtual = DatasUtil.coletarDataAtual();
 
@@ -76,5 +81,13 @@ public class AdministradorService {
         }
 
         administradorJdbcTemplateDao.aprovarProjeto(idValidado, dataAtual);
+    }
+
+    public List<Projeto> listarProjetoPendente(JwtDto jwtDto) {
+        List<Projeto> lista = administradorJdbcTemplateDao.listarProjetoPendente();
+        if (lista == null || lista.isEmpty()) {
+            throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
+        }
+        return lista;
     }
 }

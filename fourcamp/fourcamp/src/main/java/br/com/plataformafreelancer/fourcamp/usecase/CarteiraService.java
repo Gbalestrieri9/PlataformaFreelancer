@@ -2,6 +2,7 @@ package br.com.plataformafreelancer.fourcamp.usecase;
 
 import br.com.plataformafreelancer.fourcamp.dao.impl.CarteiraJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.DepositarValorRequestDTO;
+import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.JwtDto;
 import br.com.plataformafreelancer.fourcamp.dtos.requestDtos.SacarValorRequestDTO;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.MovimentacaoResponseDBDto;
 import br.com.plataformafreelancer.fourcamp.dtos.responseDtos.ResponseSaldoCarteiraDBDTO;
@@ -21,15 +22,13 @@ public class CarteiraService {
 
     LocalDate dataDaTransacao = LocalDate.now();
 
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email) {
-        String emailValidado = ValidadorDeEmail.validarEmail(email);
-        return carteiraJdbcTemplateDao.visualizarSaldo(emailValidado);
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(JwtDto jwtDto) {
+         String email = jwtDto.getEmail();
+        return carteiraJdbcTemplateDao.visualizarSaldo(email);
     }
 
-    public ResponseSaldoCarteiraDBDTO depositarValor(DepositarValorRequestDTO depositarValorRequestDTO) {
-        String email = ValidadorDeEmail
-                .validarEmail(depositarValorRequestDTO.getEmail()
-                );
+    public ResponseSaldoCarteiraDBDTO depositarValor(DepositarValorRequestDTO depositarValorRequestDTO, JwtDto jwtDto) {
+        String email = jwtDto.getEmail();
         float valor = ValidadorDeValoresNegativos
                 .validarValorFloat(depositarValorRequestDTO.getValor()
                 );
@@ -37,10 +36,8 @@ public class CarteiraService {
         return carteiraJdbcTemplateDao.depositarValor(email, valor, dataDaTransacao);
     }
 
-    public ResponseSaldoCarteiraDBDTO sacarValor(SacarValorRequestDTO sacarValorRequestDTO) {
-        String email = ValidadorDeEmail
-                .validarEmail(sacarValorRequestDTO.getEmail()
-                );
+    public ResponseSaldoCarteiraDBDTO sacarValor(SacarValorRequestDTO sacarValorRequestDTO, JwtDto jwtDto) {
+        String email = jwtDto.getEmail();
         float valor = ValidadorDeValoresNegativos
                 .validarValorFloat(sacarValorRequestDTO.getValor()
                 );
@@ -48,8 +45,8 @@ public class CarteiraService {
         return carteiraJdbcTemplateDao.sacarValor(email, valor, dataDaTransacao);
     }
 
-    public List<MovimentacaoResponseDBDto> buscarMovimentacoes(String email) {
-        String emailValidado = ValidadorDeEmail.validarEmail(email);
-        return carteiraJdbcTemplateDao.buscarMovimentacoes(emailValidado);
+    public List<MovimentacaoResponseDBDto> buscarMovimentacoes(JwtDto jwtDto) {
+        String email = jwtDto.getEmail();
+        return carteiraJdbcTemplateDao.buscarMovimentacoes(email);
     }
 }

@@ -1,0 +1,114 @@
+[
+  {
+    "path": "/freelancer/v1/cadastrar-freelancer",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/enviar-proposta",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/avaliar-empresa",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/listar-empresas",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/listar-projetos",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/exibir-detalhes-empresa/{id}",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/buscar-projeto-compativel/{id}",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/atualizar-freelancer",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/freelancer/v1/entregar-projeto",
+    "roles": ["FREELANCER"]
+  },
+  {
+    "path": "/carteira/v1/buscar-saldo",
+    "roles": ["FREELANCER", "ADMINISTRADOR", "EMPRESA"]
+  },
+  {
+    "path": "/carteira/v1/buscar-movimentacoes",
+    "roles": ["FREELANCER", "ADMINISTRADOR", "EMPRESA"]
+  },
+  {
+    "path": "/carteira/v1/depositar-valor",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/carteira/v1/sacar-valor",
+    "roles": ["FREELANCER", "EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/cadastrar-empresa",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/cadastrar-projeto",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/analisar-proposta",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/avaliar-freelancer",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/listar-freelancers",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/exibir-detalhes-freelancer/{id}",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/buscar-propostas-por-projeto/{id}",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/atualizar-empresa",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/atualizar-projeto",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/excluir-projeto/{id}",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/empresa/v1/projeto-validar-entrega",
+    "roles": ["EMPRESA"]
+  },
+  {
+    "path": "/administrador/v1/cadastrar-administrador",
+    "roles": ["ADMINISTRADOR"]
+  },
+  {
+    "path": "/administrador/v1/projetos-pendentes",
+    "roles": ["ADMINISTRADOR"]
+  },
+  {
+    "path": "/administrador/v1/aprovar-projeto",
+    "roles": ["ADMINISTRADOR"]
+  },
+  {
+    "path": "/usuario/v1/login-usuario",
+    "roles": []
+  }
+]

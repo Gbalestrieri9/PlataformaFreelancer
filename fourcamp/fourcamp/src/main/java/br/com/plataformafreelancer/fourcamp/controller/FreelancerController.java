@@ -10,7 +10,6 @@ import br.com.plataformafreelancer.fourcamp.model.StandardResponse;
 import br.com.plataformafreelancer.fourcamp.usecase.FreelancerService;
 import br.com.plataformafreelancer.fourcamp.usecase.UsuarioService;
 import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
-import br.com.plataformafreelancer.fourcamp.utils.JwtPermissaoUtil;
 import br.com.plataformafreelancer.fourcamp.utils.JwtUtil;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,8 +33,6 @@ public class FreelancerController {
     FreelancerService freelancerService;
     @Autowired
     UsuarioService usuarioService;
-    @Autowired
-    JwtPermissaoUtil jwtPermissaoUtil;
 
     @Operation(summary = "Cadastrar um novo freelancer")
     @ApiResponses(value = {
@@ -54,22 +51,6 @@ public class FreelancerController {
         return response;
     }
 
-    @Operation(summary = "Cadastrar um novo freelancer")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Freelancer cadastrado com sucesso!"),
-            @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
-            @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
-    })
-    @PostMapping("/v1/login-freelancer")
-    public String Login(@RequestBody RequestLoginDto request) {
-        LoggerUtils.logRequestStart(LOGGER, "cadastrarFreelancer", request);
-        long startTime = System.currentTimeMillis();
-
-
-        LoggerUtils.logElapsedTime(LOGGER, "cadastrarFreelancer", startTime);
-        return usuarioService.login(request.getEmail(), request.getSenha());
-    }
-
     @Operation(summary = "Enviar uma proposta")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Proposta enviada com sucesso!"),
@@ -82,24 +63,11 @@ public class FreelancerController {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<TipoUsuario> tipoPermitidos = Arrays.asList(TipoUsuario.FREELANCER);
+        freelancerService.salvarProposta(request, jwtDto);
 
-        if (jwtPermissaoUtil.VerificaTipoUsuario(jwtDto, tipoPermitidos)) {
-
-            freelancerService.salvarProposta(request, jwtDto);
-
-            ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
-            LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
-            return response;
-        } else {
-            ResponseEntity<StandardResponse> response = ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body(StandardResponse.builder()
-                            .message("Not permission!")
-                            .build());
-            LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
-            return response;
-        }
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
+        LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
+        return response;
     }
 
     @Operation(summary = "Avaliar uma empresa")
@@ -109,11 +77,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/avaliar-empresa")
-    public ResponseEntity<?> avaliarEmpresa(@RequestBody RequestAvaliacaoDto request) {
+    public ResponseEntity<?> avaliarEmpresa(@RequestHeader("Authorization") String token, @RequestBody RequestAvaliacaoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", request);
         long startTime = System.currentTimeMillis();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.avaliarEmpresa(request);
+        freelancerService.avaliarEmpresa(request, jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", startTime);
         return response;
@@ -125,9 +94,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/listar-empresas")
-    public ResponseEntity<?> listaEmpresa() {
+    public ResponseEntity<?> listaEmpresa(@RequestHeader("Authorization") String token) {
         long startTime = System.currentTimeMillis();
-        List<ResponseEmpresaDto> lista = freelancerService.listarEmpresa();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+
+        List<ResponseEmpresaDto> lista = freelancerService.listarEmpresa(jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "listaEmpresa", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -138,9 +109,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/listar-projetos")
-    public ResponseEntity<?> listaProjetos() {
+    public ResponseEntity<?> listaProjetos(@RequestHeader("Authorization") String token) {
         long startTime = System.currentTimeMillis();
-        List<Projeto> lista = freelancerService.listarTodosProjetos();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+
+        List<Projeto> lista = freelancerService.listarTodosProjetos(jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "listaProjetos", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -152,9 +125,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/exibir-detalhes-empresa/{id}")
-    public ResponseEntity<?> exibirDetalhesEmpresa(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> exibirDetalhesEmpresa(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(id);
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+
+        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(jwtDto,id);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalhesEmpresa", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -165,9 +140,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/v1/buscar-projeto-compativel/{id}")
-    public ResponseEntity<?> buscarProjetoCompativel(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> buscarProjetoCompativel(@RequestHeader("Authorization") String token,@PathVariable("id") Integer id) {
         long startTime = System.currentTimeMillis();
-        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(id);
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+
+        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(jwtDto,id);
         LoggerUtils.logElapsedTime(LOGGER, "buscarProjetoCompativel", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -179,11 +156,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/atualizar-freelancer")
-    public ResponseEntity<?> atualizarFreelancer(@RequestBody RequestAtualizarFreelancerDto request) {
+    public ResponseEntity<?> atualizarFreelancer(@RequestHeader("Authorization") String token,@RequestBody RequestAtualizarFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarFreelancer", request);
         long startTime = System.currentTimeMillis();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.atualizarDadosFreelancer(request);
+        freelancerService.atualizarDadosFreelancer(request,jwtDto);
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer atualizado com sucesso!").build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarFreelancer", startTime);
         return response;
@@ -196,11 +174,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/entregar-projeto")
-    public ResponseEntity<?> registrarEntregaDoProjeto(@RequestBody EntregarProjetoRequestDto entregarProjetoRequestDto) {
+    public ResponseEntity<?> registrarEntregaDoProjeto(@RequestHeader("Authorization") String token,@RequestBody EntregarProjetoRequestDto entregarProjetoRequestDto) {
         LoggerUtils.logRequestStart(LOGGER, "avaliarEmpresa", entregarProjetoRequestDto);
         long startTime = System.currentTimeMillis();
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.registrarEntregaProjeto(entregarProjetoRequestDto);
+        freelancerService.registrarEntregaProjeto(entregarProjetoRequestDto,jwtDto);
 
         ResponseEntity<StandardResponse> response =
                 ResponseEntity.ok(StandardResponse
