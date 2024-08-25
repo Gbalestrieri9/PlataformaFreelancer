@@ -1,25 +1,25 @@
 
 ’
-java:S1192O"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2J$78138dd7-c373-466b-b10f-ff55faa25eae
+java:S1192O"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2J$3cd8ff7c-a760-4f23-9f85-0537b16566e0
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2J$4fa6cde3-3eba-4f53-95c1-9217299a292d
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2J$4a3561df-6305-4f96-ab95-2155348a9571
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2J$66c76bd6-1801-441e-8d98-b804a24238fa
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2J$1529fa57-c8c9-42eb-8bb4-367274c6ebec
 n
-java:S1452*"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2J$caf8a741-8394-46ad-898a-d464ed140294
+java:S1452*"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2J$edc3206a-cbe2-4d31-9f5f-adde2fc33313
 i
-java:S1452;"&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2J$99ac8b99-af6e-4227-a65a-e169f025b233
+java:S1452;"&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2J$2d4e85fe-34dd-41ef-a699-c119ac2b93c8
 n
-java:S1452N"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2J$d31b955c-9e01-4928-9ace-dfd52943557d
+java:S1452N"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2J$2dabfbf4-65a2-4223-b8d9-b99571ce40ed
 i
-java:S1452_"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2J$c52ab2ea-3114-4e34-ad72-63727341eb5a
+java:S1452_"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2J$4b4d4dbf-000d-4b84-bcd0-8ca69be2d1ad
 i
-java:S1452n"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2J$ca8264d0-3a79-4eab-9f21-ecb2b2b43e21
-n
-java:S1452~"&Remove usage of generic wildcard type.(ğİµ·ıÿÿÿÿ8¶ÂŞ±˜2J$f1157d97-2cdc-4e92-a078-d44018e31238
+java:S1452n"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2J$519e9674-2e8f-4872-816c-ed9813a6a431
+i
+java:S1452~"&Remove usage of generic wildcard type.(¢çãß8¶ÂŞ±˜2J$77543035-fa56-4a03-9d63-a18b3d32939a
 j
-java:S1452"&Remove usage of generic wildcard type.(ñß–®8½ÂŞ±˜2J$afc1d0fa-4c2c-482e-97f2-7077d29360e6
+java:S1452Œ"&Remove usage of generic wildcard type.( Ü“ò8½ÂŞ±˜2J$974cbfaa-90f9-4f34-8fee-5de1b38f46f1
 j
-java:S1452"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2J$096661e4-b10c-4cbc-8068-cf2a7a9d7931
+java:S1452œ"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2J$5a3b0646-0691-4b8b-955f-4cd50f48507f
 o
-java:S1452¯"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2J$2f7a91da-9334-4ec2-99fa-0a6088dbb3fe
+java:S1452®"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2J$9c57c965-18de-4676-83d2-0b5e338fcd5a

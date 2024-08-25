@@ -145,16 +145,22 @@ public class FreelancerService {
         return lista;
     }
 
-    public ResponseEmpresaCompletaDto obterDetalhesEmpresa(JwtDto jwtDto, Integer empresaId) {
-        ResponseEmpresaCompletaDto empresa = freelancerJdbcTemplateDaoImpl.obterDetalhesEmpresa(empresaId);
-        if (empresa == null) {
-            throw new NaoEncontradoException(ErrorCode.OBJETO_VAZIO.getCustomMessage());
+    public ResponseEmpresaCompletaDto obterDetalhesEmpresa(RequestIdDto requestIdDto) {
+        ResponseEmpresaCompletaDto empresa = null;
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
+            empresa = freelancerJdbcTemplateDaoImpl.obterDetalhesEmpresa(requestIdDto.getId());
+
+            if (empresa == null) {
+                throw new NaoEncontradoException(ErrorCode.OBJETO_VAZIO.getCustomMessage());
+            }
         }
+
         return empresa;
     }
 
-    public List<ResponseProjetoCompatibilidadeDto> listaProjetosCompativeis(JwtDto jwtDto, Integer id) {
-        List<ResponseProjetoCompatibilidadeDto> lista = freelancerJdbcTemplateDaoImpl.buscarProjetosCompativeis(id);
+    public List<ResponseProjetoCompatibilidadeDto> listaProjetosCompativeis(JwtDto jwtDto) {
+        List<ResponseProjetoCompatibilidadeDto> lista = freelancerJdbcTemplateDaoImpl.buscarProjetosCompativeis(jwtDto.getId());
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
         }

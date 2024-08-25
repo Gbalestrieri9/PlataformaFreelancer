@@ -122,12 +122,11 @@ public class FreelancerController {
             @ApiResponse(responseCode = "400", description = "Erro de validação nos dados fornecidos"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    @GetMapping("/v1/exibir-detalhes-empresa/{id}")
-    public ResponseEntity<?> exibirDetalhesEmpresa(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
+    @GetMapping("/v1/exibir-detalhes-empresa")
+    public ResponseEntity<?> exibirDetalhesEmpresa(@RequestBody RequestIdDto requestIdDto) {
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(jwtDto, id);
+        ResponseEmpresaCompletaDto empresa = freelancerService.obterDetalhesEmpresa(requestIdDto);
         LoggerUtils.logElapsedTime(LOGGER, "exibirDetalhesEmpresa", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
@@ -137,12 +136,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "200", description = "Projetos compatíveis listados com sucesso!"),
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
-    @GetMapping("/v1/buscar-projeto-compativel/{id}")
-    public ResponseEntity<?> buscarProjetoCompativel(@RequestHeader("Authorization") String token, @PathVariable("id") Integer id) {
+    @GetMapping("/v1/buscar-projeto-compativel")
+    public ResponseEntity<?> buscarProjetoCompativel(@RequestHeader("Authorization") String token) {
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(jwtDto, id);
+        List<ResponseProjetoCompatibilidadeDto> empresa = freelancerService.listaProjetosCompativeis(jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "buscarProjetoCompativel", startTime);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }

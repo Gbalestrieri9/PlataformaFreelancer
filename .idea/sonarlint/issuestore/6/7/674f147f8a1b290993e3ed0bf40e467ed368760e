@@ -1,7 +1,7 @@
 
 –
-java:S1192*"NDefine a constant instead of duplicating this literal "Authorization" 3 times.(ßö›‰ùÿÿÿÿ8Ñƒ…³˜2J$ec499d97-155e-4baf-a22c-fd69d07beaf6
+java:S1192*"NDefine a constant instead of duplicating this literal "Authorization" 3 times.(ßö›‰ùÿÿÿÿ8Â’·Ý˜2J$430c2dd5-1568-46d9-bd22-63288ed937d4
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Æ¥õ±˜2J$c30cdf4e-d1ae-445f-86b5-57c28406066b
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Ã’·Ý˜2J$c63c57a9-8225-4836-b8ad-16efec7184eb
 ‰
-java:S1126G"AReplace this if-then-else statement by a single return statement.(Ùôœùøÿÿÿÿ8º„…³˜2J$3455f1ad-b75a-49da-bd44-2767056f7a43
+java:S1126I"AReplace this if-then-else statement by a single return statement.(Ùôœùøÿÿÿÿ8ó’·Ý˜2J$73d74cee-2615-41c1-b1c1-7735d29a0219

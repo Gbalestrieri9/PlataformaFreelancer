@@ -1,13 +1,13 @@
 
-˜
-java:S1192)"PDefine a constant instead of duplicating this literal "visualizarSaldo" 4 times.(‰Úêåÿÿÿÿÿ8´ÅÆ¿•2J$5d4830a9-acf2-4980-9cb7-3408b1ebbdc3
+r
+java:S1192*"PDefine a constant instead of duplicating this literal "visualizarSaldo" 4 times.(ïí£Õúÿÿÿÿ8çËŒİ˜2
 …
 java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¸ÅÆ¿•2J$9d5e9561-17ba-4844-9861-26c15e910b18
+H
+java:S1452)"&Remove usage of generic wildcard type.(”ÿœÑşÿÿÿÿ8¢ÌŒİ˜2
 C
-java:S1452("&Remove usage of generic wildcard type.(ì×¦Ğ8­æß¹˜2
+java:S1452<"&Remove usage of generic wildcard type.(ÿóê…8ÎÌŒİ˜2
 C
-java:S1452:"&Remove usage of generic wildcard type.(¤º¾˜8¿æß¹˜2
+java:S1452V"&Remove usage of generic wildcard type.(óĞûÊ8Èæß¹˜2
 C
-java:S1452R"&Remove usage of generic wildcard type.(óĞûÊ8Èæß¹˜2
-C
-java:S1452j"&Remove usage of generic wildcard type.(—ÚÎ¢8Ùæß¹˜2
+java:S1452n"&Remove usage of generic wildcard type.(—ÚÎ¢8Ùæß¹˜2
