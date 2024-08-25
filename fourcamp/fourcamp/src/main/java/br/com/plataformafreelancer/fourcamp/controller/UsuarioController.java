@@ -30,12 +30,13 @@ public class UsuarioController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/login-usuario")
-    public String Login(@RequestBody RequestLoginDto request) {
-        LoggerUtils.logRequestStart(LOGGER, "cadastrarFreelancer", request);
+    public String login(@RequestBody RequestLoginDto request) {
+        LoggerUtils.logRequestStart(LOGGER, "login", request);
         long startTime = System.currentTimeMillis();
 
+        String token = usuarioService.login(request.getEmail(), request.getSenha());
 
-        LoggerUtils.logElapsedTime(LOGGER, "cadastrarFreelancer", startTime);
-        return usuarioService.login(request.getEmail(), request.getSenha());
+        LoggerUtils.logElapsedTime(LOGGER, "login", startTime);
+        return token;
     }
 }

@@ -1,29 +1,25 @@
 
-l
-java:S1192Q"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2
-_
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2
-_
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2
-H
-java:S1452,"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2
-C
-java:S1452="&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2
-H
-java:S1452P"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2
-C
-java:S1452a"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2
-C
-java:S1452p"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2
-I
-java:S1452€"&Remove usage of generic wildcard type.(ğİµ·ıÿÿÿÿ8¶ÂŞ±˜2
-D
-java:S1452"&Remove usage of generic wildcard type.(ñß–®8½ÂŞ±˜2
-D
-java:S1452Ÿ"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2
-I
-java:S1452±"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2
-u
-java:S1128"SRemove this unused import 'br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario'.(ñııÿÿÿÿ8ÜÂŞ±˜2
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ŞÂŞ±˜2
+’
+java:S1192O"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2J$78138dd7-c373-466b-b10f-ff55faa25eae
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2J$4fa6cde3-3eba-4f53-95c1-9217299a292d
+…
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2J$66c76bd6-1801-441e-8d98-b804a24238fa
+n
+java:S1452*"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2J$caf8a741-8394-46ad-898a-d464ed140294
+i
+java:S1452;"&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2J$99ac8b99-af6e-4227-a65a-e169f025b233
+n
+java:S1452N"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2J$d31b955c-9e01-4928-9ace-dfd52943557d
+i
+java:S1452_"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2J$c52ab2ea-3114-4e34-ad72-63727341eb5a
+i
+java:S1452n"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2J$ca8264d0-3a79-4eab-9f21-ecb2b2b43e21
+n
+java:S1452~"&Remove usage of generic wildcard type.(ğİµ·ıÿÿÿÿ8¶ÂŞ±˜2J$f1157d97-2cdc-4e92-a078-d44018e31238
+j
+java:S1452"&Remove usage of generic wildcard type.(ñß–®8½ÂŞ±˜2J$afc1d0fa-4c2c-482e-97f2-7077d29360e6
+j
+java:S1452"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2J$096661e4-b10c-4cbc-8068-cf2a7a9d7931
+o
+java:S1452¯"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2J$2f7a91da-9334-4ec2-99fa-0a6088dbb3fe

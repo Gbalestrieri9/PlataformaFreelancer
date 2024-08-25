@@ -1,6 +1,7 @@
 package br.com.plataformafreelancer.fourcamp.model;
 
 import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Projeto {
     private int idProjeto;
     private String titulo;

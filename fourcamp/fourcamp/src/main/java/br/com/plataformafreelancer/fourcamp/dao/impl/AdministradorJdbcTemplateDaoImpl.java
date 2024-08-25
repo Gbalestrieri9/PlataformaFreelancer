@@ -60,6 +60,7 @@ public class AdministradorJdbcTemplateDaoImpl implements IAdministradorJdbcTempl
 
         LoggerUtils.logElapsedTime(LOGGER, "aprovarProjeto", System.currentTimeMillis());
     }
+
     @Override
     public List<Projeto> listarProjetoPendente() {
         String sql = "SELECT * FROM listar_projetos_pendentes()";

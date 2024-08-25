@@ -119,8 +119,6 @@ ufourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/respo
 lfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/controller/AdministradorController.java,e\1\e115f2b7feaebb53e71bf661ded7d9175acaca54
 ñ
 ffourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/usecase/AdministradorService.java,3\f\3fe3414c89d57ec12f4e35b59cbfd3fe836e1d04
-ê
-`fourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/JwtPermissaoUtil.java,9\0\903740304466fe6a852542ddb679eae54bc824e7
 F
 fourcamp/fourcamp/mvnw,1\8\185f6b5a4d34bbf13e1bbb86b5e8f37473b1b3fc
 ù
@@ -193,3 +191,17 @@ kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/config/Pla
 dfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/ErrorResponseFactory.java,c\4\c4f48b4e7548576ce044cff84ccbb57aa92e1898
 ì
 cfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/utils/CustomErrorResponse.java,8\2\8214e240afbaf326a937ed5d33e8f7c2b9e390c4
+ñ
+ffourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/controller/UsuarioController.java,d\d\dd6361a7e9cc2f8c7e81634d65ca91dccbd6ce78
+ö
+jfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/UsuarioRowMapper.java,4\5\453323c17d685e56aa90403e883f19291b94b0a5
+ù
+mfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/EmpresaDtoRowMapper.java,a\8\a88236bab6adc4578d7712bbda8764f181546678
+†
+pfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/FreelancerDtoRowMapper.java,1\5\150f6cb6544eb388c738534c903df1c4deb77e30
+®
+xfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/FreelancerCompletaDtoRowMapper.java,5\8\5855beb96b0adfd5c783d48e3eaf10570e6d84f8
+ö
+jfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/RequestLoginDto.java,e\c\ec3e39a2c0a9c5f07437e4a7eccadab3ab2c9d47
+ù
+mfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/ProjetoDtoRowMapper.java,8\c\8c99700f7a2f1cee91e35bdb56343423bd6ad916

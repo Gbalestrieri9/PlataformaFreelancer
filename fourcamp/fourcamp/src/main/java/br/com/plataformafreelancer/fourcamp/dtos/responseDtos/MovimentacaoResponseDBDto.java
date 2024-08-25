@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,6 +19,6 @@ import java.util.Date;
 public class MovimentacaoResponseDBDto {
     private TipoMovimentacao tipoMovimentacao;
     private BigDecimal valorMovimentacao;
-    private Date dataMovimentacao;
+    private LocalDate dataMovimentacao;
     private String descricaoMovimentacao;
 }

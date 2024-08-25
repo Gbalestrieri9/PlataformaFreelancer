@@ -6,14 +6,13 @@ import br.com.plataformafreelancer.fourcamp.utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;//@Component
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -22,10 +21,9 @@ import java.util.List;
 @Component
 public class PlataformaFreelancerFilter extends OncePerRequestFilter {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private ResourceLoader resourceLoader;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -49,13 +47,12 @@ public class PlataformaFreelancerFilter extends OncePerRequestFilter {
                         return;
                     }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     sendInvalidTokenResponse(response, request);
                     return;
                 }
             }
         }
-
         filterChain.doFilter(request, response);
     }
 
@@ -99,10 +96,10 @@ public class PlataformaFreelancerFilter extends OncePerRequestFilter {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         CustomErrorResponse errorResponse = ErrorResponseFactory
                 .createResponseError(
-                ConstantesUtil.DESC_ROLE_SEM_PERMISSAO,
-                request.getServletPath(),
-                HttpStatus.FORBIDDEN.value()
-        );
+                        ConstantesUtil.DESC_ROLE_SEM_PERMISSAO,
+                        request.getServletPath(),
+                        HttpStatus.FORBIDDEN.value()
+                );
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
     }
 

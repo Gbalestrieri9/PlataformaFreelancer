@@ -1,15 +1,7 @@
 
 …
-java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄÞ8ðÆ‚Þ—2J$4db1ed9d-5bd7-489e-8703-460d8003080a
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄÞ8ðÆ‚Þ—2J$1ecd0bda-0665-4fa8-9fd0-d3828584aab4
 y
-java:S1874y"6Remove this use of "queryForObject"; it is deprecated.(ÔÛŠÏ8•Ç‚Þ—2J$8b7799d9-0b8f-4cad-a63d-1de5ebff4cd0
-p
-java:S1874€"-Remove this use of "query"; it is deprecated.(º³˜N8šÇ‚Þ—2J$570a9b83-ab9f-4f58-8a70-861b3919b192
-‰
-java:S1128"GRemove this unused import 'org.springframework.jdbc.core.SqlTypeValue'.(óéõ8¡Ç‚Þ—2J$58e35dbf-2bf7-4719-81a9-ec844cbc7bc4
-m
-java:S1128"*Remove this unused import 'java.sql.Date'.(ÙÀ½Ê8¢Ç‚Þ—2J$0f238bf7-b4f6-44aa-94d0-df0f3804afed
-u
-java:S1128"-Remove this unused import 'java.sql.SQLData'.(¦Ä²—ûÿÿÿÿ8¢Ç‚Þ—2J$d5905714-00b1-428e-be6c-b634ee6609b5
-u
-java:S1128"-Remove this unused import 'java.sql.SQLType'.(ºñÊ’øÿÿÿÿ8¢Ç‚Þ—2J$a32a2a18-b385-4060-88e8-a19e3ab28bed
+java:S1874u"6Remove this use of "queryForObject"; it is deprecated.(ÔÛŠÏ8•Ç‚Þ—2J$7cc8001e-9b6e-4e17-ac17-cf2f1fd852a5
+o
+java:S1874|"-Remove this use of "query"; it is deprecated.(º³˜N8šÇ‚Þ—2J$910faa7f-ddd5-4d24-897b-0c7a0e44d4b3

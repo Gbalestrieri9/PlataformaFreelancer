@@ -1,6 +1,5 @@
 
-X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
-I
-java:S3416"4Update this logger to use "UsuarioController.class".(²ƒÛ>
-c	java:S100!"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¼í¬
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$36ce72ba-2d7f-42d5-be71-c1e97f574fbb
+o
+java:S3416"4Update this logger to use "UsuarioController.class".(²ƒÛ>J$e17175a7-9003-4d52-90a9-fdd2b53e69ad
