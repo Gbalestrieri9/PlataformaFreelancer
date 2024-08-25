@@ -150,21 +150,27 @@ public class EmpresaService {
         return lista;
     }
 
-    public ResponseFreelancerCompletaDto obterDetalhesFreelancer(Integer freelancerID, JwtDto jwtDto) {
-        ResponseFreelancerCompletaDto freelancer = empresaJdbcTemplateDao.obterDetalhesFreelancer(freelancerID);
+    public ResponseFreelancerCompletaDto obterDetalhesFreelancer(RequestIdDto requestIdDto) {
+        ResponseFreelancerCompletaDto freelancer = null;
+
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
+            freelancer = empresaJdbcTemplateDao.obterDetalhesFreelancer(requestIdDto.getId());
+        }
+
         if (freelancer == null) {
             throw new NaoEncontradoException(ErrorCode.OBJETO_VAZIO.getCustomMessage());
+        } else {
+            return freelancer;
         }
-        return freelancer;
     }
 
-    public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId, JwtDto jwtDto) {
+    public List<ResponsePropostaDto> listarPropostasPorProjeto(RequestIdDto requestIdDto, JwtDto jwtDto) {
 
-        if (!ValidadorDeNumerosPositivos.validarNumero(projetoId)) {
+        if (!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())) {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
         }
 
-        List<ResponsePropostaDto> propostas = empresaJdbcTemplateDao.listarPropostasPorProjeto(projetoId);
+        List<ResponsePropostaDto> propostas = empresaJdbcTemplateDao.listarPropostasPorProjeto(requestIdDto.getId());
         if (propostas == null || propostas.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
         }
@@ -181,8 +187,10 @@ public class EmpresaService {
         empresaJdbcTemplateDao.atualizarProjeto(projeto);
     }
 
-    public void excluirProjetoSeNaoAssociado(Integer idProjeto, JwtDto jwtDto) {
-        empresaJdbcTemplateDao.excluirProjetoSeNaoAssociado(idProjeto);
+    public void excluirProjetoSeNaoAssociado(RequestIdDto requestIdDto) {
+        if(!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
+            empresaJdbcTemplateDao.excluirProjetoSeNaoAssociado(requestIdDto.getId());
+        }
     }
 
     public void validarEntregaDoProjeto(RequestValidarEntregaProjetoDto requestValidarEntregaProjetoDto, JwtDto jwtDto) {

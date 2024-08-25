@@ -32,13 +32,13 @@
     ]
   },
   {
-    "path": "/freelancer/v1/exibir-detalhes-empresa/{id}",
+    "path": "/freelancer/v1/exibir-detalhes-empresa",
     "roles": [
       "FREELANCER"
     ]
   },
   {
-    "path": "/freelancer/v1/buscar-projeto-compativel/{id}",
+    "path": "/freelancer/v1/buscar-projeto-compativel",
     "roles": [
       "FREELANCER"
     ]
@@ -111,7 +111,7 @@
     ]
   },
   {
-    "path": "/empresa/v1/exibir-detalhes-freelancer/{id}",
+    "path": "/empresa/v1/exibir-detalhes-freelancer",
     "roles": [
       "EMPRESA"
     ]
@@ -121,7 +121,7 @@
     "roles": []
   },
   {
-    "path": "/empresa/v1/buscar-propostas-por-projeto/{id}",
+    "path": "/empresa/v1/buscar-propostas-por-projeto",
     "roles": [
       "EMPRESA"
     ]
@@ -139,7 +139,7 @@
     ]
   },
   {
-    "path": "/empresa/v1/excluir-projeto/{id}",
+    "path": "/empresa/v1/excluir-projeto",
     "roles": [
       "EMPRESA"
     ]

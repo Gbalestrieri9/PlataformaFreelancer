@@ -58,6 +58,8 @@ public class PlataformaFreelancerFilter extends OncePerRequestFilter {
 
     private boolean checkPathExistence(HttpServletRequest request) {
         String servletPath = request.getServletPath();
+        // Caso exista param ou pathVariable, remover
+        // Método String que acha a 4a barra e remove(inclusive a barra)
         return RotasUtil.getRotas(resourceLoader).containsKey(servletPath);
     }
 
