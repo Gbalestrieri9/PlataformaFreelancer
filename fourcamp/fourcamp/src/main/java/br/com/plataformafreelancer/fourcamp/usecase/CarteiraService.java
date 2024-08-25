@@ -22,15 +22,13 @@ public class CarteiraService {
 
     LocalDate dataDaTransacao = LocalDate.now();
 
-    public ResponseSaldoCarteiraDBDTO visualizarSaldo(String email, JwtDto jwtDto) {
-        String emailValidado = ValidadorDeEmail.validarEmail(email);
-        return carteiraJdbcTemplateDao.visualizarSaldo(emailValidado);
+    public ResponseSaldoCarteiraDBDTO visualizarSaldo(JwtDto jwtDto) {
+         String email = jwtDto.getEmail();
+        return carteiraJdbcTemplateDao.visualizarSaldo(email);
     }
 
     public ResponseSaldoCarteiraDBDTO depositarValor(DepositarValorRequestDTO depositarValorRequestDTO, JwtDto jwtDto) {
-        String email = ValidadorDeEmail
-                .validarEmail(depositarValorRequestDTO.getEmail()
-                );
+        String email = jwtDto.getEmail();
         float valor = ValidadorDeValoresNegativos
                 .validarValorFloat(depositarValorRequestDTO.getValor()
                 );
@@ -39,9 +37,7 @@ public class CarteiraService {
     }
 
     public ResponseSaldoCarteiraDBDTO sacarValor(SacarValorRequestDTO sacarValorRequestDTO, JwtDto jwtDto) {
-        String email = ValidadorDeEmail
-                .validarEmail(sacarValorRequestDTO.getEmail()
-                );
+        String email = jwtDto.getEmail();
         float valor = ValidadorDeValoresNegativos
                 .validarValorFloat(sacarValorRequestDTO.getValor()
                 );
@@ -49,8 +45,8 @@ public class CarteiraService {
         return carteiraJdbcTemplateDao.sacarValor(email, valor, dataDaTransacao);
     }
 
-    public List<MovimentacaoResponseDBDto> buscarMovimentacoes(String email, JwtDto jwtDto) {
-        String emailValidado = ValidadorDeEmail.validarEmail(email);
-        return carteiraJdbcTemplateDao.buscarMovimentacoes(emailValidado);
+    public List<MovimentacaoResponseDBDto> buscarMovimentacoes(JwtDto jwtDto) {
+        String email = jwtDto.getEmail();
+        return carteiraJdbcTemplateDao.buscarMovimentacoes(email);
     }
 }

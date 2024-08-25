@@ -98,9 +98,7 @@ public class EmpresaService {
     public void analisarProposta(RequestAnalisarPropostaDto requestAnalisarPropostaDto, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", requestAnalisarPropostaDto);
 
-        //String emailEmpresa = jwtDto.getEmail();
-
-        String emailEmpresa = requestAnalisarPropostaDto.getEmailEmpresa();
+        String emailEmpresa = jwtDto.getEmail();
 
         int idPropostaValidado =
                 ValidadorDeProposta.validarIdProposta(requestAnalisarPropostaDto.getIdProposta());
