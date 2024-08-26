@@ -41,7 +41,7 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
 
         empresaService.salvarDadosCadastrais(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa cadastrada com sucesso!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_EMPRESA).build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarEmpresa", startTime);
         return response;
     }
@@ -56,10 +56,9 @@ public class EmpresaController {
     public ResponseEntity<?> cadastrarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarProjeto", request);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.salvarDadosProjeto(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto cadastrado com sucesso!").build());
+        empresaService.salvarDadosProjeto(request);
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_PROJETO).build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarProjeto", startTime);
         return response;
     }
@@ -102,7 +101,7 @@ public class EmpresaController {
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         empresaService.avaliarFreelancer(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_AVALIACAO_FREELANCER).build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarFreelancer", startTime);
         return response;
     }
@@ -115,9 +114,8 @@ public class EmpresaController {
     @GetMapping("/v1/listar-freelancers")
     public ResponseEntity<?> listaFreelancer(@RequestHeader("Authorization") String token) {
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<ResponseFreelancerDto> lista = empresaService.listarFreelancer(jwtDto);
+        List<ResponseFreelancerDto> lista = empresaService.listarFreelancer();
         LoggerUtils.logElapsedTime(LOGGER, "listarFreelancer", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
@@ -145,9 +143,8 @@ public class EmpresaController {
     public ResponseEntity<?> buscarPropostaPorProjeto(@RequestHeader("Authorization") String token,
                                                       @RequestBody RequestIdDto requestIdDto) {
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(requestIdDto, jwtDto);
+        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(requestIdDto);
         LoggerUtils.logElapsedTime(LOGGER, "buscarPropostaPorProjeto", startTime);
         return new ResponseEntity<>(propostas, HttpStatus.OK);
     }
@@ -162,10 +159,9 @@ public class EmpresaController {
     public ResponseEntity<?> atualizarEmpresa(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarEmpresa", request);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.atualizarDadosEmpresa(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa atualizada com sucesso!").build());
+        empresaService.atualizarDadosEmpresa(request);
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_ATUALIZACAO_EMPRESA).build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarEmpresa", startTime);
         return response;
     }
@@ -180,10 +176,9 @@ public class EmpresaController {
     public ResponseEntity<?> atualizarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarProjeto", request);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        empresaService.atualizarDadosProjeto(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto atualizado com sucesso!").build());
+        empresaService.atualizarDadosProjeto(request);
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_PROJETO_ATUALIZADO).build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarProjeto", startTime);
         return response;
     }
@@ -200,7 +195,7 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
         empresaService.excluirProjetoSeNaoAssociado(requestIdDto);
         LoggerUtils.logElapsedTime(LOGGER, "excluirProjeto", startTime);
-        return ResponseEntity.ok(StandardResponse.builder().message("Projeto excluído com sucesso!").build());
+        return ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_PROJETO_EXCLUIDO).build());
     }
 
     @Operation(summary = "Validar entrega do projeto")

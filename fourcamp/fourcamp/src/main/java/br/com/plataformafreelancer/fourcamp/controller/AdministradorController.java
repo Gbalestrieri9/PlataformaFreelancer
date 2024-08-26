@@ -24,24 +24,22 @@ public class AdministradorController {
     AdministradorService administradorService;
 
     @PostMapping("/v1/cadastrar-administrador")
-    public ResponseEntity<?> cadastrarAdministrador(@RequestHeader("Authorization") String token, @RequestBody RequestAdministradorDto request) {
+    public ResponseEntity<?> cadastrarAdministrador(@RequestBody RequestAdministradorDto request) {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarAdministrador", request);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        administradorService.salvarAdministrador(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Administrador cadastrado com sucesso!").build());
+        administradorService.salvarAdministrador(request);
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_ADM_APROVADO).build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarAdministrador", startTime);
         return response;
     }
 
     @PostMapping("/v1/aprovar-projeto")
-    public ResponseEntity<?> aprovarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
+    public ResponseEntity<?> aprovarProjeto(@RequestBody RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
         LoggerUtils.logRequestStart(LOGGER, "aprovarProjeto", requestAprovarEntregaProjetoDto);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        administradorService.aprovarProjeto(requestAprovarEntregaProjetoDto, jwtDto);
+        administradorService.aprovarProjeto(requestAprovarEntregaProjetoDto);
 
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(
                 StandardResponse.builder().message(ConstantesPtBr.SUCESSO_PROJETO_APROVADO).build());
@@ -50,11 +48,10 @@ public class AdministradorController {
     }
 
     @GetMapping("/v1/projetos-pendentes")
-    public ResponseEntity<?> listaProjetosPendente(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> listaProjetosPendente() {
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        List<Projeto> lista = administradorService.listarProjetoPendente(jwtDto);
+        List<Projeto> lista = administradorService.listarProjetoPendente();
         LoggerUtils.logElapsedTime(LOGGER, "listaProjetosPendente", startTime);
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }

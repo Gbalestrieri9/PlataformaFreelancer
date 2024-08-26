@@ -77,7 +77,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosCadastrais", System.currentTimeMillis());
     }
 
-    public void salvarDadosProjeto(RequestProjetoDto request, JwtDto jwtDto) {
+    public void salvarDadosProjeto(RequestProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosProjeto", request);
 
         Projeto projeto = Projeto.builder()
@@ -128,7 +128,7 @@ public class EmpresaService {
         LoggerUtils.logRequestStart(LOGGER, "avaliarFreelancer", request);
 
         Avaliacao avaliacao = Avaliacao.builder()
-                .empresaId(request.getEmpresaId())
+                .empresaId(jwtDto.getId())
                 .freelancerId(request.getFreelancerId())
                 .projetoId(request.getProjetoId())
                 .comentario(request.getComentario())
@@ -141,7 +141,7 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "avaliarFreelancer", System.currentTimeMillis());
     }
 
-    public List<ResponseFreelancerDto> listarFreelancer(JwtDto jwtDto) {
+    public List<ResponseFreelancerDto> listarFreelancer() {
         List<ResponseFreelancerDto> lista = empresaJdbcTemplateDao.listarFreelacer();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
@@ -164,7 +164,7 @@ public class EmpresaService {
         }
     }
 
-    public List<ResponsePropostaDto> listarPropostasPorProjeto(RequestIdDto requestIdDto, JwtDto jwtDto) {
+    public List<ResponsePropostaDto> listarPropostasPorProjeto(RequestIdDto requestIdDto) {
 
         if (!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())) {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
@@ -177,13 +177,13 @@ public class EmpresaService {
         return propostas;
     }
 
-    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa, JwtDto jwtDto) {
+    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa) {
         ValidadorDeTelefones.validarNumeroTelefone(empresa.getTelefone());
 
         empresaJdbcTemplateDao.atualizarDadosEmpresa(empresa);
     }
 
-    public void atualizarDadosProjeto(RequestAtualizarProjetoDto projeto, JwtDto jwtDto) {
+    public void atualizarDadosProjeto(RequestAtualizarProjetoDto projeto) {
         empresaJdbcTemplateDao.atualizarProjeto(projeto);
     }
 
@@ -207,7 +207,7 @@ public class EmpresaService {
         if (!ValidadorDeNumerosPositivos.validarNumero(requestValidarEntregaProjetoDto.getIdEmpresa())) {
             throw new ValorInvalidoException(ConstantesPtBr.ID_INVALIDO);
         } else {
-            idEmpresaValidado = Integer.parseInt(requestValidarEntregaProjetoDto.getIdEmpresa());
+            idEmpresaValidado = jwtDto.getId();
         }
 
         StatusValidacaoEntrega statusValidacaoEntregaValidado =

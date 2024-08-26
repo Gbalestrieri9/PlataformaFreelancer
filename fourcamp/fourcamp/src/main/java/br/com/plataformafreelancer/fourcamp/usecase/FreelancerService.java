@@ -167,7 +167,7 @@ public class FreelancerService {
         return lista;
     }
 
-    public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer, JwtDto jwtDto) {
+    public void atualizarDadosFreelancer(RequestAtualizarFreelancerDto freelancer) {
         ValidadorDeTelefones.validarNumeroTelefone(freelancer.getTelefone());
 
         ResponseEnderecoDto endereco = ValidadorDeCep.buscaEnderecoPor(freelancer.getCep());
@@ -188,8 +188,7 @@ public class FreelancerService {
         int idDoProjetoValidado
                 = Integer.parseInt(entregarProjetoRequestDto.getIdProjeto());
         int idDoFreelancerValidado
-                = Integer.parseInt(entregarProjetoRequestDto.getIdFreelancer());
-
+                = jwtDto.getId();
         RegistarEntregaDto registrarEntregaDto = RegistarEntregaDto
                 .builder()
                 .idFreelancer(idDoFreelancerValidado)
