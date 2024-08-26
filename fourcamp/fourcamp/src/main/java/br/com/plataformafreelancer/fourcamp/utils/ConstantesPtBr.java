@@ -17,4 +17,15 @@ public class ConstantesPtBr {
     public static final String ID_EMPRESA_INVALIDO = "Id da empresa inválido.";
     public static final String EMAIL_INVALIDO = "E-mail inválido.";
     public static final String USUARIO_OU_SENHA_INVALIDOS = "Usuário ou senha inválido.";
+    public static final String SUCESSO_CADASTRO_ADM_APROVADO = "Administrador cadastrado com sucesso.";
+    public static final String SUCESSO_CADASTRO_EMPRESA = "Empresa cadastrada com sucesso!";
+    public static final String SUCESSO_CADASTRO_PROJETO = "Projeto cadastrado com sucesso!";
+    public static final String SUCESSO_AVALIACAO_FREELANCER = "Avaliação enviada com sucesso!";
+    public static final String SUCESSO_ATUALIZACAO_EMPRESA = "Empresa atualizada com sucesso!";
+    public static final String SUCESSO_PROJETO_ATUALIZADO = "Projeto atualizado com sucesso!";
+    public static final String SUCESSO_PROJETO_EXCLUIDO = "Projeto excluído com sucesso!";
+    public static final String SUCESSO_FREELANCER_ATUALIZADO = "Freelancer atualizado com sucesso!";
+    public static final String SUCESSO_AVALIACAO_EMPRESA = "Avaliação enviada com sucesso!";
+    public static final String SUCESSO_ENVIO_PROPOSTA = "Proposta enviada!";
+    public static final String SUCESSO_CADASTRO_FREELANCER = "Freelancer cadastrado com sucesso!";
 }
