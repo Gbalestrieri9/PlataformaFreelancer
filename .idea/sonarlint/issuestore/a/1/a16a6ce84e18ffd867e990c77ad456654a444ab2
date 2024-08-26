@@ -1,3 +1,5 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ô¢¬å•2J$2625fbb7-fe74-4da3-91e4-618addb7b64b
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8ô¢¬å•2J$cc4f7a14-ffd3-45f0-8467-8d9c52ed8a1b
+³
+java:S1128	"kRemove this unused import 'br.com.plataformafreelancer.fourcamp.utils.validators.general.ValidadorDeEmail'.(ÌÚ‰²ûÿÿÿÿ8ôðÈß˜2J$88f6ec69-8215-42d0-9c5b-b83f6a2c53d9

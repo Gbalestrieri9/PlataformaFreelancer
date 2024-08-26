@@ -20,7 +20,7 @@ public class ProjetoDtoRowMapper implements RowMapper<Projeto> {
                 .statusValidacaoEntrega(StatusValidacaoEntrega.valueOf(rs.getString("status")))
                 .dataCriacao(rs.getString("data_criacao"))
                 .empresaId(rs.getInt("empresa_id"))
-                .freelancerId(rs.getInt("freelancer_id"))
+               // .freelancerId(rs.getInt("freelancer_id"))
                 .habilidades(Arrays.asList(rs.getString("habilidades").split(",")))
                 .build();
     }

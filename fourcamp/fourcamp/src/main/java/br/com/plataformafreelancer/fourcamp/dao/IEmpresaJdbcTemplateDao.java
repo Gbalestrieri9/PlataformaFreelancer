@@ -26,7 +26,7 @@ public interface IEmpresaJdbcTemplateDao {
 
     ResponseFreelancerCompletaDto obterDetalhesFreelancer(Integer freelancerId);
 
-    List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId);
+    List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId, Integer idEmpresa);
 
     void atualizarProjeto(RequestAtualizarProjetoDto request);
 

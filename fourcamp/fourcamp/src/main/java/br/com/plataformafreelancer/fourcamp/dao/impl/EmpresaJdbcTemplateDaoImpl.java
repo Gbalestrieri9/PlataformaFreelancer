@@ -15,6 +15,7 @@ import br.com.plataformafreelancer.fourcamp.model.Empresa;
 import br.com.plataformafreelancer.fourcamp.model.Projeto;
 import br.com.plataformafreelancer.fourcamp.model.ValidarEntregaProjeto;
 import br.com.plataformafreelancer.fourcamp.utils.LoggerUtils;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,14 +81,15 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
     @Override
     public void analisarProposta(SalvarAnalisePropostaDto salvarAnalisePropostaDto) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", salvarAnalisePropostaDto);
-        String sql = "CALL public.atualizar_status_proposta(?, ?, ?, ?, ?)";
+        String sql = "CALL public.atualizar_status_proposta(?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.execute(sql, (PreparedStatementCallback<Void>) preparedStatement -> {
-            preparedStatement.setString(1, salvarAnalisePropostaDto.getEmailEmpresa());
-            preparedStatement.setInt(2, salvarAnalisePropostaDto.getIdProposta());
-            preparedStatement.setString(3, String.valueOf(salvarAnalisePropostaDto.getStatusProposta()));
-            preparedStatement.setString(4, salvarAnalisePropostaDto.getDescricaoTransacao());
-            preparedStatement.setObject(5, salvarAnalisePropostaDto.getDataAtual());
+            preparedStatement.setInt(1, salvarAnalisePropostaDto.getIdEmpresa());
+            preparedStatement.setString(2, salvarAnalisePropostaDto.getEmailEmpresa());
+            preparedStatement.setInt(3, salvarAnalisePropostaDto.getIdProposta());
+            preparedStatement.setString(4, String.valueOf(salvarAnalisePropostaDto.getStatusProposta()));
+            preparedStatement.setString(5, salvarAnalisePropostaDto.getDescricaoTransacao());
+            preparedStatement.setObject(6, salvarAnalisePropostaDto.getDataAtual());
             preparedStatement.execute();
             return null;
         });
@@ -123,10 +125,9 @@ public class EmpresaJdbcTemplateDaoImpl implements IEmpresaJdbcTemplateDao {
     }
 
     @Override
-    public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer projetoId) {
-        String sql = "SELECT * FROM listar_propostas_por_projeto(?)";
-
-        return jdbcTemplate.query(sql, new Object[]{projetoId}, new PropostaRowMapper());
+    public List<ResponsePropostaDto> listarPropostasPorProjeto(Integer idProjeto, Integer idEmpresa) {
+        String sql = "SELECT * FROM listar_propostas_por_projeto(?, ?)";
+        return jdbcTemplate.query(sql, new Object[]{idProjeto, idEmpresa}, new PropostaRowMapper());
     }
 
     public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto request) {

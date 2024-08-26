@@ -41,7 +41,11 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
 
         empresaService.salvarDadosCadastrais(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa cadastrada com sucesso!").build());
+        ResponseEntity<StandardResponse> response
+                = ResponseEntity.ok(StandardResponse.builder()
+                .message("Empresa cadastrada com sucesso!")
+                .build()
+        );
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarEmpresa", startTime);
         return response;
     }
@@ -59,7 +63,11 @@ public class EmpresaController {
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         empresaService.salvarDadosProjeto(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Projeto cadastrado com sucesso!").build());
+        ResponseEntity<StandardResponse> response
+                = ResponseEntity.ok(StandardResponse.builder()
+                .message("Projeto cadastrado com sucesso!")
+                .build()
+        );
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarProjeto", startTime);
         return response;
     }
@@ -71,7 +79,8 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/analisar-proposta")
-    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token, @RequestBody RequestAnalisarPropostaDto request) {
+    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token,
+                                              @RequestBody RequestAnalisarPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
@@ -165,7 +174,11 @@ public class EmpresaController {
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         empresaService.atualizarDadosEmpresa(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Empresa atualizada com sucesso!").build());
+        ResponseEntity<StandardResponse> response
+                = ResponseEntity.ok(StandardResponse.builder()
+                .message("Empresa atualizada com sucesso!")
+                .build()
+        );
         LoggerUtils.logElapsedTime(LOGGER, "atualizarEmpresa", startTime);
         return response;
     }

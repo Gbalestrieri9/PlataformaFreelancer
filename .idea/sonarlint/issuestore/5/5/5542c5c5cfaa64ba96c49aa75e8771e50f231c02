@@ -1,25 +1,25 @@
 
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8®Õ½Þ˜2J$a7d56962-6a56-4e07-b21d-ebd795da1344
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8®Õ½Þ˜2J$0031ef79-75e7-4d43-b221-85e62bbeb2f1
 n
-java:S1452'"&Remove usage of generic wildcard type.(³Íµóùÿÿÿÿ8»Õ½Þ˜2J$c4c57deb-fb04-4d60-ba85-288a50df8a6a
+java:S1452'"&Remove usage of generic wildcard type.(³Íµóùÿÿÿÿ8»Õ½Þ˜2J$a9d54126-4f15-4a9f-bb55-d51604b6c318
 i
-java:S14528"&Remove usage of generic wildcard type.(Ãöþ÷8¿Õ½Þ˜2J$4f84ae11-a3ed-4698-8bb3-320e38a99671
+java:S1452<"&Remove usage of generic wildcard type.(Ãöþ÷8¿Õ½Þ˜2J$8bf56b74-7e7e-4b4e-8660-ec6f7f0afa5e
 i
-java:S1452J"&Remove usage of generic wildcard type.(ð¡»¨8ÄÕ½Þ˜2J$18f3c337-1251-4cff-b8c2-7c85c2b764fd
+java:S1452R"&Remove usage of generic wildcard type.(¦®åü8ÄÕ½Þ˜2J$742250d2-956e-493a-b43f-df9830712cbd
 i
-java:S1452c"&Remove usage of generic wildcard type.(¾ŸÝ8ÈÕ½Þ˜2J$17cd2293-9c17-43c8-8d07-e546237c1c25
+java:S1452l"&Remove usage of generic wildcard type.(¾ŸÝ8ÈÕ½Þ˜2J$072a1c65-cc1d-4af4-bb40-de01600520f0
 h
-java:S1452t"&Remove usage of generic wildcard type.(µ–¾C8ÎÕ½Þ˜2J$80d395c5-6432-49f1-a238-90d2e333c2a0
+java:S1452}"&Remove usage of generic wildcard type.(µ–¾C8ÎÕ½Þ˜2J$34a90cfc-0180-4711-8191-bea116fc9424
 o
-java:S1452„"&Remove usage of generic wildcard type.(×ªš¢üÿÿÿÿ8ÔÕ½Þ˜2J$7465ea69-e3ed-42df-b29c-8b71dec0457e
+java:S1452"&Remove usage of generic wildcard type.(×ªš¢üÿÿÿÿ8¡Å…à˜2J$9e3da240-ba47-4642-a23e-708c7053c9f2
 i
-java:S1452‘"&Remove usage of generic wildcard type.(¡¯”	8ÙÕ½Þ˜2J$01abeffa-2649-41f8-9e60-179444d9c242
+java:S1452š"&Remove usage of generic wildcard type.(¡¯”	8§Å…à˜2J$137e51e0-1041-4119-a8a1-16ad71554428
 o
-java:S1452¢"&Remove usage of generic wildcard type.(þéÑßøÿÿÿÿ8ßÕ½Þ˜2J$807aac4a-610c-45ac-a258-45baa177d736
+java:S1452«"&Remove usage of generic wildcard type.(þéÑßøÿÿÿÿ8¬Å…à˜2J$89304677-e274-4ad1-826f-bb6a21892dda
 o
-java:S1452´"&Remove usage of generic wildcard type.(êÛ×òþÿÿÿÿ8íÕ½Þ˜2J$958676af-5b94-405e-8524-98eb27d7382a
+java:S1452Á"&Remove usage of generic wildcard type.(êÛ×òþÿÿÿÿ8²Å…à˜2J$56c2719d-d584-4865-894b-826387b0f134
 o
-java:S1452Æ"&Remove usage of generic wildcard type.(×•„øÿÿÿÿ8üÕ½Þ˜2J$ce8f8ede-a461-4af3-bbed-be382fcbed16
+java:S1452Ó"&Remove usage of generic wildcard type.(×•„øÿÿÿÿ8¶Å…à˜2J$e62a5a01-a8e3-4829-9cc3-a11f2fb85c37
 j
-java:S1452Ö"&Remove usage of generic wildcard type.(Ÿ«€õ8ƒÖ½Þ˜2J$a03a0281-d730-4c72-8b90-d49240aef83a
+java:S1452ã"&Remove usage of generic wildcard type.(Ÿ«€õ8¼Å…à˜2J$572812ec-7bf1-4bd9-8b27-61b9f45cb3be

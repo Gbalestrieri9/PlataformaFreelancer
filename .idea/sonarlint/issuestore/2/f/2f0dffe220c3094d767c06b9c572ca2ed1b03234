@@ -1,5 +1,4 @@
 
-d
-java:S6813"BRemove this field injection and use constructor injection instead.(…Å•ûÿÿÿÿ8íıà·˜2
-a
-java:S1128"?Remove this unused import 'io.jsonwebtoken.SignatureAlgorithm'.(¡¸Îùÿÿÿÿ8öıà·˜2
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ª®ç˜2
+X	java:S125-"<This block of commented-out lines of code should be removed.(„§ñ£8ª®ç˜2

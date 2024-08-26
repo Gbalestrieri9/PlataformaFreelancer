@@ -205,7 +205,11 @@ xfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/m
 jfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/RequestLoginDto.java,e\c\ec3e39a2c0a9c5f07437e4a7eccadab3ab2c9d47
 ù
 mfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dao/impl/mapper/ProjetoDtoRowMapper.java,8\c\8c99700f7a2f1cee91e35bdb56343423bd6ad916
-õ
-kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/RequestIdProjeto.java,2\2\22736aa1cf2411e32b4a55b8660379ccc307e275
 ó
 gfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/RequestIdDto.java,1\3\13efddce36901653a97db5cf039098c77b27b901
+ú
+lfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/requestDtos/RequestProjetoDto.java,a\3\a316eda7804d4277037532d389000868320b379c
+õ
+kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions/NaoEncontradoException.java,4\0\409759c043d1747f8a548306bfdfe3a8491fedd6
+õ
+kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions/SenhaInvalidaException.java,7\5\7525baa874f1f652c0a8de4ddec9fd17bb593ba6

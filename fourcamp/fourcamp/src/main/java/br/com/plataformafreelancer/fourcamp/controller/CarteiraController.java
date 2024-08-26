@@ -83,7 +83,8 @@ public class CarteiraController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/depositar-valor")
-    public ResponseEntity<?> depositarValor(@RequestHeader("Authorization") String token, @RequestBody DepositarValorRequestDTO depositarValorRequestDTO) {
+    public ResponseEntity<?> depositarValor(@RequestHeader("Authorization") String token,
+                                            @RequestBody DepositarValorRequestDTO depositarValorRequestDTO) {
         LoggerUtils.logRequestStart(LOGGER, "depositarValor", depositarValorRequestDTO);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);

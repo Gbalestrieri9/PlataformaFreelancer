@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class SalvarAnalisePropostaDto {
+    int idEmpresa;
     String emailEmpresa;
     int idProposta;
     StatusProposta statusProposta;
