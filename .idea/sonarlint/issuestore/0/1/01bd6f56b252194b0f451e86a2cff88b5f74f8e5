@@ -1,7 +1,7 @@
 
 …
-java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄÞ8Î¡¨þ˜2J$6c5e917a-2a95-4cb5-b81e-10355e0c5a3c
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄÞ8Î¡¨þ˜2J$3894d649-4269-4dcf-b130-ab1b512adf73
 q
-java:S1172¿"-Remove this unused method parameter "jwtDto".(ÀŒ€Í8ˆ¨©þ˜2J$51b39071-f533-485e-a3ed-b58284d05321
+java:S1172¿"-Remove this unused method parameter "jwtDto".(ÀŒ€Í8ˆ¨©þ˜2J$c74e0226-b58f-49bd-9cf8-34110bf81610
 ¦
-java:S1128"cRemove this unused import 'br.com.plataformafreelancer.fourcamp.exceptions.EmailInvalidoException'.(ÜùÛ“8Ô©…€™2J$00f72aac-eb1d-428d-8380-2b3b25552aa8
+java:S1128"cRemove this unused import 'br.com.plataformafreelancer.fourcamp.exceptions.EmailInvalidoException'.(ÜùÛ“8Ô©…€™2J$33b18a64-ea25-465c-9efd-b644e32f2c19

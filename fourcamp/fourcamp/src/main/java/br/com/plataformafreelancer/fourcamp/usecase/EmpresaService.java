@@ -199,7 +199,7 @@ public class EmpresaService {
     }
 
     public void excluirProjetoSeNaoAssociado(RequestIdDto requestIdDto) {
-        if(!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
+        if(ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
             empresaJdbcTemplateDao.excluirProjetoSeNaoAssociado(requestIdDto.getId());
         }
     }
