@@ -34,7 +34,7 @@ public enum ErrorCode {
     DADO_INVALIDO("Dado invalido no Json", "Dado Inválido no Json"),
     OUTRO_ERRO("Outro erro", "Erro desconhecido"),
     VALOR_INVALIDO_VALOR_DEPOSITO("Valor inválido", "O valor informado para depósito é inválido: "),
-    SAQUE_VALOR_INVÁLIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível."),
+    SAQUE_VALOR_INVALIDO("Valor do saque maior que o valor disponível", "Valor inválido. Saque não pode ser maior que o valor disponível."),
     ID_FREELANCER_FORMATO_INVALIDO("Id não é um número", "ID do freelancer inválido, por favor informar um ID válido."),
     ID_FREELANCER_ID_INVALIDO("ID do freelancer é um número negativo ou zero", "ID do freelancer inválido, por favor informar um ID válido."),
     VALOR_PROPOSTA_INVALIDO("Formato do valor inválido ou não é um número", "Valor da proposta inválido"),
@@ -48,7 +48,10 @@ public enum ErrorCode {
     PROJETO_AGUARDANDO_APROVACAO_ADM("Aguardando aprovação do Administrador.", "O projeto está aguardando a valicação do Administrador"),
     PROJETO_NAO_PERTENCE_A_EMPRESA("Empresa não está associada ao projeto", "Não foi possível atualizar este projeto, entre em contato com o administrador."),
     PROJETO_NAO_DISPONIVEL_PARA_ENCERRAMENTO("Projeto não disponível para encerramento.", "Projeto não disponível para encerramento."),
-    EMAIL_OU_SENHA_INVALIDOS("O e-mail informado não existe na base de dados.", "E-mail ou senha inválidos");
+    EMAIL_OU_SENHA_INVALIDOS("O e-mail informado não existe na base de dados.", "E-mail ou senha inválidos"),
+    PROJETO_AGUARDANDO_VALIDACAO_ADMINISTRADOR("Projeto aguardando aprovação do Administrador.", "Projeto aguardando aprovação do Administrador."),
+    PROJETO_ERRO_AO_ATUALIZAR_STATUS("Projeto não está associado a empresa.", "Não foi possível atualizar o status deste projeto."),
+    EMPRESA_NAO_ASSOCIADA_AO_PROJETO("Empresa não está associada ao projeto.", "Não foi possível obter detalhes para este projeto.");
 
 
     private final String message;

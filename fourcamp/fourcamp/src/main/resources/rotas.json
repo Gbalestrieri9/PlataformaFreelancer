@@ -84,7 +84,7 @@
   },
   {
     "path": "/empresa/v1/cadastrar-empresa",
-    "roles": ["EMPRESA"]
+    "roles": []
   },
   {
     "path": "/empresa/v1/cadastrar-projeto",

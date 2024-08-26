@@ -41,7 +41,9 @@ public class EmpresaController {
         long startTime = System.currentTimeMillis();
 
         empresaService.salvarDadosCadastrais(request);
+
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_EMPRESA).build());
+
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarEmpresa", startTime);
         return response;
     }
@@ -57,8 +59,12 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarProjeto", request);
         long startTime = System.currentTimeMillis();
 
-        empresaService.salvarDadosProjeto(request);
+
+        empresaService.salvarDadosProjeto(request, jwtDto);
+        
+        
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_PROJETO).build());
+
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarProjeto", startTime);
         return response;
     }
@@ -70,7 +76,8 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/analisar-proposta")
-    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token, @RequestBody RequestAnalisarPropostaDto request) {
+    public ResponseEntity<?> analisarProposta(@RequestHeader("Authorization") String token,
+                                              @RequestBody RequestAnalisarPropostaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", request);
         long startTime = System.currentTimeMillis();
         JwtDto jwtDto = JwtUtil.decodeToken(token);
@@ -160,8 +167,12 @@ public class EmpresaController {
         LoggerUtils.logRequestStart(LOGGER, "atualizarEmpresa", request);
         long startTime = System.currentTimeMillis();
 
-        empresaService.atualizarDadosEmpresa(request);
+
+        empresaService.atualizarDadosEmpresa(request, jwtDto);
+       
+        
         ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_ATUALIZACAO_EMPRESA).build());
+
         LoggerUtils.logElapsedTime(LOGGER, "atualizarEmpresa", startTime);
         return response;
     }

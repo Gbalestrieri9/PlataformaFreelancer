@@ -1,25 +1,25 @@
 
 ’
-java:S1192O"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2J$3cd8ff7c-a760-4f23-9f85-0537b16566e0
+java:S1192O"ODefine a constant instead of duplicating this literal "avaliarEmpresa" 4 times.(ü°×©8áÁŞ±˜2J$9ee147e8-4950-4b42-b9cc-a8a7221bc08c
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2J$4a3561df-6305-4f96-ab95-2155348a9571
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8èÁŞ±˜2J$c5ed5002-9034-4ad8-8f16-2ec502b1f8c7
 …
-java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2J$1529fa57-c8c9-42eb-8bb4-367274c6ebec
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8êÁŞ±˜2J$55354686-b16c-4869-9289-ecf64020d55e
 n
-java:S1452*"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2J$edc3206a-cbe2-4d31-9f5f-adde2fc33313
+java:S1452*"&Remove usage of generic wildcard type.(–ßÏ‘ûÿÿÿÿ8ŠÂŞ±˜2J$08a31559-77fb-4a1b-b161-478d273a1911
 i
-java:S1452;"&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2J$2d4e85fe-34dd-41ef-a699-c119ac2b93c8
+java:S1452;"&Remove usage of generic wildcard type.(±°¯«8•ÂŞ±˜2J$c95957da-565c-45a8-8d94-65b356690071
 n
-java:S1452N"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2J$2dabfbf4-65a2-4223-b8d9-b99571ce40ed
+java:S1452N"&Remove usage of generic wildcard type.(¦¡ú…øÿÿÿÿ8ŸÂŞ±˜2J$8634b1f2-f5f8-4616-9397-f049b11b2864
 i
-java:S1452_"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2J$4b4d4dbf-000d-4b84-bcd0-8ca69be2d1ad
+java:S1452_"&Remove usage of generic wildcard type.(å¬¨©8©ÂŞ±˜2J$6840984e-40fb-4a38-837d-9c05f6ead604
 i
-java:S1452n"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2J$519e9674-2e8f-4872-816c-ed9813a6a431
+java:S1452n"&Remove usage of generic wildcard type.(ôßÔÏ8¯ÂŞ±˜2J$805586e0-a4de-42d0-b80c-3faa00e431ac
 i
-java:S1452~"&Remove usage of generic wildcard type.(¢çãß8¶ÂŞ±˜2J$77543035-fa56-4a03-9d63-a18b3d32939a
+java:S1452~"&Remove usage of generic wildcard type.(¢çãß8ÇÂŞ±˜2J$1fb3cef6-d52a-4af2-92dc-ec453c073b28
 j
-java:S1452Œ"&Remove usage of generic wildcard type.( Ü“ò8½ÂŞ±˜2J$974cbfaa-90f9-4f34-8fee-5de1b38f46f1
+java:S1452Œ"&Remove usage of generic wildcard type.( Ü“ò8ÕÂŞ±˜2J$3df59349-7f56-48aa-aa4a-039adb48379f
 j
-java:S1452œ"&Remove usage of generic wildcard type.(íšò8ÇÂŞ±˜2J$5a3b0646-0691-4b8b-955f-4cd50f48507f
+java:S1452œ"&Remove usage of generic wildcard type.(íšò8Ñ”Çß˜2J$8f2126c3-0666-4000-8317-89051d2d736a
 o
-java:S1452®"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8ÕÂŞ±˜2J$9c57c965-18de-4676-83d2-0b5e338fcd5a
+java:S1452®"&Remove usage of generic wildcard type.(•Éëİùÿÿÿÿ8Ó”Çß˜2J$d926c077-5209-4c63-970f-68b10105e732

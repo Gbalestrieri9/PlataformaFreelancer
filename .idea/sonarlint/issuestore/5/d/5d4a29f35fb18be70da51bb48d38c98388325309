@@ -1,7 +1,7 @@
 
 …
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄÞ8ðÆ‚Þ—2J$b06a68c7-f376-48b6-9939-8a3529fdd42d
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄÞ8ðÆ‚Þ—2J$323c46e6-42cb-4f81-b09a-4cd9022fe1e2
 y
-java:S1874u"6Remove this use of "queryForObject"; it is deprecated.(ÔÛŠÏ8•Ç‚Þ—2J$1e6a8152-11f2-45a5-b53c-2ebcad060b16
+java:S1874u"6Remove this use of "queryForObject"; it is deprecated.(ÔÛŠÏ8•Ç‚Þ—2J$6d3733a8-de1c-4849-a8d4-1d142caff8d8
 o
-java:S1874|"-Remove this use of "query"; it is deprecated.(º³˜N8šÇ‚Þ—2J$13421267-ce78-4e60-8c0c-73147e54dd83
+java:S1874|"-Remove this use of "query"; it is deprecated.(º³˜N8šÇ‚Þ—2J$1de9494d-cb7f-4b63-b663-6c62df4676b5

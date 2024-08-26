@@ -14,6 +14,9 @@ public class ConstantesPtBr {
     public static final String SUCESSO_REGISTRO_VALIDACAO_EMPRESA = "Sua resposta foi registrada com sucesso.";
     public static final String STATUS_VALIDACAO_INVALIDO = "Status inválido! Valores aceitos: ACEITA ou RECUSADA.";
     public static final String SUCESSO_PROJETO_APROVADO = "Projeto aprovado com sucesso.";
+    public static final String ID_EMPRESA_INVALIDO = "Id da empresa inválido.";
+    public static final String EMAIL_INVALIDO = "E-mail inválido.";
+    public static final String USUARIO_OU_SENHA_INVALIDOS = "Usuário ou senha inválido.";
     public static final String SUCESSO_CADASTRO_ADM_APROVADO = "Administrador cadastrado com sucesso.";
     public static final String SUCESSO_CADASTRO_EMPRESA = "Empresa cadastrada com sucesso!";
     public static final String SUCESSO_CADASTRO_PROJETO = "Projeto cadastrado com sucesso!";

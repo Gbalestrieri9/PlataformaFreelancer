@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class RequestAnalisarPropostaDto {
-    private String emailEmpresa;
     private String idProposta;
     private String statusProposta;
 }

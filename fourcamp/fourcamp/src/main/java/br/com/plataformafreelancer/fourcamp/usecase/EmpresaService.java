@@ -10,6 +10,7 @@ import br.com.plataformafreelancer.fourcamp.enuns.ErrorCode;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusProposta;
 import br.com.plataformafreelancer.fourcamp.enuns.StatusValidacaoEntrega;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
+import br.com.plataformafreelancer.fourcamp.exceptions.EmailInvalidoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.IdInvalidoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.NaoEncontradoException;
 import br.com.plataformafreelancer.fourcamp.exceptions.ValorInvalidoException;
@@ -77,7 +78,15 @@ public class EmpresaService {
         LoggerUtils.logElapsedTime(LOGGER, "salvarDadosCadastrais", System.currentTimeMillis());
     }
 
-    public void salvarDadosProjeto(RequestProjetoDto request) {
+    public void salvarDadosProjeto(RequestProjetoDto request, JwtDto jwtDto) {
+        int idEmpresaValidado;
+
+        if(ValidadorDeNumerosPositivos.validarNumero(jwtDto.getId())){
+            idEmpresaValidado = jwtDto.getId();
+        } else {
+            throw new IdInvalidoException(ConstantesPtBr.ID_EMPRESA_INVALIDO);
+        }
+
         LoggerUtils.logRequestStart(LOGGER, "salvarDadosProjeto", request);
 
         Projeto projeto = Projeto.builder()
@@ -85,7 +94,7 @@ public class EmpresaService {
                 .descricao(request.getDescricao())
                 .orcamento(request.getOrcamento())
                 .prazo(request.getPrazo())
-                .empresaId(request.getIdEmpresa())
+                .empresaId(idEmpresaValidado)
                 .habilidades(request.getHabilidades())
                 .statusValidacaoEntrega(StatusValidacaoEntrega.ATIVO)
                 .dataCriacao(DatasUtil.coletarDataHoraAtual())
@@ -97,8 +106,6 @@ public class EmpresaService {
 
     public void analisarProposta(RequestAnalisarPropostaDto requestAnalisarPropostaDto, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "analisarProposta", requestAnalisarPropostaDto);
-
-        String emailEmpresa = jwtDto.getEmail();
 
         int idPropostaValidado =
                 ValidadorDeProposta.validarIdProposta(requestAnalisarPropostaDto.getIdProposta());
@@ -113,7 +120,8 @@ public class EmpresaService {
         SalvarAnalisePropostaDto salvarAnalisePropostaDto =
                 SalvarAnalisePropostaDto
                         .builder()
-                        .emailEmpresa(emailEmpresa)
+                        .idEmpresa(jwtDto.getId())
+                        .emailEmpresa(jwtDto.getEmail())
                         .idProposta(idPropostaValidado)
                         .statusProposta(statusPropostaValidado)
                         .descricaoTransacao(descricaoDaTransacao)
@@ -170,7 +178,10 @@ public class EmpresaService {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
         }
 
-        List<ResponsePropostaDto> propostas = empresaJdbcTemplateDao.listarPropostasPorProjeto(requestIdDto.getId());
+        int idProjeto = requestIdDto.getId();
+        int idEmpresa = jwtDto.getId();
+
+        List<ResponsePropostaDto> propostas = empresaJdbcTemplateDao.listarPropostasPorProjeto(idProjeto, idEmpresa);
         if (propostas == null || propostas.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
         }

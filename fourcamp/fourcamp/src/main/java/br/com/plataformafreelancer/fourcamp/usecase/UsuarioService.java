@@ -2,7 +2,9 @@ package br.com.plataformafreelancer.fourcamp.usecase;
 
 import br.com.plataformafreelancer.fourcamp.dao.impl.UsuarioJdbcTemplateDaoImpl;
 import br.com.plataformafreelancer.fourcamp.enuns.TipoUsuario;
+import br.com.plataformafreelancer.fourcamp.exceptions.SenhaInvalidaException;
 import br.com.plataformafreelancer.fourcamp.model.Usuario;
+import br.com.plataformafreelancer.fourcamp.utils.ConstantesPtBr;
 import br.com.plataformafreelancer.fourcamp.utils.JwtConfig;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,8 @@ public class UsuarioService {
                     .signWith(chaveSecreta)
                     .compact();
         } else {
-            return null;
+            //return null;
+            throw new SenhaInvalidaException(ConstantesPtBr.USUARIO_OU_SENHA_INVALIDOS);
         }
     }
 }

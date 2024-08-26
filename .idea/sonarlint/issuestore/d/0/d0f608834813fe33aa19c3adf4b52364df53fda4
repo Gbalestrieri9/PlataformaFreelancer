@@ -1,9 +1,11 @@
 
 ¡
-java:S1192¢"]Define a constant instead of duplicating this literal "excluirProjetoSeNaoAssociado" 4 times.(›ıË8°¸È‚˜2J$dd3ed742-6e18-4c2b-86ac-b2d9aa5205a2
+java:S1192£"]Define a constant instead of duplicating this literal "excluirProjetoSeNaoAssociado" 4 times.(›ıË8“ı×æ˜2J$11fd1248-ebb0-4665-ac40-1c1ed860b819
 …
-java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8´¸È‚˜2J$eca25ea9-734d-45f8-bc50-df70db5aac8b
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8–ı×æ˜2J$6e8811f2-8985-4f50-a7b3-ff8c51b1f099
 y
-java:S1874z"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8Ö¸È‚˜2J$6b44818c-1bdf-459f-bb2e-dd212136aa47
-v
-java:S1874"-Remove this use of "query"; it is deprecated.(êÀëÊÿÿÿÿÿ8Ş¸È‚˜2J$b09fdcb6-382f-456b-89ba-f1d8a63cf433
+java:S1874|"6Remove this use of "queryForObject"; it is deprecated.(Ï°ƒÎ8¤ı×æ˜2J$d22342b2-d75b-49bc-b50d-9004fc0877a6
+q
+java:S1874‚"-Remove this use of "query"; it is deprecated.(Ÿ­İº8©ı×æ˜2J$27cbff52-b6f4-4a73-94f3-b21cdc7532b6
+k
+java:S1128"IRemove this unused import 'jakarta.persistence.criteria.CriteriaBuilder'.(À¼ºñşÿÿÿÿ8±ë¹ı˜2

@@ -1,13 +1,13 @@
 
-r
-java:S1192*"PDefine a constant instead of duplicating this literal "visualizarSaldo" 4 times.(ïí£Õúÿÿÿÿ8çËŒİ˜2
+˜
+java:S1192*"PDefine a constant instead of duplicating this literal "visualizarSaldo" 4 times.(ïí£Õúÿÿÿÿ8çËŒİ˜2J$af8ddafe-5a6c-42cf-80d3-e0667a1dedd7
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¸ÅÆ¿•2J$9d5e9561-17ba-4844-9861-26c15e910b18
-H
-java:S1452)"&Remove usage of generic wildcard type.(”ÿœÑşÿÿÿÿ8¢ÌŒİ˜2
-C
-java:S1452<"&Remove usage of generic wildcard type.(ÿóê…8ÎÌŒİ˜2
-C
-java:S1452V"&Remove usage of generic wildcard type.(óĞûÊ8Èæß¹˜2
-C
-java:S1452n"&Remove usage of generic wildcard type.(—ÚÎ¢8Ùæß¹˜2
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¸ÅÆ¿•2J$dc131cc8-28e9-42bf-8887-290804405d08
+n
+java:S1452)"&Remove usage of generic wildcard type.(”ÿœÑşÿÿÿÿ8¢ÌŒİ˜2J$5801b11a-fb35-4ae0-8733-023356981af1
+i
+java:S1452<"&Remove usage of generic wildcard type.(ÿóê…8ÎÌŒİ˜2J$6925c423-45fd-4c09-ae3f-be90035f4027
+i
+java:S1452V"&Remove usage of generic wildcard type.(ŒÌÛÈ8Èæß¹˜2J$287f45ba-922e-42a8-8083-7c5e78e3d37d
+i
+java:S1452o"&Remove usage of generic wildcard type.(—ÚÎ¢8Ùæß¹˜2J$74af138a-ea13-4454-a882-8289086e4d7a
