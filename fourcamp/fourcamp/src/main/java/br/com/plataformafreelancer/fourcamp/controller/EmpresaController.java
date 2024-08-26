@@ -55,10 +55,12 @@ public class EmpresaController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PostMapping("/v1/cadastrar-projeto")
-    public ResponseEntity<?> cadastrarProjeto(@RequestHeader("Authorization") String token, @RequestBody RequestProjetoDto request) {
+    public ResponseEntity<?> cadastrarProjeto(@RequestHeader("Authorization") String token,
+                                              @RequestBody RequestProjetoDto request) {
         LoggerUtils.logRequestStart(LOGGER, "cadastrarProjeto", request);
         long startTime = System.currentTimeMillis();
 
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         empresaService.salvarDadosProjeto(request, jwtDto);
         
@@ -151,7 +153,9 @@ public class EmpresaController {
                                                       @RequestBody RequestIdDto requestIdDto) {
         long startTime = System.currentTimeMillis();
 
-        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(requestIdDto);
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
+
+        List<ResponsePropostaDto> propostas = empresaService.listarPropostasPorProjeto(requestIdDto, jwtDto);
         LoggerUtils.logElapsedTime(LOGGER, "buscarPropostaPorProjeto", startTime);
         return new ResponseEntity<>(propostas, HttpStatus.OK);
     }
@@ -166,7 +170,7 @@ public class EmpresaController {
     public ResponseEntity<?> atualizarEmpresa(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarEmpresaDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarEmpresa", request);
         long startTime = System.currentTimeMillis();
-
+        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         empresaService.atualizarDadosEmpresa(request, jwtDto);
        

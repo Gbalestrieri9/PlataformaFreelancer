@@ -1,15 +1,5 @@
 
 …
-java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄÞ8àÝñå˜2J$c15be5b3-d79d-4086-8e8d-a23a20391fe5
-p
-java:S1172‡"-Remove this unused method parameter "jwtDto".(©˜¶z8÷Ýñå˜2J$0876cfdd-b512-43ed-958c-d3f1a3f064b0
+java:S6813%"BRemove this field injection and use constructor injection instead.(êæÄÞ8Î¡¨þ˜2J$af6e5975-422f-4806-8683-3a51f48a3fd4
 q
-java:S1172˜"-Remove this unused method parameter "jwtDto".(å°¹Ú8úÝñå˜2J$6cc1c9d5-b255-47f0-b538-a4fe384cbe13
-q
-java:S1172¿"-Remove this unused method parameter "jwtDto".(ÀŒ€Í8ÿÝñå˜2J$baa33632-44c7-4d56-bb46-e34793792b15
-q
-java:S1172Å"-Remove this unused method parameter "jwtDto".(ÞÓ«‡8€Þñå˜2J$d60be940-fb5f-4ffe-8dea-ba1050ffc28a
-v
-java:S1172Ï"-Remove this unused method parameter "jwtDto".(Î³¬Âþÿÿÿÿ8ƒÞñå˜2J$694374ff-c761-403e-85f2-4fba1a026332
-¦
-java:S1128"cRemove this unused import 'br.com.plataformafreelancer.fourcamp.exceptions.EmailInvalidoException'.(ÜùÛ“8½ì¸ç˜2J$0f4f30cb-175f-424e-a3ac-6e76766345c7
+java:S1172¿"-Remove this unused method parameter "jwtDto".(ÀŒ€Í8ˆ¨©þ˜2J$255ddb85-2e9b-4dac-bec3-635eec722d5f

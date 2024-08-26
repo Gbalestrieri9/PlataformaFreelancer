@@ -172,7 +172,7 @@ public class EmpresaService {
         }
     }
 
-    public List<ResponsePropostaDto> listarPropostasPorProjeto(RequestIdDto requestIdDto) {
+    public List<ResponsePropostaDto> listarPropostasPorProjeto(RequestIdDto requestIdDto, JwtDto jwtDto) {
 
         if (!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())) {
             throw new IdInvalidoException(ConstantesPtBr.ID_INVALIDO);
@@ -188,7 +188,7 @@ public class EmpresaService {
         return propostas;
     }
 
-    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa) {
+    public void atualizarDadosEmpresa(RequestAtualizarEmpresaDto empresa, JwtDto jwtDto) {
         ValidadorDeTelefones.validarNumeroTelefone(empresa.getTelefone());
 
         empresaJdbcTemplateDao.atualizarDadosEmpresa(empresa);
