@@ -83,7 +83,7 @@ public class FreelancerService {
     public void salvarProposta(RequestPropostaDto requestPropostaDto, JwtDto jwtDto) {
         LoggerUtils.logRequestStart(LOGGER, "salvarProposta", requestPropostaDto);
 
-        int idFreelancerValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getFreelancerId());
+        int idFreelancerValidado = jwtDto.getId();
         int idProjetoValidado = ValidadorDeProposta.validarIdFreelancer(requestPropostaDto.getProjetoId());
         double valorFreelancerValidado = ValidadorDeProposta.validarValor(requestPropostaDto.getValor());
 
