@@ -161,7 +161,7 @@ public class EmpresaService {
     public ResponseFreelancerCompletaDto obterDetalhesFreelancer(RequestIdDto requestIdDto) {
         ResponseFreelancerCompletaDto freelancer = null;
 
-        if(!ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
+        if(ValidadorDeNumerosPositivos.validarNumero(requestIdDto.getId())){
             freelancer = empresaJdbcTemplateDao.obterDetalhesFreelancer(requestIdDto.getId());
         }
 

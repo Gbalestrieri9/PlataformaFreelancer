@@ -213,3 +213,5 @@ lfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/reque
 kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions/NaoEncontradoException.java,4\0\409759c043d1747f8a548306bfdfe3a8491fedd6
 ›
 kfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/exceptions/SenhaInvalidaException.java,7\5\7525baa874f1f652c0a8de4ddec9fd17bb593ba6
+¦
+vfourcamp/fourcamp/src/main/java/br/com/plataformafreelancer/fourcamp/dtos/responseDtos/ResponseEmpresaCompletaDto.java,9\7\977b67ca4d4cdc2194b4c7b8037a7547098d291c
