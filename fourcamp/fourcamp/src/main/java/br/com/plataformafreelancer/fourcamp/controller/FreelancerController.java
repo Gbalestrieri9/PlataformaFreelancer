@@ -44,7 +44,7 @@ public class FreelancerController {
         long startTime = System.currentTimeMillis();
 
         freelancerService.salvarDadosCadastrais(request);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer cadastrado com sucesso!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_CADASTRO_FREELANCER).build());
         LoggerUtils.logElapsedTime(LOGGER, "cadastrarFreelancer", startTime);
         return response;
     }
@@ -63,7 +63,7 @@ public class FreelancerController {
 
         freelancerService.salvarProposta(request, jwtDto);
 
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Proposta enviada!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_ENVIO_PROPOSTA).build());
         LoggerUtils.logElapsedTime(LOGGER, "enviarProposta", startTime);
         return response;
     }
@@ -81,7 +81,7 @@ public class FreelancerController {
         JwtDto jwtDto = JwtUtil.decodeToken(token);
 
         freelancerService.avaliarEmpresa(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Avaliação enviada com sucesso!").build());
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_AVALIACAO_EMPRESA).build());
         LoggerUtils.logElapsedTime(LOGGER, "avaliarEmpresa", startTime);
         return response;
     }
@@ -153,13 +153,12 @@ public class FreelancerController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @PutMapping("/v1/atualizar-freelancer")
-    public ResponseEntity<?> atualizarFreelancer(@RequestHeader("Authorization") String token, @RequestBody RequestAtualizarFreelancerDto request) {
+    public ResponseEntity<?> atualizarFreelancer(@RequestBody RequestAtualizarFreelancerDto request) {
         LoggerUtils.logRequestStart(LOGGER, "atualizarFreelancer", request);
         long startTime = System.currentTimeMillis();
-        JwtDto jwtDto = JwtUtil.decodeToken(token);
 
-        freelancerService.atualizarDadosFreelancer(request, jwtDto);
-        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message("Freelancer atualizado com sucesso!").build());
+        freelancerService.atualizarDadosFreelancer(request);
+        ResponseEntity<StandardResponse> response = ResponseEntity.ok(StandardResponse.builder().message(ConstantesPtBr.SUCESSO_FREELANCER_ATUALIZADO).build());
         LoggerUtils.logElapsedTime(LOGGER, "atualizarFreelancer", startTime);
         return response;
     }

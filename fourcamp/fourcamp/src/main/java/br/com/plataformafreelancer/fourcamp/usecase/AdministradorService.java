@@ -30,7 +30,6 @@ import java.util.List;
 
 @Service
 public class AdministradorService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorService.class);
 
     @Autowired
     private DatasUtil datasUtil;
@@ -41,10 +40,8 @@ public class AdministradorService {
     @Autowired
     private AdministradorJdbcTemplateDaoImpl administradorJdbcTemplateDao;
 
-    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto, JwtDto jwtDto) {
+    public void salvarAdministrador(RequestAdministradorDto requestAdministradorDto) {
         String cpfValidado;
-
-        LoggerUtils.logRequestStart(LOGGER, "salvarAdministrador", requestAdministradorDto);
 
         ValidadorDeEmail.validarEmail(requestAdministradorDto.getEmail());
         cpfValidado = ValidadorDeCpf.validarCpf(requestAdministradorDto.getCpf());
@@ -67,10 +64,9 @@ public class AdministradorService {
                 .build();
 
         administradorJdbcTemplateDao.salvarAdministrador(administrador);
-        LoggerUtils.logElapsedTime(LOGGER, "salvarAdministrador", System.currentTimeMillis());
     }
 
-    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto, JwtDto jwtDto) {
+    public void aprovarProjeto(RequesAprovarProjetoDto requestAprovarEntregaProjetoDto) {
         int idValidado;
         LocalDate dataAtual = DatasUtil.coletarDataAtual();
 
@@ -83,7 +79,7 @@ public class AdministradorService {
         administradorJdbcTemplateDao.aprovarProjeto(idValidado, dataAtual);
     }
 
-    public List<Projeto> listarProjetoPendente(JwtDto jwtDto) {
+    public List<Projeto> listarProjetoPendente() {
         List<Projeto> lista = administradorJdbcTemplateDao.listarProjetoPendente();
         if (lista == null || lista.isEmpty()) {
             throw new NaoEncontradoException(ErrorCode.LISTA_VAZIA.getCustomMessage());
